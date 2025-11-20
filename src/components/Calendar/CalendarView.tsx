@@ -1,16 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-	format,
-	startOfMonth,
-	endOfMonth,
-	startOfWeek,
-	endOfWeek,
-	eachDayOfInterval,
 	addMonths,
-	subMonths,
-	isSameMonth,
+	eachDayOfInterval,
+	endOfMonth,
+	endOfWeek,
+	format,
 	isSameDay,
+	isSameMonth,
 	isToday,
+	startOfMonth,
+	startOfWeek,
+	subMonths,
 } from "date-fns";
 import {
 	Calendar as CalendarIcon,
@@ -106,19 +106,19 @@ export function CalendarView() {
 	};
 
 	return (
-		<div className="h-full flex flex-col bg-slate-950 text-slate-100">
+		<div className="h-full flex flex-col bg-background text-foreground">
 			{/* Header */}
-			<div className="flex items-center justify-between p-6 bg-slate-900/50 backdrop-blur-md border-b border-slate-800">
+			<div className="flex items-center justify-between p-6 bg-card/50 backdrop-blur-md border-b border-border">
 				<div className="flex items-center gap-4">
-					<h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+					<h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
 						{format(currentDate, "MMMM yyyy")}
 					</h2>
-					<div className="flex items-center gap-1 bg-slate-800 rounded-lg p-1">
+					<div className="flex items-center gap-1 bg-muted rounded-lg p-1">
 						<Button
 							variant="ghost"
 							size="icon"
 							onClick={handlePrevMonth}
-							className="hover:bg-slate-700 text-slate-400 hover:text-white"
+							className="hover:bg-accent"
 						>
 							<ChevronLeft className="w-5 h-5" />
 						</Button>
@@ -126,7 +126,7 @@ export function CalendarView() {
 							variant="ghost"
 							size="icon"
 							onClick={() => setCurrentDate(new Date())}
-							className="hover:bg-slate-700 text-slate-400 hover:text-white text-sm font-medium px-3"
+							className="hover:bg-accent text-sm font-medium px-3"
 						>
 							Today
 						</Button>
@@ -134,7 +134,7 @@ export function CalendarView() {
 							variant="ghost"
 							size="icon"
 							onClick={handleNextMonth}
-							className="hover:bg-slate-700 text-slate-400 hover:text-white"
+							className="hover:bg-accent"
 						>
 							<ChevronRight className="w-5 h-5" />
 						</Button>
@@ -146,19 +146,18 @@ export function CalendarView() {
 						setEditingEvent(null);
 						setIsEventModalOpen(true);
 					}}
-					className="bg-cyan-600 hover:bg-cyan-700 text-white shadow-lg shadow-cyan-500/20"
 				>
 					<Plus className="w-4 h-4 mr-2" /> New Event
 				</Button>
 			</div>
 
 			{/* Calendar Grid */}
-			<div className="flex-1 grid grid-cols-7 grid-rows-[auto_1fr] gap-px bg-slate-800 overflow-hidden">
+			<div className="flex-1 grid grid-cols-7 grid-rows-[auto_1fr] gap-px bg-border overflow-hidden">
 				{/* Weekday Headers */}
 				{["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
 					<div
 						key={day}
-						className="bg-slate-900/80 p-3 text-center text-sm font-medium text-slate-400 border-b border-slate-800"
+						className="bg-muted/80 p-3 text-center text-sm font-medium text-muted-foreground border-b border-border"
 					>
 						{day}
 					</div>
@@ -178,10 +177,10 @@ export function CalendarView() {
 							key={day.toString()}
 							onClick={() => handleDayClick(day)}
 							className={cn(
-								"bg-slate-900/30 p-2 min-h-[100px] transition-colors hover:bg-slate-800/50 cursor-pointer flex flex-col gap-1",
+								"bg-card p-2 min-h-[100px] transition-colors hover:bg-accent/50 cursor-pointer flex flex-col gap-1",
 								!isSameMonth(day, currentDate) &&
-									"bg-slate-950/50 text-slate-600",
-								isToday(day) && "bg-slate-800/80",
+									"bg-muted/30 text-muted-foreground",
+								isToday(day) && "bg-accent/80",
 							)}
 						>
 							<div className="flex justify-between items-start">
@@ -189,8 +188,8 @@ export function CalendarView() {
 									className={cn(
 										"text-sm font-medium w-7 h-7 flex items-center justify-center rounded-full",
 										isToday(day)
-											? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/40"
-											: "text-slate-400",
+											? "bg-primary text-primary-foreground shadow-lg"
+											: "text-muted-foreground",
 									)}
 								>
 									{format(day, "d")}
@@ -201,7 +200,7 @@ export function CalendarView() {
 							{dayHolidays?.map((holiday) => (
 								<div
 									key={holiday.id}
-									className="text-[10px] font-medium text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded truncate border border-emerald-400/20"
+									className="text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-1.5 py-0.5 rounded truncate border border-green-200 dark:border-green-400/20"
 									title={holiday.name}
 								>
 									{holiday.name}
@@ -216,8 +215,8 @@ export function CalendarView() {
 									className={cn(
 										"text-xs px-2 py-1 rounded border truncate shadow-sm transition-all hover:scale-[1.02]",
 										event.category
-											? `bg-[${event.category.color}]/20 border-[${event.category.color}]/30 text-slate-200`
-											: "bg-blue-500/20 border-blue-500/30 text-blue-200",
+											? `bg-[${event.category.color}]/20 border-[${event.category.color}]/30`
+											: "bg-primary/20 border-primary/30",
 									)}
 								>
 									{format(new Date(event.startTime), "HH:mm")} {event.title}
@@ -230,7 +229,7 @@ export function CalendarView() {
 
 			{/* Event Modal */}
 			<Dialog open={isEventModalOpen} onOpenChange={setIsEventModalOpen}>
-				<DialogContent className="bg-slate-900 border-slate-700 text-slate-100 sm:max-w-[500px]">
+				<DialogContent>
 					<DialogHeader>
 						<DialogTitle className="text-xl font-semibold">
 							{editingEvent ? "Edit Event" : "Create New Event"}

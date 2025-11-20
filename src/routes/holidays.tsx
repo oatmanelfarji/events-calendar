@@ -96,11 +96,7 @@ function HolidaysPage() {
 								maxLength={2}
 							/>
 						</div>
-						<Button
-							onClick={handleSeed}
-							disabled={seedMutation.isPending}
-							className="bg-cyan-600 hover:bg-cyan-700 text-white"
-						>
+						<Button onClick={handleSeed} disabled={seedMutation.isPending}>
 							{seedMutation.isPending ? "Seeding..." : "Fetch & Seed"}
 						</Button>
 					</CardContent>
