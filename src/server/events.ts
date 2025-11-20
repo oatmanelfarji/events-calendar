@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "../db";
@@ -16,7 +16,7 @@ const EventSchema = z.object({
 });
 
 export const getEvents = createServerFn({ method: "GET" })
-	.validator((data: { start: string; end: string }) => data)
+	.inputValidator((data: { start: string; end: string }) => data)
 	.handler(async ({ data }) => {
 		const { start, end } = data;
 
@@ -37,12 +37,13 @@ export const getEvents = createServerFn({ method: "GET" })
 
 		return results.map(({ event, category }) => ({
 			...event,
+			reminders: event.reminders as any[],
 			category,
 		}));
 	});
 
 export const createEvent = createServerFn({ method: "POST" })
-	.validator(EventSchema)
+	.inputValidator(EventSchema)
 	.handler(async ({ data }) => {
 		const [newEvent] = await db
 			.insert(events)
@@ -53,11 +54,11 @@ export const createEvent = createServerFn({ method: "POST" })
 			})
 			.returning();
 
-		return newEvent;
+		return newEvent as typeof newEvent & { reminders: any[] };
 	});
 
 export const updateEvent = createServerFn({ method: "POST" })
-	.validator(EventSchema.extend({ id: z.number() }))
+	.inputValidator(EventSchema.extend({ id: z.number() }))
 	.handler(async ({ data }) => {
 		const { id, ...values } = data;
 
@@ -72,11 +73,11 @@ export const updateEvent = createServerFn({ method: "POST" })
 			.where(eq(events.id, id))
 			.returning();
 
-		return updatedEvent;
+		return updatedEvent as typeof updatedEvent & { reminders: any[] };
 	});
 
 export const deleteEvent = createServerFn({ method: "POST" })
-	.validator((data: { id: number }) => data)
+	.inputValidator((data: { id: number }) => data)
 	.handler(async ({ data }) => {
 		await db.delete(events).where(eq(events.id, data.id));
 		return { success: true };
