@@ -16,6 +16,7 @@ import {
 	X,
 } from "lucide-react";
 import { useState } from "react";
+import { CountrySelector } from "./country-selector";
 import { ModeToggle } from "./mode-toggle";
 
 export default function Header() {
@@ -46,7 +47,10 @@ export default function Header() {
 						</Link>
 					</h1>
 				</div>
-				<ModeToggle />
+				<div className="flex items-center gap-2">
+					<CountrySelector />
+					<ModeToggle />
+				</div>
 			</header>
 
 			<aside

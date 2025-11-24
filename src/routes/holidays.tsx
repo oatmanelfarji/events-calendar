@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useId, useState } from "react";
+import { HolidaysList } from "@/components/HolidaysList";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -10,14 +11,6 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
 import { fetchAndSeedHolidays, getHolidays } from "../server/holidays";
 
 export const Route = createFileRoute("/holidays")({
@@ -26,7 +19,7 @@ export const Route = createFileRoute("/holidays")({
 
 function HolidaysPage() {
 	const [year, setYear] = useState(new Date().getFullYear());
-	const [countryCode, setCountryCode] = useState("US");
+	const [countryCode, setCountryCode] = useState("MA");
 	const [isSeedFormVisible, setIsSeedFormVisible] = useState(false);
 	const queryClient = useQueryClient();
 	const yearInputId = useId();
@@ -103,46 +96,14 @@ function HolidaysPage() {
 				</Card>
 			)}
 
-			<Card>
-				<CardHeader>
-					<CardTitle>Holiday List</CardTitle>
-				</CardHeader>
-				<CardContent>
-					{isLoading ? (
-						<div>Loading...</div>
-					) : (
-						<Table>
-							<TableHeader>
-								<TableRow>
-									<TableHead>Date</TableHead>
-									<TableHead>Name</TableHead>
-									<TableHead>Type</TableHead>
-									<TableHead>Description</TableHead>
-								</TableRow>
-							</TableHeader>
-							<TableBody>
-								{holidays?.map((holiday) => (
-									<TableRow key={holiday.id}>
-										<TableCell>{holiday.date}</TableCell>
-										<TableCell className="font-medium">
-											{holiday.name}
-										</TableCell>
-										<TableCell>{holiday.type}</TableCell>
-										<TableCell>{holiday.description}</TableCell>
-									</TableRow>
-								))}
-								{holidays?.length === 0 && (
-									<TableRow>
-										<TableCell colSpan={4} className="text-center py-4">
-											No holidays found. Try seeding them.
-										</TableCell>
-									</TableRow>
-								)}
-							</TableBody>
-						</Table>
-					)}
-				</CardContent>
-			</Card>
+			<HolidaysList
+				holidays={holidays || []}
+				isLoading={isLoading}
+				title={`${countryCode} Holidays ${year}`}
+				description={`Showing holidays for ${countryCode} in ${year}`}
+				emptyMessage="No holidays found. Try seeding them using the button above."
+				showCountryCode={false}
+			/>
 		</div>
 	);
 }

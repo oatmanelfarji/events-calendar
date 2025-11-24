@@ -57,12 +57,12 @@ export function CalendarView() {
 			}),
 	});
 
-	// Fetch Holidays (assuming US for now, should come from settings context)
+	// Fetch Holidays (Morocco by default, should come from settings context)
 	const { data: holidays } = useQuery({
-		queryKey: ["holidays", currentDate.getFullYear(), "US"],
+		queryKey: ["holidays", currentDate.getFullYear(), "MA"],
 		queryFn: () =>
 			getHolidays({
-				data: { year: currentDate.getFullYear(), countryCode: "US" },
+				data: { year: currentDate.getFullYear(), countryCode: "MA" },
 			}),
 	});
 
@@ -197,15 +197,24 @@ export function CalendarView() {
 							</div>
 
 							{/* Holidays */}
-							{dayHolidays?.map((holiday) => (
-								<div
-									key={holiday.id}
-									className="text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-1.5 py-0.5 rounded truncate border border-green-200 dark:border-green-400/20"
-									title={holiday.name}
-								>
-									{holiday.name}
-								</div>
-							))}
+							{dayHolidays?.map((holiday) => {
+								const isReligious = holiday.type === "religious";
+								return (
+									<div
+										key={holiday.id}
+										className={cn(
+											"text-[10px] font-medium px-1.5 py-0.5 rounded truncate border",
+											isReligious
+												? "text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-400/10 border-purple-200 dark:border-purple-400/20"
+												: "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 border-green-200 dark:border-green-400/20",
+										)}
+										title={`${holiday.name}${holiday.description ? ` - ${holiday.description}` : ""}`}
+									>
+										<CalendarIcon className="w-2.5 h-2.5 inline mr-0.5" />
+										{holiday.name}
+									</div>
+								);
+							})}
 
 							{/* Events */}
 							{dayEvents?.map((event) => (
