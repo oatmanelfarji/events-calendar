@@ -1,5 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { Home, Menu, Settings, Table, Table2Icon, X } from "lucide-react";
+import {
+	Home,
+	ListTodo,
+	Menu,
+	Settings,
+	Table,
+	Table2Icon,
+	X,
+} from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CountrySelector } from "./country-selector";
@@ -94,6 +102,19 @@ export default function Header() {
 					>
 						<Table size={20} />
 						<span className="font-medium">{t("common.holidays")}</span>
+					</Link>
+
+					<Link
+						to="/todos"
+						onClick={() => setIsOpen(false)}
+						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						activeProps={{
+							className:
+								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+						}}
+					>
+						<ListTodo size={20} />
+						<span className="font-medium">{t("common.todos", "Todos")}</span>
 					</Link>
 
 					<Link

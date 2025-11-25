@@ -22,16 +22,20 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getDateFnsLocale } from "../../lib/date-locale";
 import { cn } from "../../lib/utils";
-import {
-	createEvent,
-	deleteEvent,
-	getEvents,
-	updateEvent,
-} from "../../server/events";
+import { createEvent, getEvents, updateEvent } from "../../server/events";
 import { getHolidays } from "../../server/holidays";
+import { getTodos, updateTodo } from "../../server/todos";
 import { EventForm } from "../Events/EventForm";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
+
+type Todo = {
+	id: number;
+	title: string;
+	description?: string | null;
+	isDone: boolean | null;
+	date?: string | null;
+};
 
 export function CalendarView() {
 	const { t } = useTranslation();
@@ -39,6 +43,7 @@ export function CalendarView() {
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [isEventModalOpen, setIsEventModalOpen] = useState(false);
+	// biome-ignore lint/suspicious/noExplicitAny: generic state
 	const [editingEvent, setEditingEvent] = useState<any>(null);
 	const queryClient = useQueryClient();
 
@@ -70,7 +75,28 @@ export function CalendarView() {
 			}),
 	});
 
+	// Fetch Todos
+	const { data: todos } = useQuery({
+		queryKey: ["todos", startDate.toISOString(), endDate.toISOString()],
+		queryFn: () =>
+			getTodos({
+				data: {
+					start: startDate.toISOString(),
+					end: endDate.toISOString(),
+				},
+			}),
+	});
+
+	const updateTodoMutation = useMutation({
+		// biome-ignore lint/suspicious/noExplicitAny: mutation data
+		mutationFn: (data: any) => updateTodo({ data }),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["todos"] });
+		},
+	});
+
 	const createMutation = useMutation({
+		// biome-ignore lint/suspicious/noExplicitAny: mutation data
 		mutationFn: (data: any) => createEvent({ data }),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["events"] });
@@ -79,6 +105,7 @@ export function CalendarView() {
 	});
 
 	const updateMutation = useMutation({
+		// biome-ignore lint/suspicious/noExplicitAny: mutation data
 		mutationFn: (data: any) => updateEvent({ data }),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["events"] });
@@ -174,7 +201,7 @@ export function CalendarView() {
 				))}
 
 				{/* Days */}
-				{calendarDays.map((day, dayIdx) => {
+				{calendarDays.map((day) => {
 					const dayEvents = events?.filter((e) =>
 						isSameDay(new Date(e.startTime), day),
 					);
@@ -186,8 +213,15 @@ export function CalendarView() {
 						<div
 							key={day.toString()}
 							onClick={() => handleDayClick(day)}
+							onKeyDown={(e) => {
+								if (e.key === "Enter" || e.key === " ") {
+									handleDayClick(day);
+								}
+							}}
+							role="button"
+							tabIndex={0}
 							className={cn(
-								"bg-card p-2 min-h-[100px] transition-colors hover:bg-accent/50 cursor-pointer flex flex-col gap-1",
+								"bg-card p-2 min-h-[100px] transition-colors hover:bg-accent/50 cursor-pointer flex flex-col gap-1 text-left items-stretch outline-none focus-visible:ring-2 focus-visible:ring-ring",
 								!isSameMonth(day, currentDate) &&
 									"bg-muted/30 text-muted-foreground",
 								isToday(day) && "bg-accent/80",
@@ -226,13 +260,59 @@ export function CalendarView() {
 								);
 							})}
 
+							{/* Todos */}
+							{todos
+								?.filter(
+									(todo) => todo.date && isSameDay(new Date(todo.date), day),
+								)
+								.map((todo) => (
+									<button
+										type="button"
+										key={todo.id}
+										onClick={(e) => {
+											e.stopPropagation();
+											updateTodoMutation.mutate({
+												...todo,
+												isDone: !todo.isDone,
+											});
+										}}
+										className={cn(
+											"text-[10px] px-1.5 py-0.5 rounded border truncate flex items-center gap-1 cursor-pointer transition-all hover:opacity-80 w-full text-left",
+											todo.isDone
+												? "bg-muted text-muted-foreground border-muted-foreground/20 line-through"
+												: "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800",
+										)}
+									>
+										<div
+											className={cn(
+												"w-2 h-2 rounded-[2px] border flex items-center justify-center shrink-0",
+												todo.isDone
+													? "border-muted-foreground bg-muted-foreground/20"
+													: "border-blue-500",
+											)}
+										>
+											{todo.isDone && (
+												<div className="w-1.5 h-1.5 bg-current rounded-[1px]" />
+											)}
+										</div>
+										<span className="truncate">{todo.title}</span>
+									</button>
+								))}
+
 							{/* Events */}
 							{dayEvents?.map((event) => (
 								<div
 									key={event.id}
 									onClick={(e) => handleEventClick(e, event)}
+									onKeyDown={(e) => {
+										if (e.key === "Enter" || e.key === " ") {
+											handleEventClick(e as any, event);
+										}
+									}}
+									role="button"
+									tabIndex={0}
 									className={cn(
-										"text-xs px-2 py-1 rounded border truncate shadow-sm transition-all hover:scale-[1.02]",
+										"text-xs px-2 py-1 rounded border truncate shadow-sm transition-all hover:scale-[1.02] outline-none focus-visible:ring-2 focus-visible:ring-ring",
 										event.category
 											? `bg-[${event.category.color}]/20 border-[${event.category.color}]/30`
 											: "bg-primary/20 border-primary/30",

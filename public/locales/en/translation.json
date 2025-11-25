@@ -46,7 +46,7 @@
     "location": "Location",
     "category": "Category",
     "select_category": "Select a category",
-    "create_new": "+ Create New (TODO)",
+    "create_new": "Personal Event",
     "save_event": "Save Event",
     "cancel": "Cancel"
   }

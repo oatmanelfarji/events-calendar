@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TodosRouteImport } from './routes/todos'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as HolidaysRouteImport } from './routes/holidays'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TodosRoute = TodosRouteImport.update({
+  id: '/todos',
+  path: '/todos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/holidays': typeof HolidaysRoute
   '/settings': typeof SettingsRoute
+  '/todos': typeof TodosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/events': typeof EventsRoute
   '/holidays': typeof HolidaysRoute
   '/settings': typeof SettingsRoute
+  '/todos': typeof TodosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/holidays': typeof HolidaysRoute
   '/settings': typeof SettingsRoute
+  '/todos': typeof TodosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/events' | '/holidays' | '/settings'
+  fullPaths: '/' | '/events' | '/holidays' | '/settings' | '/todos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/events' | '/holidays' | '/settings'
-  id: '__root__' | '/' | '/events' | '/holidays' | '/settings'
+  to: '/' | '/events' | '/holidays' | '/settings' | '/todos'
+  id: '__root__' | '/' | '/events' | '/holidays' | '/settings' | '/todos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   HolidaysRoute: typeof HolidaysRoute
   SettingsRoute: typeof SettingsRoute
+  TodosRoute: typeof TodosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/todos': {
+      id: '/todos'
+      path: '/todos'
+      fullPath: '/todos'
+      preLoaderRoute: typeof TodosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   HolidaysRoute: HolidaysRoute,
   SettingsRoute: SettingsRoute,
+  TodosRoute: TodosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
