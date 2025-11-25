@@ -1,6 +1,7 @@
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
 import { zodValidator } from "@tanstack/zod-form-adapter";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { getCategories } from "../../server/events";
 import { Button } from "../ui/button";
@@ -33,6 +34,7 @@ type EventFormProps = {
 };
 
 export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
+	const { t } = useTranslation();
 	const { data: categories } = useQuery({
 		queryKey: ["categories"],
 		queryFn: () => getCategories(),
@@ -78,7 +80,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 				children={(field) => (
 					<div className="space-y-2">
 						<Label htmlFor={field.name} className="text-slate-300">
-							Title
+							{t("common.title")}
 						</Label>
 						<Input
 							id={field.name}
@@ -102,7 +104,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 					children={(field) => (
 						<div className="space-y-2">
 							<Label htmlFor={field.name} className="text-slate-300">
-								Start Time
+								{t("common.start_time")}
 							</Label>
 							<Input
 								id={field.name}
@@ -120,7 +122,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 					children={(field) => (
 						<div className="space-y-2">
 							<Label htmlFor={field.name} className="text-slate-300">
-								End Time
+								{t("common.end_time")}
 							</Label>
 							<Input
 								id={field.name}
@@ -146,7 +148,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 							className="border-slate-700 data-[state=checked]:bg-cyan-600"
 						/>
 						<Label htmlFor={field.name} className="text-slate-300">
-							All Day Event
+							{t("common.all_day_event")}
 						</Label>
 					</div>
 				)}
@@ -157,7 +159,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 				children={(field) => (
 					<div className="space-y-2">
 						<Label htmlFor={field.name} className="text-slate-300">
-							Location
+							{t("common.location")}
 						</Label>
 						<Input
 							id={field.name}
@@ -175,14 +177,14 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 				children={(field) => (
 					<div className="space-y-2">
 						<Label htmlFor={field.name} className="text-slate-300">
-							Category
+							{t("common.category")}
 						</Label>
 						<Select
 							value={field.state.value}
 							onValueChange={field.handleChange}
 						>
 							<SelectTrigger className="bg-slate-900 border-slate-700 text-slate-100">
-								<SelectValue placeholder="Select a category" />
+								<SelectValue placeholder={t("common.select_category")} />
 							</SelectTrigger>
 							<SelectContent className="bg-slate-800 border-slate-700 text-slate-100">
 								{categories?.map((cat) => (
@@ -190,7 +192,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 										{cat.name}
 									</SelectItem>
 								))}
-								<SelectItem value="new">+ Create New (TODO)</SelectItem>
+								<SelectItem value="new">{t("common.create_new")}</SelectItem>
 							</SelectContent>
 						</Select>
 					</div>
@@ -202,7 +204,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 				children={(field) => (
 					<div className="space-y-2">
 						<Label htmlFor={field.name} className="text-slate-300">
-							Description
+							{t("common.description")}
 						</Label>
 						<Textarea
 							id={field.name}
@@ -222,13 +224,13 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 					onClick={onCancel}
 					className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
 				>
-					Cancel
+					{t("common.cancel")}
 				</Button>
 				<Button
 					type="submit"
 					className="bg-cyan-600 hover:bg-cyan-700 text-white"
 				>
-					Save Event
+					{t("common.save_event")}
 				</Button>
 			</div>
 		</form>

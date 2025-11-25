@@ -1,29 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import {
-	BookOpen,
-	Calendar as CalendarIcon,
-	ChevronDown,
-	ChevronRight,
-	ClipboardType,
-	Database,
-	Home,
-	Menu,
-	Network,
-	Settings,
-	SquareFunction,
-	StickyNote,
-	Table,
-	X,
-} from "lucide-react";
+import { Home, Menu, Settings, Table, Table2Icon, X } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CountrySelector } from "./country-selector";
+import { LanguageSwitcher } from "./language-switcher";
 import { ModeToggle } from "./mode-toggle";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
-	const [groupedExpanded, setGroupedExpanded] = useState<
-		Record<string, boolean>
-	>({});
+	const { t } = useTranslation();
 
 	return (
 		<>
@@ -40,16 +25,17 @@ export default function Header() {
 					<h1 className="ml-4 text-xl font-semibold">
 						<Link to="/">
 							<img
-								src="/tanstack-word-logo-white.svg"
-								alt="TanStack Logo"
+								src="/drizzle.svg"
+								alt="Drizzle Logo"
 								className="h-10 dark:invert-0 invert"
 							/>
 						</Link>
 					</h1>
 				</div>
 				<div className="flex items-center gap-2">
-					<CountrySelector />
+					<LanguageSwitcher />
 					<ModeToggle />
+					<CountrySelector />
 				</div>
 			</header>
 
@@ -59,7 +45,7 @@ export default function Header() {
 				}`}
 			>
 				<div className="flex items-center justify-between p-4 border-b border-border">
-					<h2 className="text-xl font-bold">Navigation</h2>
+					<h2 className="text-xl font-bold">{t("common.navigation")}</h2>
 					<button
 						type="button"
 						onClick={() => setIsOpen(false)}
@@ -81,7 +67,33 @@ export default function Header() {
 						}}
 					>
 						<Home size={20} />
-						<span className="font-medium">Home</span>
+						<span className="font-medium">{t("common.home")}</span>
+					</Link>
+
+					<Link
+						to="/events"
+						onClick={() => setIsOpen(false)}
+						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						activeProps={{
+							className:
+								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+						}}
+					>
+						<Table2Icon size={20} />
+						<span className="font-medium">{t("common.events")}</span>
+					</Link>
+
+					<Link
+						to="/holidays"
+						onClick={() => setIsOpen(false)}
+						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						activeProps={{
+							className:
+								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+						}}
+					>
+						<Table size={20} />
+						<span className="font-medium">{t("common.holidays")}</span>
 					</Link>
 
 					<Link
@@ -94,33 +106,7 @@ export default function Header() {
 						}}
 					>
 						<Settings size={20} />
-						<span className="font-medium">Settings</span>
-					</Link>
-
-					<Link
-						to="/events"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
-						}}
-					>
-						<CalendarIcon size={20} />
-						<span className="font-medium">Events</span>
-					</Link>
-
-					<Link
-						to="/holidays"
-						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
-						activeProps={{
-							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
-						}}
-					>
-						<CalendarIcon size={20} />
-						<span className="font-medium">Holidays</span>
+						<span className="font-medium">{t("common.settings")}</span>
 					</Link>
 				</nav>
 			</aside>

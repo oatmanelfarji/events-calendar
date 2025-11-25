@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { Calendar, Globe, Info } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
 	Card,
 	CardContent,
@@ -15,6 +16,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { getDateFnsLocale } from "../lib/date-locale";
 
 interface Holiday {
 	id: number;
@@ -37,18 +39,24 @@ interface HolidaysListProps {
 export function HolidaysList({
 	holidays,
 	isLoading = false,
-	title = "Holidays",
+	title,
 	description,
-	emptyMessage = "No holidays found.",
+	emptyMessage,
 	showCountryCode = false,
 }: HolidaysListProps) {
+	const { t } = useTranslation();
+	const locale = getDateFnsLocale();
+
+	const defaultTitle = t("common.holidays");
+	const defaultEmptyMessage = t("common.no_holidays_simple");
+
 	if (isLoading) {
 		return (
 			<Card>
 				<CardHeader>
 					<CardTitle className="flex items-center gap-2">
 						<Calendar className="h-5 w-5" />
-						{title}
+						{title || defaultTitle}
 					</CardTitle>
 					{description && <CardDescription>{description}</CardDescription>}
 				</CardHeader>
@@ -66,7 +74,7 @@ export function HolidaysList({
 			<CardHeader>
 				<CardTitle className="flex items-center gap-2">
 					<Calendar className="h-5 w-5" />
-					{title}
+					{title || defaultTitle}
 				</CardTitle>
 				{description && <CardDescription>{description}</CardDescription>}
 			</CardHeader>
@@ -74,25 +82,29 @@ export function HolidaysList({
 				{holidays.length === 0 ? (
 					<div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
 						<Info className="h-12 w-12 mb-4 opacity-50" />
-						<p>{emptyMessage}</p>
+						<p>{emptyMessage || defaultEmptyMessage}</p>
 					</div>
 				) : (
 					<div className="rounded-md border">
 						<Table>
 							<TableHeader>
 								<TableRow>
-									<TableHead>Date</TableHead>
-									<TableHead>Name</TableHead>
-									{showCountryCode && <TableHead>Country</TableHead>}
-									<TableHead>Type</TableHead>
-									<TableHead>Description</TableHead>
+									<TableHead>{t("common.date")}</TableHead>
+									<TableHead>{t("common.name")}</TableHead>
+									{showCountryCode && (
+										<TableHead>{t("common.country")}</TableHead>
+									)}
+									<TableHead>{t("common.type")}</TableHead>
+									<TableHead>{t("common.description")}</TableHead>
 								</TableRow>
 							</TableHeader>
 							<TableBody>
 								{holidays.map((holiday) => {
 									const holidayDate = new Date(holiday.date);
-									const formattedDate = format(holidayDate, "MMM dd, yyyy");
-									const dayOfWeek = format(holidayDate, "EEEE");
+									const formattedDate = format(holidayDate, "MMM dd, yyyy", {
+										locale,
+									});
+									const dayOfWeek = format(holidayDate, "EEEE", { locale });
 
 									return (
 										<TableRow key={holiday.id}>

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/events")({
 
 function EventsPage() {
 	return (
-		<div className="h-[calc(100vh-4rem)]">
+		<div className="h-[calc(80vh-4rem)]">
 			<CalendarView />
 		</div>
 	);

@@ -6,9 +6,11 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { useTranslation } from "react-i18next";
 import Header from "../components/Header";
 import { ThemeProvider } from "../components/theme-provider";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
+import "../lib/i18n";
 import appCss from "../styles.css?url";
 
 interface MyRouterContext {
@@ -41,8 +43,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const { i18n, ready } = useTranslation();
+
+	if (!ready) {
+		return null; // Or a loading spinner
+	}
+
 	return (
-		<html lang="en">
+		<html lang={i18n.language} dir={i18n.dir(i18n.language)}>
 			<head>
 				<HeadContent />
 			</head>

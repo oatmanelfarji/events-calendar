@@ -17,6 +17,8 @@ export const holidays = pgTable("holidays", {
 	type: text("type"), // e.g., 'public', 'religious'
 	description: text("description"),
 	createdAt: timestamp("created_at").defaultNow(),
+	// updatedAt: timestamp("updated_at").defaultNow(),
+	// localName: text("local_name"),
 });
 
 export const categories = pgTable("categories", {

@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useId, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { HolidaysList } from "@/components/HolidaysList";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/holidays")({
 });
 
 function HolidaysPage() {
+	const { t } = useTranslation();
 	const [year, setYear] = useState(new Date().getFullYear());
 	const [countryCode, setCountryCode] = useState("MA");
 	const [isSeedFormVisible, setIsSeedFormVisible] = useState(false);
@@ -47,27 +49,29 @@ function HolidaysPage() {
 	return (
 		<div className="p-8 space-y-8">
 			<div className="flex justify-between items-center">
-				<h1 className="text-3xl font-bold">Holidays</h1>
+				<h1 className="text-3xl font-bold">{t("common.holidays")}</h1>
 				<Button
 					onClick={() => setIsSeedFormVisible(!isSeedFormVisible)}
 					variant="outline"
 				>
-					{isSeedFormVisible ? "Cancel Seeding" : "Seed Holidays"}
+					{isSeedFormVisible
+						? t("common.cancel_seeding")
+						: t("common.seed_holidays")}
 				</Button>
 			</div>
 
 			{isSeedFormVisible && (
 				<Card>
 					<CardHeader>
-						<CardTitle>Manage Holidays</CardTitle>
+						<CardTitle>{t("common.manage_holidays")}</CardTitle>
 						<CardDescription>
-							Fetch and seed holidays for a specific year and country.
+							{t("common.manage_holidays_desc")}
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="flex items-end gap-4">
 						<div className="space-y-2">
 							<label htmlFor={yearInputId} className="text-sm font-medium">
-								Year
+								{t("common.year")}
 							</label>
 							<Input
 								id={yearInputId}
@@ -79,7 +83,7 @@ function HolidaysPage() {
 						</div>
 						<div className="space-y-2">
 							<label htmlFor={countryInputId} className="text-sm font-medium">
-								Country Code
+								{t("common.country_code")}
 							</label>
 							<Input
 								id={countryInputId}
@@ -90,7 +94,9 @@ function HolidaysPage() {
 							/>
 						</div>
 						<Button onClick={handleSeed} disabled={seedMutation.isPending}>
-							{seedMutation.isPending ? "Seeding..." : "Fetch & Seed"}
+							{seedMutation.isPending
+								? t("common.seeding")
+								: t("common.fetch_and_seed")}
 						</Button>
 					</CardContent>
 				</Card>
@@ -99,9 +105,15 @@ function HolidaysPage() {
 			<HolidaysList
 				holidays={holidays || []}
 				isLoading={isLoading}
-				title={`${countryCode} Holidays ${year}`}
-				description={`Showing holidays for ${countryCode} in ${year}`}
-				emptyMessage="No holidays found. Try seeding them using the button above."
+				title={t("common.showing_holidays", {
+					country: countryCode,
+					year: year,
+				})}
+				description={t("common.showing_holidays", {
+					country: countryCode,
+					year: year,
+				})}
+				emptyMessage={t("common.no_holidays_found")}
 				showCountryCode={false}
 			/>
 		</div>

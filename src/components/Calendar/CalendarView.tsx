@@ -19,6 +19,8 @@ import {
 	Plus,
 } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { getDateFnsLocale } from "../../lib/date-locale";
 import { cn } from "../../lib/utils";
 import {
 	createEvent,
@@ -32,6 +34,8 @@ import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 
 export function CalendarView() {
+	const { t } = useTranslation();
+	const locale = getDateFnsLocale();
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 	const [isEventModalOpen, setIsEventModalOpen] = useState(false);
@@ -40,8 +44,8 @@ export function CalendarView() {
 
 	const monthStart = startOfMonth(currentDate);
 	const monthEnd = endOfMonth(monthStart);
-	const startDate = startOfWeek(monthStart);
-	const endDate = endOfWeek(monthEnd);
+	const startDate = startOfWeek(monthStart, { locale });
+	const endDate = endOfWeek(monthEnd, { locale });
 
 	const calendarDays = eachDayOfInterval({ start: startDate, end: endDate });
 
@@ -105,13 +109,19 @@ export function CalendarView() {
 		}
 	};
 
+	// Generate weekday headers based on locale
+	const weekDays = eachDayOfInterval({
+		start: startOfWeek(new Date(), { locale }),
+		end: endOfWeek(new Date(), { locale }),
+	}).map((day) => format(day, "EEE", { locale }));
+
 	return (
 		<div className="h-full flex flex-col bg-background text-foreground">
 			{/* Header */}
 			<div className="flex items-center justify-between p-6 bg-card/50 backdrop-blur-md border-b border-border">
 				<div className="flex items-center gap-4">
 					<h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-						{format(currentDate, "MMMM yyyy")}
+						{format(currentDate, "MMMM yyyy", { locale })}
 					</h2>
 					<div className="flex items-center gap-1 bg-muted rounded-lg p-1">
 						<Button
@@ -128,7 +138,7 @@ export function CalendarView() {
 							onClick={() => setCurrentDate(new Date())}
 							className="hover:bg-accent text-sm font-medium px-3"
 						>
-							Today
+							{t("common.today")}
 						</Button>
 						<Button
 							variant="ghost"
@@ -147,14 +157,14 @@ export function CalendarView() {
 						setIsEventModalOpen(true);
 					}}
 				>
-					<Plus className="w-4 h-4 mr-2" /> New Event
+					<Plus className="w-4 h-4 mr-2" /> {t("common.new_event")}
 				</Button>
 			</div>
 
 			{/* Calendar Grid */}
 			<div className="flex-1 grid grid-cols-7 grid-rows-[auto_1fr] gap-px bg-border overflow-hidden">
 				{/* Weekday Headers */}
-				{["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+				{weekDays.map((day) => (
 					<div
 						key={day}
 						className="bg-muted/80 p-3 text-center text-sm font-medium text-muted-foreground border-b border-border"
@@ -241,7 +251,9 @@ export function CalendarView() {
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle className="text-xl font-semibold">
-							{editingEvent ? "Edit Event" : "Create New Event"}
+							{editingEvent
+								? t("common.edit_event")
+								: t("common.create_new_event")}
 						</DialogTitle>
 					</DialogHeader>
 					<EventForm
