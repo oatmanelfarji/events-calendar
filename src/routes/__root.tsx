@@ -43,11 +43,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-	const { i18n, ready } = useTranslation();
-
-	if (!ready) {
-		return null; // Or a loading spinner
-	}
+	const { i18n } = useTranslation();
 
 	return (
 		<html lang={i18n.language} dir={i18n.dir(i18n.language)}>

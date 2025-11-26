@@ -48,6 +48,26 @@
     "select_category": "اختر فئة",
     "create_new": "+ إنشاء جديد (TODO)",
     "save_event": "حفظ الحدث",
-    "cancel": "إلغاء"
+    "cancel": "إلغاء",
+    "todos": "المهام",
+    "active": "نشط",
+    "total": "الإجمالي",
+    "view_all": "عرض الكل",
+    "add_new": "إضافة جديد",
+    "create_event": "إنشاء حدث",
+    "create_todo": "إنشاء مهمة",
+    "creating": "جاري الإنشاء...",
+    "create": "إنشاء",
+    "upcoming_events": "القادمة هذا الشهر",
+    "upcoming_holidays": "العطلات القادمة",
+    "active_todos": "المهام النشطة",
+    "no_events": "لا توجد أحداث قادمة",
+    "no_holidays": "لا توجد عطلات قادمة",
+    "no_todos": "لا توجد مهام نشطة",
+    "add_new_event": "إضافة حدث جديد",
+    "add_new_todo": "إضافة مهمة جديدة",
+    "new_todo": "مهمة جديدة",
+    "create_new_todo": "إنشاء مهمة جديدة",
+    "pick_a_date": "اختر تاريخًا"
   }
 }

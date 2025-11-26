@@ -48,6 +48,26 @@
     "select_category": "Select a category",
     "create_new": "Personal Event",
     "save_event": "Save Event",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "todos": "Todos",
+    "active": "Active",
+    "total": "Total",
+    "view_all": "View All",
+    "add_new": "Add New",
+    "create_event": "Create Event",
+    "create_todo": "Create Todo",
+    "creating": "Creating...",
+    "create": "Create",
+    "upcoming_events": "Upcoming this month",
+    "upcoming_holidays": "Upcoming holidays",
+    "active_todos": "Active tasks",
+    "no_events": "No upcoming events",
+    "no_holidays": "No upcoming holidays",
+    "no_todos": "No active todos",
+    "add_new_event": "Add New Event",
+    "add_new_todo": "Add New Todo",
+    "new_todo": "New Todo",
+    "create_new_todo": "Create New Todo",
+    "pick_a_date": "Pick a date"
   }
 }

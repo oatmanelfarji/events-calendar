@@ -48,6 +48,26 @@
     "select_category": "Sélectionner une catégorie",
     "create_new": "+ Créer nouveau (TODO)",
     "save_event": "Enregistrer",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "todos": "Tâches",
+    "active": "Actif",
+    "total": "Total",
+    "view_all": "Voir tout",
+    "add_new": "Ajouter",
+    "create_event": "Créer un événement",
+    "create_todo": "Créer une tâche",
+    "creating": "Création...",
+    "create": "Créer",
+    "upcoming_events": "À venir ce mois-ci",
+    "upcoming_holidays": "Jours fériés à venir",
+    "active_todos": "Tâches actives",
+    "no_events": "Aucun événement à venir",
+    "no_holidays": "Aucun jour férié à venir",
+    "no_todos": "Aucune tâche active",
+    "add_new_event": "Ajouter un événement",
+    "add_new_todo": "Ajouter une tâche",
+    "new_todo": "Nouvelle tâche",
+    "create_new_todo": "Créer une nouvelle tâche",
+    "pick_a_date": "Choisir une date"
   }
 }
