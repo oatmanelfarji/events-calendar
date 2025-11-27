@@ -7,11 +7,11 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { useTranslation } from "react-i18next";
-import Header from "../components/Header";
-import { ThemeProvider } from "../components/theme-provider";
-import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
-import "../lib/i18n";
-import appCss from "../styles.css?url";
+import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/theme-provider";
+import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
+import "@/lib/i18n";
+import appCss from "@/styles.css?url";
 
 interface MyRouterContext {
 	queryClient: QueryClient;

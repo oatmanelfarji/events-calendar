@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
-import { db } from "../db";
-import { categories, events } from "../db/schema";
+import { db } from "@/db";
+import { categories, events } from "@/db/schema";
 
 const EventSchema = z.object({
 	title: z.string().min(1, "Title is required"),

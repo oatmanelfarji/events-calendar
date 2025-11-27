@@ -12,7 +12,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { fetchAndSeedHolidays, getHolidays } from "../server/holidays";
+import { fetchAndSeedHolidays, getHolidays } from "@/server/holidays";
 
 export const Route = createFileRoute("/holidays")({
 	component: HolidaysPage,

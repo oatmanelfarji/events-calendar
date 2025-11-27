@@ -20,14 +20,19 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getDateFnsLocale } from "../../lib/date-locale";
-import { cn } from "../../lib/utils";
-import { createEvent, getEvents, updateEvent } from "../../server/events";
-import { getHolidays } from "../../server/holidays";
-import { getTodos, updateTodo } from "../../server/todos";
-import { EventForm } from "../Events/EventForm";
-import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
+import { EventForm } from "@/components/Events/EventForm";
+import { Button } from "@/components/ui/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
+import { getDateFnsLocale } from "@/lib/date-locale";
+import { cn } from "@/lib/utils";
+import { createEvent, getEvents, updateEvent } from "@/server/events";
+import { getHolidays } from "@/server/holidays";
+import { getTodos, updateTodo } from "@/server/todos";
 
 type Todo = {
 	id: number;

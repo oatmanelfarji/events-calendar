@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon, Check, Plus, Trash2 } from "lucide-react";
@@ -7,16 +7,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import { Button } from "../components/ui/button";
-import { Calendar } from "../components/ui/calendar";
-import { Checkbox } from "../components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
 	Dialog,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "../components/ui/dialog";
+} from "@/components/ui/dialog";
 import {
 	Form,
 	FormControl,
@@ -24,15 +24,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../components/ui/form";
-import { Input } from "../components/ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
-} from "../components/ui/popover";
-import { cn } from "../lib/utils";
-import { createTodo, deleteTodo, getTodos, updateTodo } from "../server/todos";
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { createTodo, deleteTodo, getTodos, updateTodo } from "@/server/todos";
 
 export const Route = createFileRoute("/todos")({
 	component: TodosPage,

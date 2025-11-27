@@ -1,10 +1,10 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import arTranslation from "../../public/locales/ar/translation.json";
+import arTranslation from "@/locales/ar/translation.json";
 // Import translations directly for SSR compatibility
-import enTranslation from "../../public/locales/en/translation.json";
-import frTranslation from "../../public/locales/fr/translation.json";
+import enTranslation from "@/locales/en/translation.json";
+import frTranslation from "@/locales/fr/translation.json";
 
 // Initialize i18n with bundled resources for SSR
 i18n

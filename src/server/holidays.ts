@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { and, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
-import { db } from "../db";
-import { holidays } from "../db/schema";
+import { db } from "@/db";
+import { holidays } from "@/db/schema";
 
 // Types for Nager.Date API response
 const PublicHolidaySchema = z.object({

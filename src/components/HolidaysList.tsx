@@ -16,7 +16,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { getDateFnsLocale } from "../lib/date-locale";
+import { getDateFnsLocale } from "@/lib/date-locale";
 
 interface Holiday {
 	id: number;

@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
-import { db } from "../db";
-import { todos } from "../db/schema";
+import { db } from "@/db";
+import { todos } from "@/db/schema";
 
 export const todoSchema = z.object({
 	id: z.number().optional(),

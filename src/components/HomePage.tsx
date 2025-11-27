@@ -14,10 +14,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import { cn } from "../lib/utils";
-import { createEvent, getCategories, getEvents } from "../server/events";
-import { getHolidays } from "../server/holidays";
-import { createTodo, getTodos } from "../server/todos";
+import { cn } from "@/lib/utils";
+import { createEvent, getCategories, getEvents } from "@/server/events";
+import { getHolidays } from "@/server/holidays";
+import { createTodo, getTodos } from "@/server/todos";
 import { Button } from "./ui/button";
 import { Calendar as CalendarComponent } from "./ui/calendar";
 import {
