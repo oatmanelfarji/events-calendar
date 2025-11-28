@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HolidaysList } from "@/components/HolidaysList";
+import { IslamicHolidays } from "@/components/IslamicHolidays";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -116,6 +117,8 @@ function HolidaysPage() {
 				emptyMessage={t("common.no_holidays_found")}
 				showCountryCode={false}
 			/>
+
+			<IslamicHolidays />
 		</div>
 	);
 }
