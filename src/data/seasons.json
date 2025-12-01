@@ -1,0 +1,68 @@
+{
+	"2025": [
+		{ "name": "spring", "startDate": "2025-03-20", "endDate": "2025-06-20" },
+		{ "name": "summer", "startDate": "2025-06-21", "endDate": "2025-09-22" },
+		{ "name": "autumn", "startDate": "2025-09-23", "endDate": "2025-12-20" },
+		{ "name": "winter", "startDate": "2025-12-21", "endDate": "2026-03-19" }
+	],
+	"2026": [
+		{ "name": "spring", "startDate": "2026-03-20", "endDate": "2026-06-20" },
+		{ "name": "summer", "startDate": "2026-06-21", "endDate": "2026-09-22" },
+		{ "name": "autumn", "startDate": "2026-09-23", "endDate": "2026-12-20" },
+		{ "name": "winter", "startDate": "2026-12-21", "endDate": "2027-03-19" }
+	],
+	"2027": [
+		{ "name": "spring", "startDate": "2027-03-20", "endDate": "2027-06-20" },
+		{ "name": "summer", "startDate": "2027-06-21", "endDate": "2027-09-22" },
+		{ "name": "autumn", "startDate": "2027-09-23", "endDate": "2027-12-21" },
+		{ "name": "winter", "startDate": "2027-12-22", "endDate": "2028-03-19" }
+	],
+	"2028": [
+		{ "name": "spring", "startDate": "2028-03-20", "endDate": "2028-06-20" },
+		{ "name": "summer", "startDate": "2028-06-21", "endDate": "2028-09-22" },
+		{ "name": "autumn", "startDate": "2028-09-23", "endDate": "2028-12-20" },
+		{ "name": "winter", "startDate": "2028-12-21", "endDate": "2029-03-19" }
+	],
+	"2029": [
+		{ "name": "spring", "startDate": "2029-03-20", "endDate": "2029-06-20" },
+		{ "name": "summer", "startDate": "2029-06-21", "endDate": "2029-09-22" },
+		{ "name": "autumn", "startDate": "2029-09-23", "endDate": "2029-12-21" },
+		{ "name": "winter", "startDate": "2029-12-22", "endDate": "2030-03-19" }
+	],
+	"2030": [
+		{ "name": "spring", "startDate": "2030-03-20", "endDate": "2030-06-20" },
+		{ "name": "summer", "startDate": "2030-06-21", "endDate": "2030-09-22" },
+		{ "name": "autumn", "startDate": "2030-09-23", "endDate": "2030-12-21" },
+		{ "name": "winter", "startDate": "2030-12-22", "endDate": "2031-03-19" }
+	],
+	"2031": [
+		{ "name": "spring", "startDate": "2031-03-20", "endDate": "2031-06-20" },
+		{ "name": "summer", "startDate": "2031-06-21", "endDate": "2031-09-22" },
+		{ "name": "autumn", "startDate": "2031-09-23", "endDate": "2031-12-21" },
+		{ "name": "winter", "startDate": "2031-12-22", "endDate": "2032-03-19" }
+	],
+	"2032": [
+		{ "name": "spring", "startDate": "2032-03-20", "endDate": "2032-06-20" },
+		{ "name": "summer", "startDate": "2032-06-21", "endDate": "2032-09-22" },
+		{ "name": "autumn", "startDate": "2032-09-23", "endDate": "2032-12-20" },
+		{ "name": "winter", "startDate": "2032-12-21", "endDate": "2033-03-19" }
+	],
+	"2033": [
+		{ "name": "spring", "startDate": "2033-03-20", "endDate": "2033-06-20" },
+		{ "name": "summer", "startDate": "2033-06-21", "endDate": "2033-09-22" },
+		{ "name": "autumn", "startDate": "2033-09-23", "endDate": "2033-12-21" },
+		{ "name": "winter", "startDate": "2033-12-22", "endDate": "2034-03-19" }
+	],
+	"2034": [
+		{ "name": "spring", "startDate": "2034-03-20", "endDate": "2034-06-20" },
+		{ "name": "summer", "startDate": "2034-06-21", "endDate": "2034-09-22" },
+		{ "name": "autumn", "startDate": "2034-09-23", "endDate": "2034-12-21" },
+		{ "name": "winter", "startDate": "2034-12-22", "endDate": "2035-03-19" }
+	],
+	"2035": [
+		{ "name": "spring", "startDate": "2035-03-20", "endDate": "2035-06-20" },
+		{ "name": "summer", "startDate": "2035-06-21", "endDate": "2035-09-22" },
+		{ "name": "autumn", "startDate": "2035-09-23", "endDate": "2035-12-21" },
+		{ "name": "winter", "startDate": "2035-12-22", "endDate": "2036-03-19" }
+	]
+}

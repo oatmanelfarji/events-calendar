@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CountrySelector } from "./country-selector";
+import { CurrentSeason } from "./current-season";
 import { LanguageSwitcher } from "./language-switcher";
 import { ModeToggle } from "./mode-toggle";
 
@@ -39,6 +40,9 @@ export default function Header() {
 							/>
 						</Link>
 					</h1>
+				</div>
+				<div className="flex items-center">
+					<CurrentSeason />
 				</div>
 				<div className="flex items-center gap-2">
 					<LanguageSwitcher />

@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { EventForm } from "@/components/Events/EventForm";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -28,6 +27,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
+import { EventForm } from "@/features/events/components/EventForm";
 import { getDateFnsLocale } from "@/lib/date-locale";
 import { cn } from "@/lib/utils";
 import { createEvent, getEvents, updateEvent } from "@/server/events";
@@ -58,6 +58,7 @@ export function CalendarView() {
 	const endDate = endOfWeek(monthEnd, { locale });
 
 	const calendarDays = eachDayOfInterval({ start: startDate, end: endDate });
+	const weeks = calendarDays.length / 7;
 
 	// Fetch Events
 	const { data: events } = useQuery({
@@ -152,7 +153,7 @@ export function CalendarView() {
 			{/* Header */}
 			<div className="flex items-center justify-between p-6 bg-card/50 backdrop-blur-md border-b border-border">
 				<div className="flex items-center gap-4">
-					<h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+					<h2 className="text-3xl font-bold bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
 						{format(currentDate, "MMMM yyyy", { locale })}
 					</h2>
 					<div className="flex items-center gap-1 bg-muted rounded-lg p-1">
@@ -194,7 +195,12 @@ export function CalendarView() {
 			</div>
 
 			{/* Calendar Grid */}
-			<div className="flex-1 grid grid-cols-7 grid-rows-[auto_1fr] gap-px bg-border overflow-hidden">
+			<div
+				className="flex-1 grid grid-cols-7 gap-px bg-border overflow-hidden"
+				style={{
+					gridTemplateRows: `auto repeat(${weeks}, minmax(0, 1fr))`,
+				}}
+			>
 				{/* Weekday Headers */}
 				{weekDays.map((day) => (
 					<div
@@ -226,7 +232,7 @@ export function CalendarView() {
 							role="button"
 							tabIndex={0}
 							className={cn(
-								"bg-card p-2 min-h-[100px] transition-colors hover:bg-accent/50 cursor-pointer flex flex-col gap-1 text-left items-stretch outline-none focus-visible:ring-2 focus-visible:ring-ring",
+								"bg-card p-2 transition-colors hover:bg-accent/50 cursor-pointer flex flex-col gap-1 text-left items-stretch outline-none focus-visible:ring-2 focus-visible:ring-ring overflow-hidden",
 								!isSameMonth(day, currentDate) &&
 									"bg-muted/30 text-muted-foreground",
 								isToday(day) && "bg-accent/80",

@@ -7,7 +7,9 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { useTranslation } from "react-i18next";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { NotFound } from "@/components/NotFound";
 import { ThemeProvider } from "@/components/theme-provider";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import "@/lib/i18n";
@@ -40,6 +42,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 	}),
 
 	shellComponent: RootDocument,
+	notFoundComponent: NotFound,
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -52,8 +55,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<ThemeProvider defaultTheme="system" storageKey="events-calendar-theme">
-					<Header />
-					{children}
+					<div className="flex flex-col min-h-screen">
+						<Header />
+						<main className="flex-1">{children}</main>
+						<Footer />
+					</div>
 					<TanStackDevtools
 						config={{
 							position: "bottom-right",
