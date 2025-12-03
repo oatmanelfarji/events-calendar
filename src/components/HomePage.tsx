@@ -4,7 +4,7 @@ import { HeroSlider, SLIDES_CONFIG } from "@/components/HeroSlider";
 import { EventsSection } from "@/features/events/components/EventsSection";
 import { HolidaysSection } from "@/features/holidays/components/HolidaysSection";
 import { TodosSection } from "@/features/todos/components/TodosSection";
-import { getCategories, getEvents } from "@/server/events";
+import { getEvents } from "@/server/events";
 import { getHolidays } from "@/server/holidays";
 import { getTodos } from "@/server/todos";
 
@@ -44,11 +44,6 @@ export function HomePage() {
 		queryFn: () => getTodos(),
 	});
 
-	const { data: categories = [] } = useQuery({
-		queryKey: ["categories"],
-		queryFn: () => getCategories(),
-	});
-
 	const activeTodosCount = todos.filter((t) => !t.isDone).length;
 
 	return (
@@ -66,7 +61,7 @@ export function HomePage() {
 				{/* Events Section */}
 				<EventsSection
 					events={events}
-					categories={categories}
+					categories={[]}
 					icon={SLIDES_CONFIG[0].icon}
 					bgColor={SLIDES_CONFIG[0].bgColor}
 					textColor={SLIDES_CONFIG[0].textColor}

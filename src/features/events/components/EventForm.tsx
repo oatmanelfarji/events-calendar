@@ -1,5 +1,4 @@
 import { useForm } from "@tanstack/react-form";
-import { useQuery } from "@tanstack/react-query";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
@@ -15,7 +14,6 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { getCategories } from "@/server/events";
 
 const eventSchema = z.object({
 	title: z.string().min(1, "Title is required"),
@@ -24,7 +22,9 @@ const eventSchema = z.object({
 	endTime: z.string(),
 	isAllDay: z.boolean(),
 	location: z.string().optional(),
-	categoryId: z.string().optional(), // Form handles as string, convert to number on submit
+	category: z
+		.enum(["national", "religious", "family", "personal", "other"])
+		.optional(),
 });
 
 type EventFormProps = {
@@ -35,10 +35,6 @@ type EventFormProps = {
 
 export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 	const { t } = useTranslation();
-	const { data: categories } = useQuery({
-		queryKey: ["categories"],
-		queryFn: () => getCategories(),
-	});
 
 	const form = useForm({
 		defaultValues: {
@@ -52,17 +48,14 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 				: new Date(Date.now() + 3600000).toISOString().slice(0, 16),
 			isAllDay: initialData?.isAllDay || false,
 			location: initialData?.location || "",
-			categoryId: initialData?.categoryId?.toString() || "",
+			category: initialData?.category || "personal",
 		},
 		validatorAdapter: zodValidator(),
 		validators: {
 			onChange: eventSchema,
 		},
 		onSubmit: async ({ value }) => {
-			onSubmit({
-				...value,
-				categoryId: value.categoryId ? parseInt(value.categoryId) : undefined,
-			});
+			onSubmit(value);
 		},
 	});
 
@@ -173,7 +166,7 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 			/>
 
 			<form.Field
-				name="categoryId"
+				name="category"
 				children={(field) => (
 					<div className="space-y-2">
 						<Label htmlFor={field.name} className="text-slate-300">
@@ -187,12 +180,11 @@ export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
 								<SelectValue placeholder={t("common.select_category")} />
 							</SelectTrigger>
 							<SelectContent className="bg-slate-800 border-slate-700 text-slate-100">
-								{categories?.map((cat) => (
-									<SelectItem key={cat.id} value={cat.id.toString()}>
-										{cat.name}
-									</SelectItem>
-								))}
-								<SelectItem value="new">{t("common.create_new")}</SelectItem>
+								<SelectItem value="national">National</SelectItem>
+								<SelectItem value="religious">Religious</SelectItem>
+								<SelectItem value="family">Family</SelectItem>
+								<SelectItem value="personal">Personal</SelectItem>
+								<SelectItem value="other">Other</SelectItem>
 							</SelectContent>
 						</Select>
 					</div>

@@ -53,7 +53,6 @@ import { createEvent } from "@/server/events";
 
 interface EventsSectionProps {
 	events: any[]; // Replace with proper type
-	categories: any[]; // Replace with proper type
 	icon: React.ElementType;
 	bgColor: string;
 	textColor: string;
@@ -63,7 +62,6 @@ interface EventsSectionProps {
 
 export function EventsSection({
 	events,
-	categories,
 	icon: Icon,
 	bgColor,
 	textColor,
@@ -107,6 +105,7 @@ export function EventsSection({
 			endTime: new Date(Date.now() + 60 * 60 * 1000), // 1 hour later
 			isAllDay: false,
 			location: "",
+			category: "personal",
 		},
 	});
 
@@ -263,42 +262,41 @@ export function EventsSection({
 													</FormItem>
 												)}
 											/>
-											{categories.length > 0 && (
-												<FormField
-													control={eventForm.control}
-													name="categoryId"
-													render={({ field }) => (
-														<FormItem>
-															<FormLabel>
-																{t("common.category", "Category")}
-															</FormLabel>
-															<Select
-																onValueChange={(value) =>
-																	field.onChange(Number(value))
-																}
-																value={field.value?.toString()}
-															>
-																<FormControl>
-																	<SelectTrigger>
-																		<SelectValue placeholder="Select a category" />
-																	</SelectTrigger>
-																</FormControl>
-																<SelectContent>
-																	{categories.map((cat) => (
-																		<SelectItem
-																			key={cat.id}
-																			value={cat.id.toString()}
-																		>
-																			{cat.name}
-																		</SelectItem>
-																	))}
-																</SelectContent>
-															</Select>
-															<FormMessage />
-														</FormItem>
-													)}
-												/>
-											)}
+											<FormField
+												control={eventForm.control}
+												name="category"
+												render={({ field }) => (
+													<FormItem>
+														<FormLabel>
+															{t("common.category", "Category")}
+														</FormLabel>
+														<Select
+															onValueChange={field.onChange}
+															value={field.value}
+														>
+															<FormControl>
+																<SelectTrigger>
+																	<SelectValue placeholder="Select a category" />
+																</SelectTrigger>
+															</FormControl>
+															<SelectContent>
+																<SelectItem value="national">
+																	National
+																</SelectItem>
+																<SelectItem value="religious">
+																	Religious
+																</SelectItem>
+																<SelectItem value="family">Family</SelectItem>
+																<SelectItem value="personal">
+																	Personal
+																</SelectItem>
+																<SelectItem value="other">Other</SelectItem>
+															</SelectContent>
+														</Select>
+														<FormMessage />
+													</FormItem>
+												)}
+											/>
 											<div className="flex justify-end gap-2">
 												<Button
 													type="button"
@@ -448,42 +446,37 @@ export function EventsSection({
 												</FormItem>
 											)}
 										/>
-										{categories.length > 0 && (
-											<FormField
-												control={eventForm.control}
-												name="categoryId"
-												render={({ field }) => (
-													<FormItem>
-														<FormLabel>
-															{t("common.category", "Category")}
-														</FormLabel>
-														<Select
-															onValueChange={(value) =>
-																field.onChange(Number(value))
-															}
-															value={field.value?.toString()}
-														>
-															<FormControl>
-																<SelectTrigger>
-																	<SelectValue placeholder="Select a category" />
-																</SelectTrigger>
-															</FormControl>
-															<SelectContent>
-																{categories.map((cat) => (
-																	<SelectItem
-																		key={cat.id}
-																		value={cat.id.toString()}
-																	>
-																		{cat.name}
-																	</SelectItem>
-																))}
-															</SelectContent>
-														</Select>
-														<FormMessage />
-													</FormItem>
-												)}
-											/>
-										)}
+										<FormField
+											control={eventForm.control}
+											name="category"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>
+														{t("common.category", "Category")}
+													</FormLabel>
+													<Select
+														onValueChange={field.onChange}
+														value={field.value}
+													>
+														<FormControl>
+															<SelectTrigger>
+																<SelectValue placeholder="Select a category" />
+															</SelectTrigger>
+														</FormControl>
+														<SelectContent>
+															<SelectItem value="national">National</SelectItem>
+															<SelectItem value="religious">
+																Religious
+															</SelectItem>
+															<SelectItem value="family">Family</SelectItem>
+															<SelectItem value="personal">Personal</SelectItem>
+															<SelectItem value="other">Other</SelectItem>
+														</SelectContent>
+													</Select>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
 										<div className="flex justify-end gap-2">
 											<Button
 												type="button"

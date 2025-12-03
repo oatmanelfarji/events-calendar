@@ -15,6 +15,13 @@
       "when": 1764109997354,
       "tag": "0001_far_blockbuster",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1764702117155,
+      "tag": "0002_new_sleeper",
+      "breakpoints": true
     }
   ]
 }

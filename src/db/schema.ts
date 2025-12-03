@@ -1,8 +1,8 @@
 import {
 	boolean,
 	date,
-	integer,
 	jsonb,
+	pgEnum,
 	pgTable,
 	serial,
 	text,
@@ -26,12 +26,13 @@ export const holidays = pgTable("holidays", {
 	// etag: text("etag"),
 });
 
-export const categories = pgTable("categories", {
-	id: serial("id").primaryKey(),
-	name: text("name").notNull(),
-	color: text("color").notNull(), // Hex code or tailwind class
-	createdAt: timestamp("created_at").defaultNow(),
-});
+export const categoryEnum = pgEnum("category", [
+	"national",
+	"religious",
+	"family",
+	"personal",
+	"other",
+]);
 
 export const events = pgTable("events", {
 	id: serial("id").primaryKey(),
@@ -41,7 +42,7 @@ export const events = pgTable("events", {
 	endTime: timestamp("end_time").notNull(),
 	isAllDay: boolean("is_all_day").default(false),
 	location: text("location"),
-	categoryId: integer("category_id").references(() => categories.id),
+	category: categoryEnum("category").default("personal"),
 	reminders: jsonb("reminders"), // Array of reminder configurations
 
 	// Sync fields

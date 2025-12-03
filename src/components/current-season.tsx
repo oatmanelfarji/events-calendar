@@ -1,4 +1,5 @@
 import { Calendar, Flower2, Leaf, Snowflake, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SeasonProgress } from "@/components/season-progress";
 import seasonsData from "@/data/seasons.json";
@@ -71,6 +72,14 @@ function calculateSeasonProgress(season: Season): number {
 
 export function CurrentSeason() {
 	const { t, i18n } = useTranslation();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) return null;
+
 	const currentSeason = getCurrentSeason();
 
 	if (!currentSeason) return null;

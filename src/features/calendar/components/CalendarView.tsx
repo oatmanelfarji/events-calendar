@@ -148,14 +148,22 @@ export function CalendarView() {
 		end: endOfWeek(new Date(), { locale }),
 	}).map((day) => format(day, "EEE", { locale }));
 
+	const categoryColors: Record<string, string> = {
+		national: "bg-red-500/20 border-red-500/30 text-red-700 dark:text-red-300",
+		religious:
+			"bg-purple-500/20 border-purple-500/30 text-purple-700 dark:text-purple-300",
+		family:
+			"bg-green-500/20 border-green-500/30 text-green-700 dark:text-green-300",
+		personal:
+			"bg-blue-500/20 border-blue-500/30 text-blue-700 dark:text-blue-300",
+		other: "bg-gray-500/20 border-gray-500/30 text-gray-700 dark:text-gray-300",
+	};
+
 	return (
 		<div className="h-full flex flex-col bg-background text-foreground">
 			{/* Header */}
-			<div className="flex items-center justify-between p-6 bg-card/50 backdrop-blur-md border-b border-border">
+			<div className="flex items-center justify-between p-6">
 				<div className="flex items-center gap-4">
-					<h2 className="text-3xl font-bold bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-						{format(currentDate, "MMMM yyyy", { locale })}
-					</h2>
 					<div className="flex items-center gap-1 bg-muted rounded-lg p-1">
 						<Button
 							variant="ghost"
@@ -165,14 +173,9 @@ export function CalendarView() {
 						>
 							<ChevronLeft className="w-5 h-5" />
 						</Button>
-						<Button
-							variant="ghost"
-							size="icon"
-							onClick={() => setCurrentDate(new Date())}
-							className="hover:bg-accent text-sm font-medium px-3"
-						>
-							{t("common.today")}
-						</Button>
+						<h2 className="text-3xl font-bold bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+							{format(currentDate, "MMMM yyyy", { locale })}
+						</h2>
 						<Button
 							variant="ghost"
 							size="icon"
@@ -180,6 +183,16 @@ export function CalendarView() {
 							className="hover:bg-accent"
 						>
 							<ChevronRight className="w-5 h-5" />
+						</Button>
+					</div>
+					<div className="flex items-center gap-1 bg-muted rounded-lg p-1">
+						<Button
+							variant="ghost"
+							size="icon"
+							onClick={() => setCurrentDate(new Date())}
+							className="hover:bg-accent text-sm font-medium mx-2 p-3"
+						>
+							{t("common.today")}
 						</Button>
 					</div>
 				</div>
@@ -196,7 +209,7 @@ export function CalendarView() {
 
 			{/* Calendar Grid */}
 			<div
-				className="flex-1 grid grid-cols-7 gap-px bg-border overflow-hidden"
+				className="flex-1 grid grid-cols-7 gap-px bg-border rounded-2xl border border-border overflow-hidden"
 				style={{
 					gridTemplateRows: `auto repeat(${weeks}, minmax(0, 1fr))`,
 				}}
@@ -205,7 +218,7 @@ export function CalendarView() {
 				{weekDays.map((day) => (
 					<div
 						key={day}
-						className="bg-muted/80 p-3 text-center text-sm font-medium text-muted-foreground border-b border-border"
+						className="bg-muted/80 p-2 text-center text-sm font-medium text-muted-foreground border-b border-border"
 					>
 						{day}
 					</div>
@@ -324,9 +337,9 @@ export function CalendarView() {
 									tabIndex={0}
 									className={cn(
 										"text-xs px-2 py-1 rounded border truncate shadow-sm transition-all hover:scale-[1.02] outline-none focus-visible:ring-2 focus-visible:ring-ring",
-										event.category
-											? `bg-[${event.category.color}]/20 border-[${event.category.color}]/30`
-											: "bg-primary/20 border-primary/30",
+										event.category && categoryColors[event.category]
+											? categoryColors[event.category]
+											: categoryColors.personal,
 									)}
 								>
 									{format(new Date(event.startTime), "HH:mm")} {event.title}

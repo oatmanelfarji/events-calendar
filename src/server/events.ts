@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
-import { categories, events } from "@/db/schema";
+import { events } from "@/db/schema";
 
 const EventSchema = z.object({
 	title: z.string().min(1, "Title is required"),
@@ -11,7 +11,9 @@ const EventSchema = z.object({
 	endTime: z.string(), // ISO string
 	isAllDay: z.boolean().default(false),
 	location: z.string().optional(),
-	categoryId: z.number().optional(),
+	category: z
+		.enum(["national", "religious", "family", "personal", "other"])
+		.optional(),
 	reminders: z.array(z.any()).optional(), // Define stricter schema later
 });
 
@@ -21,12 +23,8 @@ export const getEvents = createServerFn({ method: "GET" })
 		const { start, end } = data;
 
 		const results = await db
-			.select({
-				event: events,
-				category: categories,
-			})
+			.select()
 			.from(events)
-			.leftJoin(categories, eq(events.categoryId, categories.id))
 			.where(
 				and(
 					gte(events.startTime, new Date(start)),
@@ -35,10 +33,9 @@ export const getEvents = createServerFn({ method: "GET" })
 			)
 			.orderBy(desc(events.startTime));
 
-		return results.map(({ event, category }) => ({
+		return results.map((event) => ({
 			...event,
 			reminders: event.reminders as any[],
-			category,
 		}));
 	});
 
@@ -82,9 +79,3 @@ export const deleteEvent = createServerFn({ method: "POST" })
 		await db.delete(events).where(eq(events.id, data.id));
 		return { success: true };
 	});
-
-export const getCategories = createServerFn({ method: "GET" }).handler(
-	async () => {
-		return await db.select().from(categories);
-	},
-);
