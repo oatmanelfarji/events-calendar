@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CountrySelector } from "./country-selector";
 import { CurrentSeason } from "./current-season";
+import { CurrentYear } from "./current-year";
 import { LanguageSwitcher } from "./language-switcher";
 import { ModeToggle } from "./mode-toggle";
 
@@ -34,15 +35,16 @@ export default function Header() {
 					<h1 className="ml-4 text-xl font-semibold">
 						<Link to="/">
 							<img
-								src="/drizzle.svg"
-								alt="Drizzle Logo"
-								className="h-10 dark:invert-0 invert"
+								src="/logo.png"
+								alt="Events Calendar Logo"
+								className="h-10 rounded-md"
 							/>
 						</Link>
 					</h1>
 				</div>
 				<div className="flex items-center">
 					<CurrentSeason />
+					<CurrentYear />
 				</div>
 				<div className="flex items-center gap-2">
 					<LanguageSwitcher />

@@ -128,13 +128,13 @@ export function CurrentSeason() {
 					</span> */}
 				</div>
 			</SeasonProgress>
-			{/* current date */}
+			{/* current date
 			<div className="flex items-center gap-2">
 				<Calendar className="h-5 w-5 text-foreground drop-shadow-md" />
 				<span className="text-xs font-semibold text-foreground min-w-48 drop-shadow-md">
 					{formattedDate}
 				</span>
-			</div>
+			</div> */}
 		</div>
 	);
 }
