@@ -1,0 +1,1 @@
+ALTER TABLE "holidays" ADD COLUMN "local_name" text;

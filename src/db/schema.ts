@@ -12,7 +12,7 @@ import {
 export const holidays = pgTable("holidays", {
 	id: serial("id").primaryKey(),
 	name: text("name").notNull(),
-	// localName: text("local_name"),
+	localName: text("local_name"),
 	date: date("date").notNull(),
 	countryCode: text("country_code").notNull(),
 	type: text("type"), // e.g., 'public', 'religious'
@@ -62,4 +62,13 @@ export const todos = pgTable("todos", {
 	date: timestamp("date"), // Optional date for calendar
 	createdAt: timestamp("created_at").defaultNow(),
 	updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const seasons = pgTable("seasons", {
+	id: serial("id").primaryKey(),
+	name: text("name").notNull(), // spring, summer, autumn, winter
+	startDate: date("start_date").notNull(), // stored as month-day, can be used across years
+	endDate: date("end_date").notNull(), // stored as month-day, can be used across years
+	year: text("year").notNull(), // store which year this entry is for
+	createdAt: timestamp("created_at").defaultNow(),
 });

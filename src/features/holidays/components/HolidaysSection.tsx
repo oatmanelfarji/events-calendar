@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 
 interface HolidaysSectionProps {
-	holidays: any[]; // Replace with proper type
+	holidays: { id: number; name: string; date: string }[];
 	icon: React.ElementType;
 	bgColor: string;
 	textColor: string;
@@ -29,7 +29,7 @@ export function HolidaysSection({
 	const now = new Date();
 	const upcomingHolidays = holidays
 		.filter((h) => new Date(h.date) >= now)
-		.slice(0, 5);
+		.slice(0, 3);
 
 	return (
 		<Card className="hover:shadow-lg transition-shadow">

@@ -27,77 +27,143 @@ export function HeroSlider({
 			title: t("common.events", "Events"),
 			icon: Calendar,
 			count: eventsCount,
-			color: "from-blue-500 to-cyan-500",
-			bgColor: "bg-blue-500/10",
-			textColor: "text-blue-500",
+			image: "/hero-images/events.png",
+			align: "right" as const,
+			textColor: "text-white",
 		},
 		{
 			id: "holidays",
 			title: t("common.holidays", "Holidays"),
 			icon: PartyPopper,
 			count: holidaysCount,
-			color: "from-purple-500 to-pink-500",
-			bgColor: "bg-purple-500/10",
-			textColor: "text-purple-500",
+			image: "/hero-images/holidays.png", // Placeholder
+			align: "left" as const,
+			textColor: "text-white",
 		},
 		{
 			id: "todos",
 			title: t("common.todos", "Todos"),
 			icon: CheckCircle2,
 			count: activeTodosCount,
-			color: "from-green-500 to-emerald-500",
-			bgColor: "bg-green-500/10",
-			textColor: "text-green-500",
+			image: "/hero-images/todos.png", // Placeholder
+			align: "right" as const,
+			textColor: "text-white",
+		},
+		{
+			id: "spring",
+			title: t("seasons.spring", "Spring"),
+			icon: Calendar, // Placeholder icon
+			count: null,
+			image: "/hero-images/spring.png", // Placeholder
+			align: "left" as const,
+			textColor: "text-white",
+		},
+		{
+			id: "summer",
+			title: t("seasons.summer", "Summer"),
+			icon: Calendar, // Placeholder icon
+			count: null,
+			image: "/hero-images/summer.png", // Placeholder
+			align: "right" as const,
+			textColor: "text-white",
+		},
+		{
+			id: "autumn",
+			title: t("seasons.autumn", "Autumn"),
+			icon: Calendar, // Placeholder icon
+			count: null,
+			image: "/hero-images/autumn.png", // Placeholder
+			align: "left" as const,
+			textColor: "text-white",
+		},
+		{
+			id: "winter",
+			title: t("seasons.winter", "Winter"),
+			icon: Calendar, // Placeholder icon
+			count: null,
+			image: "/hero-images/winter.png", // Placeholder
+			align: "right" as const,
+			textColor: "text-white",
 		},
 	];
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			setCurrentSlide((prev) => (prev + 1) % 3);
+			setCurrentSlide((prev) => (prev + 1) % slides.length);
 		}, SLIDE_INTERVAL);
 
 		return () => clearInterval(timer);
-	}, []);
+	}, [slides.length]);
 
 	useEffect(() => {
 		onSlideChange(currentSlide);
 	}, [currentSlide, onSlideChange]);
 
 	return (
-		<div className="relative h-80 rounded-2xl overflow-hidden shadow-2xl">
+		<div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
 			{slides.map((slide, index) => {
 				const Icon = slide.icon;
 				return (
 					<div
 						key={slide.id}
 						className={cn(
-							"absolute inset-0 transition-all duration-700 ease-in-out",
+							"absolute inset-0 transition-all duration-1000 ease-in-out",
 							currentSlide === index
-								? "opacity-100 translate-x-0"
-								: index < currentSlide
-									? "opacity-0 -translate-x-full"
-									: "opacity-0 translate-x-full",
+								? "opacity-100 scale-100"
+								: "opacity-0 scale-105 pointer-events-none",
 						)}
 					>
+						{/* Background Image with Overlay */}
+						<div className="absolute inset-0">
+							<img
+								src={slide.image}
+								alt={slide.title}
+								className="w-full h-full object-cover"
+								onError={(e) => {
+									// Fallback for missing images
+									e.currentTarget.src =
+										"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Crect fill='%23333' width='800' height='400'/%3E%3Ctext fill='%23fff' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='40'%3EImage Placeholder%3C/text%3E%3C/svg%3E";
+								}}
+							/>
+							<div className="absolute inset-0 bg-black/20" />
+						</div>
+
+						{/* Content */}
 						<div
 							className={cn(
-								"w-full h-full bg-linear-to-br flex items-center justify-center",
-								slide.color,
+								"relative h-full flex items-center px-12",
+								slide.align === "left" ? "justify-start" : "justify-end",
 							)}
 						>
-							<div className="text-center text-white space-y-6">
+							<div
+								className={cn(
+									"text-center space-y-6 max-w-md backdrop-blur-md bg-black/30 p-8 rounded-3xl border border-white/10 shadow-xl transform transition-all duration-700 delay-300",
+									currentSlide === index
+										? "translate-y-0 opacity-100"
+										: "translate-y-10 opacity-0",
+									slide.textColor,
+								)}
+							>
 								<div className="flex justify-center">
-									<div className="p-6 bg-white/20 backdrop-blur-sm rounded-full">
-										<Icon className="w-20 h-20" />
+									<div className="p-4 bg-white/20 rounded-full shadow-lg">
+										<Icon className="w-16 h-16 text-white" />
 									</div>
 								</div>
-								<h2 className="text-5xl font-bold">{slide.title}</h2>
-								<p className="text-2xl font-semibold">
-									{slide.count}{" "}
-									{slide.id === "todos"
-										? t("common.active", "Active")
-										: t("common.total", "Total")}
-								</p>
+								<h2 className="text-6xl font-bold tracking-tight drop-shadow-lg">
+									{slide.title}
+								</h2>
+								{slide.count !== null && (
+									<div className="flex flex-col items-center gap-2">
+										<span className="text-5xl font-extrabold drop-shadow-md">
+											{slide.count}
+										</span>
+										<span className="text-xl font-medium opacity-90 uppercase tracking-widest">
+											{slide.id === "todos"
+												? t("common.active", "Active")
+												: t("common.total", "Total")}
+										</span>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
@@ -105,17 +171,17 @@ export function HeroSlider({
 			})}
 
 			{/* Slide Indicators */}
-			<div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-				{slides.map((_, index) => (
+			<div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+				{slides.map((slide, index) => (
 					<button
-						key={index}
+						key={slide.id}
 						type="button"
 						onClick={() => setCurrentSlide(index)}
 						className={cn(
-							"w-3 h-3 rounded-full transition-all duration-300",
+							"h-2 rounded-full transition-all duration-300 shadow-sm backdrop-blur-sm",
 							currentSlide === index
-								? "bg-white w-8"
-								: "bg-white/50 hover:bg-white/75",
+								? "bg-white w-12 opacity-100"
+								: "bg-white/50 w-2 hover:bg-white/80 opacity-70",
 						)}
 						aria-label={`Go to slide ${index + 1}`}
 					/>
@@ -129,22 +195,43 @@ export const SLIDES_CONFIG = [
 	{
 		id: "events",
 		icon: Calendar,
-		color: "from-blue-500 to-cyan-500",
-		bgColor: "bg-blue-500/10",
-		textColor: "text-blue-500",
+		image: "/hero-images/events.png",
+		align: "right",
 	},
 	{
 		id: "holidays",
 		icon: PartyPopper,
-		color: "from-purple-500 to-pink-500",
-		bgColor: "bg-purple-500/10",
-		textColor: "text-purple-500",
+		image: "/hero-images/holidays.png",
+		align: "left",
 	},
 	{
 		id: "todos",
 		icon: CheckCircle2,
-		color: "from-green-500 to-emerald-500",
-		bgColor: "bg-green-500/10",
-		textColor: "text-green-500",
+		image: "/hero-images/todos.png",
+		align: "right",
+	},
+	{
+		id: "spring",
+		icon: Calendar,
+		image: "/hero-images/spring.png",
+		align: "left",
+	},
+	{
+		id: "summer",
+		icon: Calendar,
+		image: "/hero-images/summer.png",
+		align: "right",
+	},
+	{
+		id: "autumn",
+		icon: Calendar,
+		image: "/hero-images/autumn.png",
+		align: "left",
+	},
+	{
+		id: "winter",
+		icon: Calendar,
+		image: "/hero-images/winter.png",
+		align: "right",
 	},
 ];

@@ -32,14 +32,6 @@ holidays = {
             color: 'red'
         },
         {
-            date: 'June 25 or 26 ',
-            name: 'Islamic New Year',
-            pronunciation: 'Fātiḥ muḥarram',
-            description: 'First day on the Islamic calendar.',
-            arabic: 'فاتح محرم ',
-            color: 'green'
-        },
-        {
             date: 'July 30',
             name: 'Throne Day',
             pronunciation: 'ʿīd lʿarš',
@@ -86,13 +78,5 @@ holidays = {
             description: 'The first day of the year.',
             arabic: 'عيد الاستقلال',
             color: 'red'
-        },
-        {
-            date: 'september 5',
-            name: 'The Prophet\'s Birthday',
-            pronunciation: 'ʿid lmawlid',
-            description: 'The Birthday of the Prophet\'s of islam Mohammed(PBUH).',
-            arabic: 'عيد المولد النبوي',
-            color: 'green'
         },
 }

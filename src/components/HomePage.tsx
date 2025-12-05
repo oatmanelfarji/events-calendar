@@ -29,11 +29,10 @@ export function HomePage() {
 	});
 
 	const { data: holidays = [] } = useQuery({
-		queryKey: ["holidays", now.getFullYear(), "MA"],
+		queryKey: ["holidays", "MA"],
 		queryFn: () =>
 			getHolidays({
 				data: {
-					year: now.getFullYear(),
 					countryCode: "MA",
 				},
 			}),

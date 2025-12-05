@@ -59,23 +59,31 @@ export const fetchAndSeedHolidays = createServerFn({ method: "POST" })
 	});
 
 export const getHolidays = createServerFn({ method: "GET" })
-	.inputValidator((data: { year: number; countryCode: string }) => data)
+	.inputValidator((data: { year?: number; countryCode: string }) => data)
 	.handler(async ({ data }) => {
 		const { year, countryCode } = data;
 
-		const startOfYear = `${year}-01-01`;
-		const endOfYear = `${year}-12-31`;
-
-		const results = await db
+		let query = db
 			.select()
 			.from(holidays)
-			.where(
-				and(
-					eq(holidays.countryCode, countryCode),
-					gte(holidays.date, startOfYear),
-					lte(holidays.date, endOfYear),
-				),
-			);
+			.where(eq(holidays.countryCode, countryCode))
+			.$dynamic();
 
-		return results;
+		if (year) {
+			const startOfYear = `${year}-01-01`;
+			const endOfYear = `${year}-12-31`;
+			query = query.where(
+				and(gte(holidays.date, startOfYear), lte(holidays.date, endOfYear)),
+			);
+		}
+
+		// Sort by date ascending
+		// Note: Drizzle's orderBy needs to be chained
+		// Since we are using dynamic query building, we might need to adjust how we apply orderBy
+		// But for simplicity with the current setup:
+
+		const results = await query;
+		return results.sort(
+			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+		);
 	});

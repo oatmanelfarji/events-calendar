@@ -22,6 +22,20 @@
       "when": 1764702117155,
       "tag": "0002_new_sleeper",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1764888166769,
+      "tag": "0003_youthful_naoko",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1764938968602,
+      "tag": "0004_nifty_deathstrike",
+      "breakpoints": true
     }
   ]
 }

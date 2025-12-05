@@ -69,6 +69,42 @@ export function HolidaysList({
 		);
 	}
 
+	// Filter and sort holidays
+	const sortedHolidays = [...holidays].sort(
+		(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+	);
+
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
+	// Find index of the first holiday that is today or in the future
+	const nextHolidayIndex = sortedHolidays.findIndex((h) => {
+		const hDate = new Date(h.date);
+		hDate.setHours(0, 0, 0, 0);
+		return hDate.getTime() >= today.getTime();
+	});
+
+	let displayHolidays: Holiday[] = [];
+	let nextHolidayId: number | null = null;
+
+	if (nextHolidayIndex !== -1) {
+		// Get 5 past holidays (if available)
+		const start = Math.max(0, nextHolidayIndex - 5);
+		const pastHolidays = sortedHolidays.slice(start, nextHolidayIndex);
+
+		// Get 5 future holidays (including the next one)
+		const futureHolidays = sortedHolidays.slice(
+			nextHolidayIndex,
+			nextHolidayIndex + 5,
+		);
+
+		displayHolidays = [...pastHolidays, ...futureHolidays];
+		nextHolidayId = sortedHolidays[nextHolidayIndex].id;
+	} else {
+		// If no future holidays, just show the last 10
+		displayHolidays = sortedHolidays.slice(-10);
+	}
+
 	return (
 		<Card>
 			<CardHeader>
@@ -79,7 +115,7 @@ export function HolidaysList({
 				{description && <CardDescription>{description}</CardDescription>}
 			</CardHeader>
 			<CardContent>
-				{holidays.length === 0 ? (
+				{displayHolidays.length === 0 ? (
 					<div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
 						<Info className="h-12 w-12 mb-4 opacity-50" />
 						<p>{emptyMessage || defaultEmptyMessage}</p>
@@ -99,15 +135,23 @@ export function HolidaysList({
 								</TableRow>
 							</TableHeader>
 							<TableBody>
-								{holidays.map((holiday) => {
+								{displayHolidays.map((holiday) => {
 									const holidayDate = new Date(holiday.date);
 									const formattedDate = format(holidayDate, "MMM dd, yyyy", {
 										locale,
 									});
 									const dayOfWeek = format(holidayDate, "EEEE", { locale });
+									const isNext = holiday.id === nextHolidayId;
 
 									return (
-										<TableRow key={holiday.id}>
+										<TableRow
+											key={holiday.id}
+											className={
+												isNext
+													? "bg-primary/10 hover:bg-primary/20 border-l-4 border-l-primary"
+													: ""
+											}
+										>
 											<TableCell>
 												<div className="flex flex-col">
 													<span className="font-medium">{formattedDate}</span>
@@ -118,6 +162,11 @@ export function HolidaysList({
 											</TableCell>
 											<TableCell className="font-medium">
 												{holiday.name}
+												{isNext && (
+													<span className="ml-2 inline-flex items-center rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
+														{t("common.next")}
+													</span>
+												)}
 											</TableCell>
 											{showCountryCode && (
 												<TableCell>
