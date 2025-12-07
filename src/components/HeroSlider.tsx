@@ -100,20 +100,20 @@ export function HeroSlider({
 	}, [currentSlide, onSlideChange]);
 
 	return (
-		<div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
+		<div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 group">
 			{slides.map((slide, index) => {
 				const Icon = slide.icon;
 				return (
 					<div
 						key={slide.id}
 						className={cn(
-							"absolute inset-0 transition-all duration-1000 ease-in-out",
+							"absolute inset-0 transition-all duration-1000 ease-fluid",
 							currentSlide === index
 								? "opacity-100 scale-100"
 								: "opacity-0 scale-105 pointer-events-none",
 						)}
 					>
-						{/* Background Image with Overlay */}
+						{/* Background Image with Enhanced Gradient Overlay */}
 						<div className="absolute inset-0">
 							<img
 								src={slide.image}
@@ -125,10 +125,12 @@ export function HeroSlider({
 										"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Crect fill='%23333' width='800' height='400'/%3E%3Ctext fill='%23fff' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='40'%3EImage Placeholder%3C/text%3E%3C/svg%3E";
 								}}
 							/>
-							<div className="absolute inset-0 bg-black/20" />
+							{/* Multi-layer gradient overlay for depth */}
+							<div className="absolute inset-0 bg-linear-to-br from-black/40 via-black/20 to-transparent" />
+							<div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
 						</div>
 
-						{/* Content */}
+						{/* Content with Glassmorphism */}
 						<div
 							className={cn(
 								"relative h-full flex items-center px-12",
@@ -137,7 +139,7 @@ export function HeroSlider({
 						>
 							<div
 								className={cn(
-									"text-center space-y-6 max-w-md backdrop-blur-md bg-black/30 p-8 rounded-3xl border border-white/10 shadow-xl transform transition-all duration-700 delay-300",
+									"text-center space-y-6 max-w-md glass-strong p-10 rounded-3xl shadow-2xl shadow-black/20 transform transition-all duration-700 delay-300 border border-white/20",
 									currentSlide === index
 										? "translate-y-0 opacity-100"
 										: "translate-y-10 opacity-0",
@@ -145,19 +147,19 @@ export function HeroSlider({
 								)}
 							>
 								<div className="flex justify-center">
-									<div className="p-4 bg-white/20 rounded-full shadow-lg">
-										<Icon className="w-16 h-16 text-white" />
+									<div className="p-5 bg-white/20 backdrop-blur-md rounded-full shadow-xl shadow-black/20 ring-2 ring-white/30">
+										<Icon className="w-16 h-16 text-white drop-shadow-lg" />
 									</div>
 								</div>
-								<h2 className="text-6xl font-bold tracking-tight drop-shadow-lg">
+								<h2 className="text-6xl font-bold tracking-tight drop-shadow-2xl">
 									{slide.title}
 								</h2>
 								{slide.count !== null && (
 									<div className="flex flex-col items-center gap-2">
-										<span className="text-5xl font-extrabold drop-shadow-md">
+										<span className="text-5xl font-extrabold drop-shadow-lg">
 											{slide.count}
 										</span>
-										<span className="text-xl font-medium opacity-90 uppercase tracking-widest">
+										<span className="text-xl font-medium opacity-90 uppercase tracking-widest drop-shadow-md">
 											{slide.id === "todos"
 												? t("common.active", "Active")
 												: t("common.total", "Total")}
@@ -170,7 +172,7 @@ export function HeroSlider({
 				);
 			})}
 
-			{/* Slide Indicators */}
+			{/* Enhanced Slide Indicators */}
 			<div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
 				{slides.map((slide, index) => (
 					<button
@@ -178,10 +180,10 @@ export function HeroSlider({
 						type="button"
 						onClick={() => setCurrentSlide(index)}
 						className={cn(
-							"h-2 rounded-full transition-all duration-300 shadow-sm backdrop-blur-sm",
+							"h-2.5 rounded-full transition-all duration-300 shadow-lg backdrop-blur-md",
 							currentSlide === index
-								? "bg-white w-12 opacity-100"
-								: "bg-white/50 w-2 hover:bg-white/80 opacity-70",
+								? "bg-white w-16 opacity-100 shadow-white/50"
+								: "bg-white/50 w-2.5 hover:bg-white/80 opacity-70 hover:w-8",
 						)}
 						aria-label={`Go to slide ${index + 1}`}
 					/>

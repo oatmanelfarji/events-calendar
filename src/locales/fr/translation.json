@@ -75,5 +75,13 @@
 		"summer": "Été",
 		"autumn": "Automne",
 		"winter": "Hiver"
+	},
+	"countdown": {
+		"nextHoliday": "Prochain jour férié",
+		"days": "j",
+		"hours": "h",
+		"minutes": "m",
+		"seconds": "s",
+		"noUpcomingHolidays": "Aucun jour férié à venir"
 	}
 }

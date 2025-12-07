@@ -75,5 +75,13 @@
 		"summer": "الصيف",
 		"autumn": "الخريف",
 		"winter": "الشتاء"
+	},
+	"countdown": {
+		"nextHoliday": "العطلة القادمة",
+		"days": "ي",
+		"hours": "س",
+		"minutes": "د",
+		"seconds": "ث",
+		"noUpcomingHolidays": "لا توجد عطلات قادمة"
 	}
 }

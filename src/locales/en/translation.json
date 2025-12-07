@@ -75,5 +75,13 @@
 		"summer": "Summer",
 		"autumn": "Autumn",
 		"winter": "Winter"
+	},
+	"countdown": {
+		"nextHoliday": "Next Holiday",
+		"days": "d",
+		"hours": "h",
+		"minutes": "m",
+		"seconds": "s",
+		"noUpcomingHolidays": "No upcoming holidays"
 	}
 }

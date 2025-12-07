@@ -114,45 +114,55 @@ export function EventsSection({
 	}
 
 	return (
-		<Card className="hover:shadow-lg transition-shadow">
-			<CardHeader>
+		<Card className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1 border-border/50 overflow-hidden relative">
+			{/* Subtle gradient overlay */}
+			<div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+			<CardHeader className="relative">
 				<div className="flex items-center justify-between">
-					<div className="flex items-center gap-3">
-						<div className={cn("p-3 rounded-lg", bgColor)}>
-							<Icon className={cn("w-6 h-6", textColor)} />
+					<div className="flex items-center gap-4">
+						<div className="p-4 rounded-2xl gradient-primary shadow-lg shadow-primary/20 ring-2 ring-primary/10 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-300">
+							<Icon className="w-7 h-7 text-primary-foreground" />
 						</div>
 						<div>
-							<CardTitle>{t("common.events", "Events")}</CardTitle>
-							<CardDescription>
+							<CardTitle className="text-xl bg-linear-to-r from-foreground to-foreground/80 bg-clip-text">
+								{t("common.events", "Events")}
+							</CardTitle>
+							<CardDescription className="text-sm">
 								{t("common.upcoming_events", "Upcoming this month")}
 							</CardDescription>
 						</div>
 					</div>
 				</div>
 			</CardHeader>
-			<CardContent className="space-y-4">
+			<CardContent className="space-y-4 relative">
 				{upcomingEvents.length > 0 ? (
 					<>
 						<div className="space-y-3">
 							{upcomingEvents.map((event) => (
 								<div
 									key={event.id}
-									className="p-3 rounded-lg border hover:bg-accent transition-colors"
+									className="p-4 rounded-xl border border-border/50 hover:bg-accent/5 hover:border-primary/20 transition-all duration-300 hover:shadow-md hover:translate-x-2 group/item"
 								>
-									<div className="font-medium truncate">{event.title}</div>
-									<div className="text-sm text-muted-foreground">
+									<div className="font-semibold truncate group-hover/item:text-primary transition-colors">
+										{event.title}
+									</div>
+									<div className="text-sm text-muted-foreground mt-1">
 										{format(new Date(event.startTime), "PPP")}
 									</div>
 								</div>
 							))}
 						</div>
-						<div className="flex gap-2">
+						<div className="flex gap-2.5 pt-2">
 							<Dialog
 								open={isEventDialogOpen}
 								onOpenChange={setIsEventDialogOpen}
 							>
 								<DialogTrigger asChild>
-									<Button variant="default" className="flex-1">
+									<Button
+										variant="default"
+										className="flex-1 gradient-primary shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-[1.02]"
+									>
 										<Plus className="w-4 h-4 mr-2" />
 										{t("common.add_new", "Add New")}
 									</Button>
@@ -319,24 +329,35 @@ export function EventsSection({
 								</DialogContent>
 							</Dialog>
 							<Link to="/events" className="flex-1">
-								<Button variant="outline" className="w-full group">
+								<Button
+									variant="outline"
+									className="w-full group border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+								>
 									{t("common.view_all", "View All")}
-									<ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+									<ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-all duration-300" />
 								</Button>
 							</Link>
 						</div>
 					</>
 				) : (
 					<>
-						<div className="text-center py-8 text-muted-foreground">
-							{t("common.no_events", "No upcoming events")}
+						<div className="text-center py-12 text-muted-foreground">
+							<div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
+								<Icon className="w-8 h-8" />
+							</div>
+							<p className="font-medium">
+								{t("common.no_events", "No upcoming events")}
+							</p>
 						</div>
 						<Dialog
 							open={isEventDialogOpen}
 							onOpenChange={setIsEventDialogOpen}
 						>
 							<DialogTrigger asChild>
-								<Button variant="default" className="w-full">
+								<Button
+									variant="default"
+									className="w-full gradient-primary shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
+								>
 									<Plus className="w-4 h-4 mr-2" />
 									{t("common.add_new_event", "Add New Event")}
 								</Button>

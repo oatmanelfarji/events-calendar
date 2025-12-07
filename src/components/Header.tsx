@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { CountrySelector } from "./country-selector";
 import { CurrentSeason } from "./current-season";
 import { CurrentYear } from "./current-year";
+import { HolidayCountdown } from "./holiday-countdown";
 import { LanguageSwitcher } from "./language-switcher";
 import { ModeToggle } from "./mode-toggle";
 
@@ -22,12 +23,12 @@ export default function Header() {
 
 	return (
 		<>
-			<header className="p-4 flex items-center justify-between bg-card border-b border-border shadow-sm">
+			<header className="sticky top-0 z-40 p-4 flex items-center justify-between glass-strong shadow-lg shadow-primary/5 transition-all duration-300">
 				<div className="flex items-center">
 					<button
 						type="button"
 						onClick={() => setIsOpen(true)}
-						className="p-2 hover:bg-accent rounded-lg transition-colors"
+						className="p-2.5 hover:bg-accent/10 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md"
 						aria-label="Open menu"
 					>
 						<Menu size={24} />
@@ -37,13 +38,14 @@ export default function Header() {
 							<img
 								src="/logo.png"
 								alt="Events Calendar Logo"
-								className="h-10 rounded-md"
+								className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
 							/>
 						</Link>
 					</h1>
 				</div>
-				<div className="flex items-center">
+				<div className="hidden md:flex items-center gap-3">
 					<CurrentSeason />
+					<HolidayCountdown />
 					<CurrentYear />
 				</div>
 				<div className="flex items-center gap-2">
@@ -54,16 +56,18 @@ export default function Header() {
 			</header>
 
 			<aside
-				className={`fixed top-0 left-0 h-full w-80 bg-card border-r border-border shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+				className={`fixed top-0 left-0 h-full w-80 glass-strong shadow-2xl shadow-primary/10 z-50 transform transition-all duration-500 ease-fluid flex flex-col border-r border-border/50 ${
 					isOpen ? "translate-x-0" : "-translate-x-full"
 				}`}
 			>
-				<div className="flex items-center justify-between p-4 border-b border-border">
-					<h2 className="text-xl font-bold">{t("common.navigation")}</h2>
+				<div className="flex items-center justify-between p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
+					<h2 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+						{t("common.navigation")}
+					</h2>
 					<button
 						type="button"
 						onClick={() => setIsOpen(false)}
-						className="p-2 hover:bg-accent rounded-lg transition-colors"
+						className="p-2 hover:bg-accent/10 rounded-xl transition-all duration-300 hover:scale-105"
 						aria-label="Close menu"
 					>
 						<X size={24} />
@@ -74,65 +78,80 @@ export default function Header() {
 					<Link
 						to="/"
 						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						className="flex items-center gap-3 p-3.5 rounded-xl hover:bg-accent/10 transition-all duration-300 mb-2 group hover:shadow-md hover:translate-x-1"
 						activeProps={{
 							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+								"flex items-center gap-3 p-3.5 rounded-xl gradient-primary text-primary-foreground hover:shadow-lg transition-all duration-300 mb-2 group shadow-md shadow-primary/20",
 						}}
 					>
-						<Home size={20} />
+						<Home
+							size={20}
+							className="group-hover:scale-110 transition-transform duration-300"
+						/>
 						<span className="font-medium">{t("common.home")}</span>
 					</Link>
 
 					<Link
 						to="/events"
 						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						className="flex items-center gap-3 p-3.5 rounded-xl hover:bg-accent/10 transition-all duration-300 mb-2 group hover:shadow-md hover:translate-x-1"
 						activeProps={{
 							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+								"flex items-center gap-3 p-3.5 rounded-xl gradient-primary text-primary-foreground hover:shadow-lg transition-all duration-300 mb-2 group shadow-md shadow-primary/20",
 						}}
 					>
-						<Table2Icon size={20} />
+						<Table2Icon
+							size={20}
+							className="group-hover:scale-110 transition-transform duration-300"
+						/>
 						<span className="font-medium">{t("common.events")}</span>
 					</Link>
 
 					<Link
 						to="/holidays"
 						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						className="flex items-center gap-3 p-3.5 rounded-xl hover:bg-accent/10 transition-all duration-300 mb-2 group hover:shadow-md hover:translate-x-1"
 						activeProps={{
 							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+								"flex items-center gap-3 p-3.5 rounded-xl gradient-primary text-primary-foreground hover:shadow-lg transition-all duration-300 mb-2 group shadow-md shadow-primary/20",
 						}}
 					>
-						<Table size={20} />
+						<Table
+							size={20}
+							className="group-hover:scale-110 transition-transform duration-300"
+						/>
 						<span className="font-medium">{t("common.holidays")}</span>
 					</Link>
 
 					<Link
 						to="/todos"
 						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						className="flex items-center gap-3 p-3.5 rounded-xl hover:bg-accent/10 transition-all duration-300 mb-2 group hover:shadow-md hover:translate-x-1"
 						activeProps={{
 							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+								"flex items-center gap-3 p-3.5 rounded-xl gradient-primary text-primary-foreground hover:shadow-lg transition-all duration-300 mb-2 group shadow-md shadow-primary/20",
 						}}
 					>
-						<ListTodo size={20} />
+						<ListTodo
+							size={20}
+							className="group-hover:scale-110 transition-transform duration-300"
+						/>
 						<span className="font-medium">{t("common.todos", "Todos")}</span>
 					</Link>
 
 					<Link
 						to="/settings"
 						onClick={() => setIsOpen(false)}
-						className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors mb-2"
+						className="flex items-center gap-3 p-3.5 rounded-xl hover:bg-accent/10 transition-all duration-300 mb-2 group hover:shadow-md hover:translate-x-1"
 						activeProps={{
 							className:
-								"flex items-center gap-3 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mb-2",
+								"flex items-center gap-3 p-3.5 rounded-xl gradient-primary text-primary-foreground hover:shadow-lg transition-all duration-300 mb-2 group shadow-md shadow-primary/20",
 						}}
 					>
-						<Settings size={20} />
+						<Settings
+							size={20}
+							className="group-hover:scale-110 transition-transform duration-300"
+						/>
 						<span className="font-medium">{t("common.settings")}</span>
 					</Link>
 				</nav>

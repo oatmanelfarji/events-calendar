@@ -87,3 +87,29 @@ export const getHolidays = createServerFn({ method: "GET" })
 			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
 		);
 	});
+
+export const getNextHoliday = createServerFn({ method: "GET" })
+	.inputValidator((data: { countryCode: string }) => data)
+	.handler(async ({ data }) => {
+		const { countryCode } = data;
+		const now = new Date();
+		const currentDate = now.toISOString().split("T")[0];
+
+		// Get all holidays for the country that are on or after today
+		const results = await db
+			.select()
+			.from(holidays)
+			.where(
+				and(
+					eq(holidays.countryCode, countryCode),
+					gte(holidays.date, currentDate),
+				),
+			);
+
+		// Sort by date ascending and return the first one (next holiday)
+		const sortedResults = results.sort(
+			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+		);
+
+		return sortedResults[0] || null;
+	});
