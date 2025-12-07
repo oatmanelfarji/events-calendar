@@ -1,0 +1,929 @@
+[
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2025-01-27",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٤٦"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2025-02-14",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٤٦"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2025-03-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٤٦"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2025-03-30",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٤٦"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2025-06-05",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٤٦"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2025-06-06",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٤٦"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2025-06-26",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٤٧"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2025-07-05",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٤٧"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2025-09-04",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٤٧"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2026-01-16",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٤٧"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2026-02-03",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٤٧"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2026-02-18",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٤٧"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2026-03-20",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٤٧"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2026-05-26",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٤٧"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2026-05-27",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٤٧"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2026-06-16",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٤٨"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2026-06-25",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٤٨"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2026-08-25",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٤٨"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2027-01-05",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٤٨"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2027-01-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٤٨"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2027-02-08",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٤٨"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2027-03-09",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٤٨"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2027-05-15",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٤٨"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2027-05-16",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٤٨"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2027-06-06",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٤٩"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2027-06-15",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٤٩"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2027-08-14",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٤٩"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2027-12-25",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٤٩"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2028-01-12",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٤٩"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2028-01-28",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٤٩"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2028-02-26",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٤٩"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2028-05-04",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٤٩"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2028-05-05",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٤٩"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2028-05-25",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٠"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2028-06-03",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٠"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2028-08-03",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٠"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2028-12-14",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٠"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2028-12-31",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٠"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2029-01-16",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٠"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2029-02-14",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٠"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2029-04-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥٠"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2029-04-24",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥٠"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2029-05-14",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥١"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2029-05-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥١"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2029-07-24",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥١"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2029-12-03",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥١"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2029-12-21",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥١"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2030-01-05",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥١"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2030-02-04",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥١"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2030-04-12",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥١"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2030-04-13",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥١"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2030-05-03",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٢"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2030-05-12",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٢"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2030-07-13",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٢"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2030-11-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٢"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2030-12-10",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٢"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2030-12-26",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٢"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2031-01-24",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٢"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2031-04-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥٢"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2031-04-02",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥٢"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2031-04-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٣"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2031-05-02",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٣"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2031-07-02",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٣"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2031-11-12",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٣"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2031-11-30",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٣"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2031-12-15",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٣"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2032-01-14",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٣"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2032-03-21",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥٣"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2032-03-22",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥٣"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2032-04-11",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٤"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2032-04-20",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٤"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2032-06-20",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٤"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2032-11-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٤"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2032-11-18",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٤"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2032-12-04",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٤"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2033-01-02",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٤"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2033-03-10",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥٤"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2033-03-11",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥٤"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2033-04-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٥"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2033-04-10",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٥"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2033-06-09",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٥"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2033-10-21",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٥"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2033-11-07",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٥"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2033-11-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٥"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2033-12-23",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٥"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2034-02-28",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥٥"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2034-03-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥٥"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2034-03-21",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٦"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2034-03-30",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٦"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2034-05-30",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٦"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2034-10-10",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٦"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2034-10-27",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٦"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2034-11-12",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٦"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2034-12-12",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٦"
+  },
+  {
+    "name": "Arafat Day",
+    "localName": "يوم عرفة",
+    "date": "2035-02-17",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The day before Eid al-Adha.",
+    "hijriDate": "٩ ذو الحجة ١٤٥٦"
+  },
+  {
+    "name": "Eid al-Adha",
+    "localName": "عيد الأضحى",
+    "date": "2035-02-18",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of the Sacrifice.",
+    "hijriDate": "١٠ ذو الحجة ١٤٥٦"
+  },
+  {
+    "name": "Islamic New Year",
+    "localName": "رأس السنة الهجرية",
+    "date": "2035-03-11",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the Islamic lunar calendar year.",
+    "hijriDate": "١ محرم ١٤٥٧"
+  },
+  {
+    "name": "Ashura",
+    "localName": "عاشوراء",
+    "date": "2035-03-20",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 10th day of Muharram.",
+    "hijriDate": "١٠ محرم ١٤٥٧"
+  },
+  {
+    "name": "Prophet's Birthday",
+    "localName": "عيد المولد النبوي",
+    "date": "2035-05-20",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The birthday of the Islamic prophet Muhammad.",
+    "hijriDate": "١٢ ربيع الأول ١٤٥٧"
+  },
+  {
+    "name": "Isra and Mi'raj",
+    "localName": "الإسراء والمعراج",
+    "date": "2035-09-29",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The night journey and ascension of the Prophet Muhammad.",
+    "hijriDate": "٢٧ رجب ١٤٥٧"
+  },
+  {
+    "name": "Mid-Sha'ban",
+    "localName": "النصف من شعبان",
+    "date": "2035-10-16",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The 15th night of Sha'ban.",
+    "hijriDate": "١٥ شعبان ١٤٥٧"
+  },
+  {
+    "name": "Start of Ramadan",
+    "localName": "بداية رمضان",
+    "date": "2035-11-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "The first day of the holy month of fasting.",
+    "hijriDate": "١ رمضان ١٤٥٧"
+  },
+  {
+    "name": "Eid al-Fitr",
+    "localName": "عيد الفطر",
+    "date": "2035-12-01",
+    "countryCode": "MA",
+    "type": "religious",
+    "description": "Festival of Breaking the Fast, marking the end of Ramadan.",
+    "hijriDate": "١ شوال ١٤٥٧"
+  }
+]

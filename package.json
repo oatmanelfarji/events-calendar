@@ -16,7 +16,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:pull": "drizzle-kit pull",
-    "db:seed": "pnpm exec tsx src/db/seed.ts",
+    "db:seed": "pnpm db:seed:moroccan && pnpm db:seed:islamic",
+    "db:seed:moroccan": "pnpm exec tsx src/db/moroccan-holidays-seed.ts",
+    "db:seed:islamic": "pnpm exec tsx src/db/islamic-holidays-seed.ts",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {

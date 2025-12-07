@@ -12,7 +12,7 @@ import {
 export const holidays = pgTable("holidays", {
 	id: serial("id").primaryKey(),
 	name: text("name").notNull(),
-	localName: text("local_name"),
+	localName: text("local_name").$default(() => ""),
 	date: date("date").notNull(),
 	countryCode: text("country_code").notNull(),
 	type: text("type"), // e.g., 'public', 'religious'
