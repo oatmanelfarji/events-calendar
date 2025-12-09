@@ -1,0 +1,27 @@
+
+> events-calendar@ build /run/media/oatman/2nd/Code/Pro-projects/events-calendar
+> vite build
+
+vite v7.2.4 building client environment for production...
+transforming...
+
+[@tanstack/devtools-vite] Removed devtools code from: /src/routes/__root.tsx
+
+✓ 2175 modules transformed.
+✗ Build failed in 9.72s
+error during build:
+[vite]: Rollup failed to resolve import "moment-hijri" from "/run/media/oatman/2nd/Code/Pro-projects/events-calendar/src/features/holidays/components/IslamicHolidays.tsx".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`
+    at viteLog (file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/vite@7.2.4_@types+node@22.19.1_jiti@2.6.1_lightningcss@1.30.2_terser@5.44.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/config.js:34283:57)
+    at file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/vite@7.2.4_@types+node@22.19.1_jiti@2.6.1_lightningcss@1.30.2_terser@5.44.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/config.js:34317:73
+    at onwarn (file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/@vitejs+plugin-react@5.1.1_vite@7.2.4_@types+node@22.19.1_jiti@2.6.1_lightningcss@1.30.2_terser@5.44.1_tsx@4.20.6_/node_modules/@vitejs/plugin-react/dist/index.js:76:7)
+    at file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/vite@7.2.4_@types+node@22.19.1_jiti@2.6.1_lightningcss@1.30.2_terser@5.44.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/config.js:34317:28
+    at onRollupLog (file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/vite@7.2.4_@types+node@22.19.1_jiti@2.6.1_lightningcss@1.30.2_terser@5.44.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/config.js:34312:63)
+    at onLog (file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/vite@7.2.4_@types+node@22.19.1_jiti@2.6.1_lightningcss@1.30.2_terser@5.44.1_tsx@4.20.6/node_modules/vite/dist/node/chunks/config.js:34115:4)
+    at file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:20961:32
+    at Object.logger [as onLog] (file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:22848:9)
+    at ModuleLoader.handleInvalidResolvedId (file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:21592:26)
+    at file:///run/media/oatman/2nd/Code/Pro-projects/events-calendar/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:21550:26
+ ELIFECYCLE  Command failed with exit code 1.

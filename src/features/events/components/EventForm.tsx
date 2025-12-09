@@ -1,11 +1,25 @@
-import { useForm } from "@tanstack/react-form";
-import { zodValidator } from "@tanstack/zod-form-adapter";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Calendar as CalendarIcon } from "lucide-react";
+import moment from "moment";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import {
 	Select,
 	SelectContent,
@@ -14,217 +28,250 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import {
+	type EventFormValues,
+	eventFormSchema,
+} from "@/features/events/schemas";
+import { cn } from "@/lib/utils";
 
-const eventSchema = z.object({
-	title: z.string().min(1, "Title is required"),
-	description: z.string().optional(),
-	startTime: z.string(),
-	endTime: z.string(),
-	isAllDay: z.boolean(),
-	location: z.string().optional(),
-	category: z
-		.enum(["national", "religious", "family", "personal", "other"])
-		.optional(),
-});
-
-type EventFormProps = {
-	onSubmit: (data: any) => void;
-	initialData?: any;
+interface EventFormProps {
+	defaultValues?: Partial<EventFormValues>;
+	onSubmit: (data: EventFormValues) => void;
 	onCancel: () => void;
-};
+	isPending?: boolean;
+}
 
-export function EventForm({ onSubmit, initialData, onCancel }: EventFormProps) {
+export function EventForm({
+	defaultValues,
+	onSubmit,
+	onCancel,
+	isPending,
+}: EventFormProps) {
 	const { t } = useTranslation();
 
-	const form = useForm({
+	const form = useForm<EventFormValues>({
+		resolver: zodResolver(eventFormSchema),
 		defaultValues: {
-			title: initialData?.title || "",
-			description: initialData?.description || "",
-			startTime: initialData?.startTime
-				? new Date(initialData.startTime).toISOString().slice(0, 16)
-				: new Date().toISOString().slice(0, 16),
-			endTime: initialData?.endTime
-				? new Date(initialData.endTime).toISOString().slice(0, 16)
-				: new Date(Date.now() + 3600000).toISOString().slice(0, 16),
-			isAllDay: initialData?.isAllDay || false,
-			location: initialData?.location || "",
-			category: initialData?.category || "personal",
-		},
-		validatorAdapter: zodValidator(),
-		validators: {
-			onChange: eventSchema,
-		},
-		onSubmit: async ({ value }) => {
-			onSubmit(value);
+			title: "",
+			description: "",
+			isAllDay: false,
+			location: "",
+			category: "personal",
+			reminders: [],
+			...defaultValues,
+			startTime: defaultValues?.startTime
+				? new Date(defaultValues.startTime)
+				: new Date(),
+			endTime: defaultValues?.endTime
+				? new Date(defaultValues.endTime)
+				: new Date(Date.now() + 60 * 60 * 1000),
 		},
 	});
 
 	return (
-		<form
-			onSubmit={(e) => {
-				e.preventDefault();
-				e.stopPropagation();
-				form.handleSubmit();
-			}}
-			className="space-y-4"
-		>
-			<form.Field
-				name="title"
-				children={(field) => (
-					<div className="space-y-2">
-						<Label htmlFor={field.name} className="text-slate-300">
-							{t("common.title")}
-						</Label>
-						<Input
-							id={field.name}
-							value={field.state.value}
-							onBlur={field.handleBlur}
-							onChange={(e) => field.handleChange(e.target.value)}
-							className="bg-slate-900 border-slate-700 text-slate-100"
-						/>
-						{field.state.meta.errors ? (
-							<p className="text-red-400 text-sm">
-								{field.state.meta.errors.join(", ")}
-							</p>
-						) : null}
-					</div>
-				)}
-			/>
-
-			<div className="grid grid-cols-2 gap-4">
-				<form.Field
-					name="startTime"
-					children={(field) => (
-						<div className="space-y-2">
-							<Label htmlFor={field.name} className="text-slate-300">
-								{t("common.start_time")}
-							</Label>
-							<Input
-								id={field.name}
-								type="datetime-local"
-								value={field.state.value}
-								onBlur={field.handleBlur}
-								onChange={(e) => field.handleChange(e.target.value)}
-								className="bg-slate-900 border-slate-700 text-slate-100"
-							/>
-						</div>
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+				<FormField
+					control={form.control}
+					name="title"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>{t("common.title", "Title")}</FormLabel>
+							<FormControl>
+								<Input placeholder="Event title" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
 					)}
 				/>
-				<form.Field
-					name="endTime"
-					children={(field) => (
-						<div className="space-y-2">
-							<Label htmlFor={field.name} className="text-slate-300">
-								{t("common.end_time")}
-							</Label>
-							<Input
-								id={field.name}
-								type="datetime-local"
-								value={field.state.value}
-								onBlur={field.handleBlur}
-								onChange={(e) => field.handleChange(e.target.value)}
-								className="bg-slate-900 border-slate-700 text-slate-100"
-							/>
-						</div>
+
+				<div className="grid grid-cols-2 gap-4">
+					<FormField
+						control={form.control}
+						name="startTime"
+						render={({ field }) => (
+							<FormItem className="flex flex-col">
+								<FormLabel>{t("common.start_time", "Start Time")}</FormLabel>
+								<Popover>
+									<PopoverTrigger asChild>
+										<FormControl>
+											<Button
+												variant={"outline"}
+												className={cn(
+													"w-full pl-3 text-left font-normal",
+													!field.value && "text-muted-foreground",
+												)}
+											>
+												{field.value ? (
+													moment(field.value).format("MMM D, YYYY HH:mm")
+												) : (
+													<span>{t("common.pick_date", "Pick a date")}</span>
+												)}
+												<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+											</Button>
+										</FormControl>
+									</PopoverTrigger>
+									<PopoverContent className="w-auto p-0" align="start">
+										<Calendar
+											mode="single"
+											selected={field.value}
+											onSelect={field.onChange}
+											initialFocus
+										/>
+										<div className="p-3 border-t">
+											<Input
+												type="time"
+												value={moment(field.value).format("HH:mm")}
+												onChange={(e) => {
+													const [hours, minutes] = e.target.value.split(":");
+													const newDate = new Date(field.value);
+													newDate.setHours(Number(hours));
+													newDate.setMinutes(Number(minutes));
+													field.onChange(newDate);
+												}}
+											/>
+										</div>
+									</PopoverContent>
+								</Popover>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="endTime"
+						render={({ field }) => (
+							<FormItem className="flex flex-col">
+								<FormLabel>{t("common.end_time", "End Time")}</FormLabel>
+								<Popover>
+									<PopoverTrigger asChild>
+										<FormControl>
+											<Button
+												variant={"outline"}
+												className={cn(
+													"w-full pl-3 text-left font-normal",
+													!field.value && "text-muted-foreground",
+												)}
+											>
+												{field.value ? (
+													moment(field.value).format("MMM D, YYYY HH:mm")
+												) : (
+													<span>{t("common.pick_date", "Pick a date")}</span>
+												)}
+												<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+											</Button>
+										</FormControl>
+									</PopoverTrigger>
+									<PopoverContent className="w-auto p-0" align="start">
+										<Calendar
+											mode="single"
+											selected={field.value}
+											onSelect={field.onChange}
+											initialFocus
+										/>
+										<div className="p-3 border-t">
+											<Input
+												type="time"
+												value={moment(field.value).format("HH:mm")}
+												onChange={(e) => {
+													const [hours, minutes] = e.target.value.split(":");
+													const newDate = new Date(field.value);
+													newDate.setHours(Number(hours));
+													newDate.setMinutes(Number(minutes));
+													field.onChange(newDate);
+												}}
+											/>
+										</div>
+									</PopoverContent>
+								</Popover>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				</div>
+
+				<FormField
+					control={form.control}
+					name="isAllDay"
+					render={({ field }) => (
+						<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+							<FormControl>
+								<Checkbox
+									checked={field.value}
+									onCheckedChange={field.onChange}
+								/>
+							</FormControl>
+							<div className="space-y-1 leading-none">
+								<FormLabel>{t("common.all_day", "All Day Event")}</FormLabel>
+							</div>
+						</FormItem>
 					)}
 				/>
-			</div>
 
-			<form.Field
-				name="isAllDay"
-				children={(field) => (
-					<div className="flex items-center space-x-2">
-						<Checkbox
-							id={field.name}
-							checked={field.state.value}
-							onCheckedChange={(checked) => field.handleChange(!!checked)}
-							className="border-slate-700 data-[state=checked]:bg-cyan-600"
-						/>
-						<Label htmlFor={field.name} className="text-slate-300">
-							{t("common.all_day_event")}
-						</Label>
-					</div>
-				)}
-			/>
+				<FormField
+					control={form.control}
+					name="location"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>{t("common.location", "Location")}</FormLabel>
+							<FormControl>
+								<Input placeholder="Location" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 
-			<form.Field
-				name="location"
-				children={(field) => (
-					<div className="space-y-2">
-						<Label htmlFor={field.name} className="text-slate-300">
-							{t("common.location")}
-						</Label>
-						<Input
-							id={field.name}
-							value={field.state.value}
-							onBlur={field.handleBlur}
-							onChange={(e) => field.handleChange(e.target.value)}
-							className="bg-slate-900 border-slate-700 text-slate-100"
-						/>
-					</div>
-				)}
-			/>
+				<FormField
+					control={form.control}
+					name="category"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>{t("common.category", "Category")}</FormLabel>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<FormControl>
+									<SelectTrigger>
+										<SelectValue placeholder="Select a category" />
+									</SelectTrigger>
+								</FormControl>
+								<SelectContent>
+									<SelectItem value="personal">Personal</SelectItem>
+									<SelectItem value="work">Work</SelectItem>
+									<SelectItem value="family">Family</SelectItem>
+									<SelectItem value="national">National</SelectItem>
+									<SelectItem value="religious">Religious</SelectItem>
+									<SelectItem value="other">Other</SelectItem>
+								</SelectContent>
+							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 
-			<form.Field
-				name="category"
-				children={(field) => (
-					<div className="space-y-2">
-						<Label htmlFor={field.name} className="text-slate-300">
-							{t("common.category")}
-						</Label>
-						<Select
-							value={field.state.value}
-							onValueChange={field.handleChange}
-						>
-							<SelectTrigger className="bg-slate-900 border-slate-700 text-slate-100">
-								<SelectValue placeholder={t("common.select_category")} />
-							</SelectTrigger>
-							<SelectContent className="bg-slate-800 border-slate-700 text-slate-100">
-								<SelectItem value="national">National</SelectItem>
-								<SelectItem value="religious">Religious</SelectItem>
-								<SelectItem value="family">Family</SelectItem>
-								<SelectItem value="personal">Personal</SelectItem>
-								<SelectItem value="other">Other</SelectItem>
-							</SelectContent>
-						</Select>
-					</div>
-				)}
-			/>
+				<FormField
+					control={form.control}
+					name="description"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>{t("common.description", "Description")}</FormLabel>
+							<FormControl>
+								<Textarea placeholder="Description" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 
-			<form.Field
-				name="description"
-				children={(field) => (
-					<div className="space-y-2">
-						<Label htmlFor={field.name} className="text-slate-300">
-							{t("common.description")}
-						</Label>
-						<Textarea
-							id={field.name}
-							value={field.state.value}
-							onBlur={field.handleBlur}
-							onChange={(e) => field.handleChange(e.target.value)}
-							className="bg-slate-900 border-slate-700 text-slate-100"
-						/>
-					</div>
-				)}
-			/>
-
-			<div className="flex justify-end gap-2 pt-4">
-				<Button
-					type="button"
-					variant="outline"
-					onClick={onCancel}
-					className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
-				>
-					{t("common.cancel")}
-				</Button>
-				<Button
-					type="submit"
-					className="bg-cyan-600 hover:bg-cyan-700 text-white"
-				>
-					{t("common.save_event")}
-				</Button>
-			</div>
-		</form>
+				<div className="flex justify-end gap-2">
+					<Button type="button" variant="outline" onClick={onCancel}>
+						{t("common.cancel", "Cancel")}
+					</Button>
+					<Button type="submit" disabled={isPending}>
+						{isPending ? "Saving..." : t("common.save", "Save")}
+					</Button>
+				</div>
+			</form>
+		</Form>
 	);
 }

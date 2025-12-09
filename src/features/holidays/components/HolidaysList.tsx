@@ -1,5 +1,5 @@
-import { format } from "date-fns";
 import { Calendar, Globe, Info } from "lucide-react";
+import moment from "moment";
 import { useTranslation } from "react-i18next";
 import {
 	Card,
@@ -16,7 +16,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { getDateFnsLocale } from "@/lib/date-locale";
 
 interface Holiday {
 	id: number;
@@ -45,7 +44,6 @@ export function HolidaysList({
 	showCountryCode = false,
 }: HolidaysListProps) {
 	const { t } = useTranslation();
-	const locale = getDateFnsLocale();
 
 	const defaultTitle = t("common.holidays");
 	const defaultEmptyMessage = t("common.no_holidays_simple");
@@ -71,17 +69,14 @@ export function HolidaysList({
 
 	// Filter and sort holidays
 	const sortedHolidays = [...holidays].sort(
-		(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+		(a, b) => moment(a.date).valueOf() - moment(b.date).valueOf(),
 	);
 
-	const today = new Date();
-	today.setHours(0, 0, 0, 0);
+	const today = moment().startOf("day");
 
 	// Find index of the first holiday that is today or in the future
 	const nextHolidayIndex = sortedHolidays.findIndex((h) => {
-		const hDate = new Date(h.date);
-		hDate.setHours(0, 0, 0, 0);
-		return hDate.getTime() >= today.getTime();
+		return moment(h.date).isSameOrAfter(today);
 	});
 
 	let displayHolidays: Holiday[] = [];
@@ -136,11 +131,9 @@ export function HolidaysList({
 							</TableHeader>
 							<TableBody>
 								{displayHolidays.map((holiday) => {
-									const holidayDate = new Date(holiday.date);
-									const formattedDate = format(holidayDate, "MMM dd, yyyy", {
-										locale,
-									});
-									const dayOfWeek = format(holidayDate, "EEEE", { locale });
+									const holidayDate = moment(holiday.date);
+									const formattedDate = holidayDate.format("MMM DD, YYYY");
+									const dayOfWeek = holidayDate.format("dddd");
 									const isNext = holiday.id === nextHolidayId;
 
 									return (

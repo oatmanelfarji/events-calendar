@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { format } from "date-fns";
 import { Calendar as CalendarIcon, Plus, Trash2 } from "lucide-react";
+import moment from "moment";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import {
 	Dialog,
 	DialogContent,
+	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -113,6 +114,12 @@ export function TodosPageContent() {
 							<DialogTitle>
 								{t("common.create_new_todo", "Create New Todo")}
 							</DialogTitle>
+							<DialogDescription>
+								{t(
+									"common.create_new_todo_description",
+									"Add a new task to your list.",
+								)}
+							</DialogDescription>
 						</DialogHeader>
 						<Form {...form}>
 							<form
@@ -168,7 +175,7 @@ export function TodosPageContent() {
 															)}
 														>
 															{field.value ? (
-																format(field.value, "PPP")
+																moment(field.value).format("MMM D, YYYY")
 															) : (
 																<span>
 																	{t("common.pick_a_date", "Pick a date")}
@@ -244,7 +251,7 @@ export function TodosPageContent() {
 								{todo.date && (
 									<div className="flex items-center gap-1 text-xs text-muted-foreground">
 										<CalendarIcon className="w-3 h-3" />
-										{format(new Date(todo.date), "PPP")}
+										{moment(todo.date).format("MMM D, YYYY")}
 									</div>
 								)}
 							</div>

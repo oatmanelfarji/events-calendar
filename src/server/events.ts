@@ -3,6 +3,12 @@ import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { events } from "@/db/schema";
+import type { ReminderConfig } from "@/types";
+
+const ReminderSchema = z.object({
+	type: z.enum(["email", "push", "sms"]),
+	minutesBefore: z.number(),
+});
 
 const EventSchema = z.object({
 	title: z.string().min(1, "Title is required"),
@@ -14,7 +20,7 @@ const EventSchema = z.object({
 	category: z
 		.enum(["national", "religious", "family", "personal", "other"])
 		.optional(),
-	reminders: z.array(z.any()).optional(), // Define stricter schema later
+	reminders: z.array(ReminderSchema).optional(),
 });
 
 export const getEvents = createServerFn({ method: "GET" })
@@ -35,7 +41,7 @@ export const getEvents = createServerFn({ method: "GET" })
 
 		return results.map((event) => ({
 			...event,
-			reminders: event.reminders as any[],
+			reminders: event.reminders as ReminderConfig[] | null,
 		}));
 	});
 
@@ -51,7 +57,7 @@ export const createEvent = createServerFn({ method: "POST" })
 			})
 			.returning();
 
-		return newEvent as typeof newEvent & { reminders: any[] };
+		return newEvent as typeof newEvent & { reminders: ReminderConfig[] | null };
 	});
 
 export const updateEvent = createServerFn({ method: "POST" })
@@ -70,7 +76,9 @@ export const updateEvent = createServerFn({ method: "POST" })
 			.where(eq(events.id, id))
 			.returning();
 
-		return updatedEvent as typeof updatedEvent & { reminders: any[] };
+		return updatedEvent as typeof updatedEvent & {
+			reminders: ReminderConfig[] | null;
+		};
 	});
 
 export const deleteEvent = createServerFn({ method: "POST" })

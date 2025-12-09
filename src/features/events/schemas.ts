@@ -7,7 +7,10 @@ export const eventFormSchema = z.object({
 	endTime: z.date(),
 	isAllDay: z.boolean().default(false),
 	location: z.string().optional(),
-	categoryId: z.number().optional(),
+	category: z
+		.enum(["national", "religious", "family", "personal", "other"])
+		.default("personal"),
+	reminders: z.array(z.any()).optional().default([]),
 });
 
 export type EventFormValues = z.infer<typeof eventFormSchema>;

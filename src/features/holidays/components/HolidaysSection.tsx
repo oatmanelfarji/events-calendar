@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { format } from "date-fns";
 import { ChevronRight } from "lucide-react";
+import moment from "moment";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,9 +26,9 @@ export function HolidaysSection({
 	textColor,
 }: HolidaysSectionProps) {
 	const { t } = useTranslation();
-	const now = new Date();
+	const now = moment();
 	const upcomingHolidays = holidays
-		.filter((h) => new Date(h.date) >= now)
+		.filter((h) => moment(h.date).isSameOrAfter(now, "day"))
 		.slice(0, 3);
 
 	return (
@@ -59,7 +59,7 @@ export function HolidaysSection({
 								>
 									<div className="font-medium truncate">{holiday.name}</div>
 									<div className="text-sm text-muted-foreground">
-										{format(new Date(holiday.date), "PPP")}
+										{moment(holiday.date).format("MMMM Do, YYYY")}
 									</div>
 								</div>
 							))}
