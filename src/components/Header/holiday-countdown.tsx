@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SeasonProgress } from "@/components/season-progress";
 import { getNextHoliday } from "@/server/holidays";
 
 interface TimeRemaining {
@@ -74,39 +73,37 @@ export function HolidayCountdown() {
 	const { days, hours, minutes, seconds } = timeRemaining;
 
 	return (
-		<div className="flex items-center gap-2">
-			<SeasonProgress
-				value={0}
-				progressColor="bg-purple-600 dark:bg-purple-400"
+		<div
+			className={`relative flex items-center justify-center gap-2 px-4 w-fit h-8 rounded-full overflow-hidden bg-foreground/50 border border-blue-950 dark:border-white`}
+		>
+			{/* Calendar Icon */}
+			<Calendar className={`h-4 w-4 text-white drop-shadow-md`} />
+
+			{/* Holiday Name */}
+			<span
+				className={`text-xs font-bold text-white drop-shadow-md truncate max-w-24`}
 			>
-				<div className="flex items-center justify-center gap-2 min-w-64">
-					{/* Calendar Icon */}
-					<Calendar className="h-5 w-5 text-purple-900 dark:text-purple-900 drop-shadow-md" />
+				{nextHoliday.name}
+				{" in "}
+			</span>
 
-					{/* Holiday Name */}
-					<span className="text-xs font-bold text-purple-900 dark:text-purple-900 drop-shadow-md truncate max-w-24">
-						{nextHoliday.name}
-					</span>
-
-					<span className="text-xs font-bold text-foreground px-1">|</span>
-
-					{/* Countdown */}
-					<div className="flex items-center gap-1 text-xs font-semibold text-foreground">
-						{days > 0 && (
-							<>
-								<span className="font-bold">{days}</span>
-								<span className="text-[10px]">{t("countdown.days")}</span>
-							</>
-						)}
-						<span className="font-bold">{hours}</span>
-						<span className="text-[10px]">{t("countdown.hours")}</span>
-						<span className="font-bold">{minutes}</span>
-						<span className="text-[10px]">{t("countdown.minutes")}</span>
-						<span className="font-bold">{seconds}</span>
-						<span className="text-[10px]">{t("countdown.seconds")}</span>
-					</div>
-				</div>
-			</SeasonProgress>
+			{/* Countdown */}
+			<div
+				className={`flex items-center gap-1 text-xs font-semibold text-white`}
+			>
+				{days > 0 && (
+					<>
+						<span className="font-bold">{days}</span>
+						<span className="font-bold">{t("countdown.days")}</span>
+					</>
+				)}
+				<span className="font-bold">{hours}</span>
+				<span className="font-bold">{t("countdown.hours")}</span>
+				<span className="font-bold">{minutes}</span>
+				<span className="font-bold">{t("countdown.minutes")}</span>
+				<span className="font-bold">{seconds}</span>
+				<span className="font-bold">{t("countdown.seconds")}</span>
+			</div>
 		</div>
 	);
 }

@@ -4,7 +4,7 @@ import { HeroSlider, SLIDES_CONFIG } from "@/components/HeroSlider";
 import { EventsSection } from "@/features/events/components/EventsSection";
 import { HolidaysSection } from "@/features/holidays/components/HolidaysSection";
 import { TodosSection } from "@/features/todos/components/TodosSection";
-import { getEvents } from "@/server/events";
+import { getEvents, getUpcomingEvents } from "@/server/events";
 import { getHolidays } from "@/server/holidays";
 import { getTodos } from "@/server/todos";
 
@@ -43,6 +43,11 @@ export function HomePage() {
 		queryFn: () => getTodos(),
 	});
 
+	const { data: upcomingEvents = [] } = useQuery({
+		queryKey: ["upcomingEvents"],
+		queryFn: () => getUpcomingEvents({ data: { limit: 3 } }),
+	});
+
 	const activeTodosCount = todos.filter((t) => !t.isDone).length;
 
 	return (
@@ -57,23 +62,23 @@ export function HomePage() {
 
 			{/* Three Sections Grid */}
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-				{/* Events Section */}
-				<EventsSection
-					events={events}
-					categories={[]}
-					icon={SLIDES_CONFIG[0].icon}
-					bgColor={SLIDES_CONFIG[0].bgColor}
-					textColor={SLIDES_CONFIG[0].textColor}
-					startOfMonth={startOfMonth}
-					endOfMonth={endOfMonth}
-				/>
-
 				{/* Holidays Section */}
 				<HolidaysSection
 					holidays={holidays}
 					icon={SLIDES_CONFIG[1].icon}
 					bgColor={SLIDES_CONFIG[1].bgColor}
 					textColor={SLIDES_CONFIG[1].textColor}
+				/>
+
+				{/* Events Section */}
+				<EventsSection
+					events={upcomingEvents}
+					categories={[]}
+					icon={SLIDES_CONFIG[0].icon}
+					bgColor={SLIDES_CONFIG[0].bgColor}
+					textColor={SLIDES_CONFIG[0].textColor}
+					startOfMonth={startOfMonth}
+					endOfMonth={endOfMonth}
 				/>
 
 				{/* Todos Section */}

@@ -10,12 +10,12 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ModeToggle } from "../mode-toggle";
 import { CountrySelector } from "./country-selector";
 import { CurrentSeason } from "./current-season";
 import { CurrentYear } from "./current-year";
 import { HolidayCountdown } from "./holiday-countdown";
 import { LanguageSwitcher } from "./language-switcher";
-import { ModeToggle } from "./mode-toggle";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -33,20 +33,18 @@ export default function Header() {
 					>
 						<Menu size={24} />
 					</button>
-					<h1 className="ml-4 text-xl font-semibold">
-						<Link to="/">
-							<img
-								src="/logo.png"
-								alt="Events Calendar Logo"
-								className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-							/>
-						</Link>
-					</h1>
+					<Link to="/">
+						<img
+							src="/logo.png"
+							alt="Events Calendar Logo"
+							className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+						/>
+					</Link>
 				</div>
 				<div className="hidden md:flex items-center gap-3">
+					<CurrentYear />
 					<CurrentSeason />
 					<HolidayCountdown />
-					<CurrentYear />
 				</div>
 				<div className="flex items-center gap-2">
 					<LanguageSwitcher />
@@ -60,10 +58,14 @@ export default function Header() {
 					isOpen ? "translate-x-0" : "-translate-x-full"
 				}`}
 			>
-				<div className="flex items-center justify-between p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
-					<h2 className="text-xl font-bold bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-						{t("common.navigation")}
-					</h2>
+				<div className="flex items-center justify-between p-6 border-b border-border/50 bg-linear-to-r from-primary/5 to-accent/5">
+					<Link to="/">
+						<img
+							src="/logo.png"
+							alt="Events Calendar Logo"
+							className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+						/>
+					</Link>
 					<button
 						type="button"
 						onClick={() => setIsOpen(false)}

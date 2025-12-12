@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,10 +12,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { EventFormDialog } from "@/features/events/components/EventFormDialog";
-import {
-	type EventFormValues,
-	eventFormSchema,
-} from "@/features/events/schemas";
+import { type EventFormValues } from "@/features/events/schemas";
 import { cn } from "@/lib/utils";
 import { createEvent } from "@/server/events";
 import type { Event } from "@/types";
@@ -24,8 +22,6 @@ interface EventsSectionProps {
 	icon: React.ElementType;
 	bgColor: string;
 	textColor: string;
-	startOfMonth: Date;
-	endOfMonth: Date;
 }
 
 export function EventsSection({
@@ -33,14 +29,18 @@ export function EventsSection({
 	icon: Icon,
 	bgColor,
 	textColor,
-	startOfMonth,
-	endOfMonth,
 }: EventsSectionProps) {
 	const { t } = useTranslation();
 	const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
 	const queryClient = useQueryClient();
 
-	const upcomingEvents = events.slice(0, 5);
+	const upcomingEvents = events
+		.filter((event) => new Date(event.startTime) > new Date())
+		.sort(
+			(a, b) =>
+				new Date(a.startTime).getTime() - new Date(b.startTime).getTime(),
+		)
+		.slice(0, 3);
 
 	const createEventMutation = useMutation({
 		mutationFn: (data: EventFormValues) =>
@@ -106,6 +106,11 @@ export function EventsSection({
 								<Plus className="w-4 h-4 mr-2" />
 								{t("common.add_new", "Add New")}
 							</Button>
+							<Link to="/events" className="flex-1">
+								<Button variant="secondary" className="w-full">
+									{t("common.view_all_events", "View All Events")}
+								</Button>
+							</Link>
 						</div>
 					</>
 				) : (
@@ -113,14 +118,21 @@ export function EventsSection({
 						<div className="text-center py-8 text-muted-foreground">
 							{t("common.no_events", "No upcoming events")}
 						</div>
-						<Button
-							variant="default"
-							className="w-full"
-							onClick={() => setIsEventDialogOpen(true)}
-						>
-							<Plus className="w-4 h-4 mr-2" />
-							{t("common.add_new_event", "Add New Event")}
-						</Button>
+						<div className="flex flex-col gap-2">
+							<Button
+								variant="default"
+								className="w-full"
+								onClick={() => setIsEventDialogOpen(true)}
+							>
+								<Plus className="w-4 h-4 mr-2" />
+								{t("common.add_new_event", "Add New Event")}
+							</Button>
+							<Link to="/events" className="w-full">
+								<Button variant="secondary" className="w-full">
+									{t("common.view_all_events", "View All Events")}
+								</Button>
+							</Link>
+						</div>
 					</>
 				)}
 

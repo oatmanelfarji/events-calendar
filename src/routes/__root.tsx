@@ -8,7 +8,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { useTranslation } from "react-i18next";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import { NotFound } from "@/components/NotFound";
 import { ThemeProvider } from "@/components/theme-provider";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";

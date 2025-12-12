@@ -1,62 +1,11 @@
-import { Calendar, Flower2, Leaf, Snowflake, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SeasonProgress } from "@/components/season-progress";
-import seasonsData from "@/data/seasons.json";
-
-type Season = {
-	name: "spring" | "summer" | "autumn" | "winter";
-	startDate: string;
-	endDate: string;
-};
-
-type SeasonsData = {
-	[year: string]: Season[];
-};
-
-const seasonConfig = {
-	spring: {
-		icon: Flower2,
-		bgColor: "bg-green-100 dark:bg-green-900/30",
-		iconColor: "text-green-900 dark:text-green-900",
-		progressColor: "bg-green-600 dark:bg-green-400",
-	},
-	summer: {
-		icon: Sun,
-		bgColor: "bg-yellow-100 dark:bg-yellow-900/30",
-		iconColor: "text-yellow-900 dark:text-yellow-900",
-		progressColor: "bg-yellow-600 dark:bg-yellow-400",
-	},
-	autumn: {
-		icon: Leaf,
-		bgColor: "bg-orange-100 dark:bg-orange-900/30",
-		iconColor: "text-orange-950 dark:text-orange-900",
-		progressColor: "bg-orange-600 dark:bg-orange-400",
-	},
-	winter: {
-		icon: Snowflake,
-		bgColor: "bg-blue-100 dark:bg-blue-900/30",
-		iconColor: "text-blue-900 dark:text-blue-900",
-		progressColor: "bg-blue-600 dark:bg-blue-400",
-	},
-} as const;
-
-function getCurrentSeason(): Season | null {
-	const now = new Date();
-	const year = now.getFullYear();
-	const currentDate = now.toISOString().split("T")[0];
-
-	const seasons = (seasonsData as SeasonsData)[year.toString()];
-	if (!seasons) return null;
-
-	for (const season of seasons) {
-		if (currentDate >= season.startDate && currentDate <= season.endDate) {
-			return season;
-		}
-	}
-
-	return null;
-}
+import { SeasonProgress } from "@/components/Header/season-progress";
+import {
+	getCurrentSeason,
+	type Season,
+	seasonConfig,
+} from "@/lib/season-utils";
 
 function calculateSeasonProgress(season: Season): number {
 	const now = new Date();
@@ -88,14 +37,6 @@ export function CurrentSeason() {
 	const Icon = config.icon;
 	const progress = calculateSeasonProgress(currentSeason);
 
-	// Format the current date based on the current locale
-	const now = new Date();
-	const formattedDate = new Intl.DateTimeFormat(i18n.language, {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	}).format(now);
-
 	return (
 		<div className="flex items-center gap-2">
 			{/* Season Progress Bar with Badge Inside */}
@@ -116,7 +57,7 @@ export function CurrentSeason() {
 						className={`text-xs font-bold ${config.iconColor} drop-shadow-md`}
 					>
 						{t(`seasons.${currentSeason.name}`)}
-						{" - "}
+						{" -> "}
 						{Math.round(progress)}%
 					</span>
 

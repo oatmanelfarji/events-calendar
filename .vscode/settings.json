@@ -33,5 +33,7 @@
 		"source.organizeImports.biome": "explicit"
 	},
 	"editor.formatOnSave": true,
-	"editor.fontSize": 12
+	"editor.fontSize": 16,
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.fontFamily": "'Droid Sans Mono', '3270 Nerd Font', 'monospace', monospace"
 }

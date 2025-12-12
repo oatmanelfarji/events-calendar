@@ -87,3 +87,22 @@ export const deleteEvent = createServerFn({ method: "POST" })
 		await db.delete(events).where(eq(events.id, data.id));
 		return { success: true };
 	});
+
+export const getUpcomingEvents = createServerFn({ method: "GET" })
+	.inputValidator((data: { limit?: number } = {}) => data)
+	.handler(async ({ data }) => {
+		const limit = data.limit ?? 3;
+		const now = new Date();
+
+		const results = await db
+			.select()
+			.from(events)
+			.where(gte(events.startTime, now))
+			.orderBy(events.startTime)
+			.limit(limit);
+
+		return results.map((event) => ({
+			...event,
+			reminders: event.reminders as ReminderConfig[] | null,
+		}));
+	});
