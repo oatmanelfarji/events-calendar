@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { Calendar as CalendarIcon, Plus, Trash2 } from "lucide-react";
 import moment from "moment";
 import { useState } from "react";
@@ -31,6 +32,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { type TodoFormValues, todoFormSchema } from "@/features/todos/schemas";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { createTodo, deleteTodo, getTodos, updateTodo } from "@/server/todos";
 
@@ -38,6 +40,8 @@ export function TodosPageContent() {
 	const { t } = useTranslation();
 	const queryClient = useQueryClient();
 	const [isCreateOpen, setIsCreateOpen] = useState(false);
+	const { data: session } = authClient.useSession();
+	const navigate = useNavigate();
 
 	const { data: todos } = useQuery({
 		queryKey: ["todos"],
@@ -104,7 +108,14 @@ export function TodosPageContent() {
 				</h1>
 				<Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
 					<DialogTrigger asChild>
-						<Button>
+						<Button
+							onClick={(e) => {
+								if (!session) {
+									e.preventDefault();
+									navigate({ to: "/login" });
+								}
+							}}
+						>
 							<Plus className="w-4 h-4 mr-2" />
 							{t("common.new_todo", "New Todo")}
 						</Button>

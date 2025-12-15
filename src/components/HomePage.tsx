@@ -52,14 +52,6 @@ export function HomePage() {
 
 	return (
 		<div className="min-h-screen p-8 space-y-12">
-			{/* Hero Slider Section */}
-			<HeroSlider
-				eventsCount={events.length}
-				holidaysCount={holidays.length}
-				activeTodosCount={activeTodosCount}
-				onSlideChange={() => {}}
-			/>
-
 			{/* Three Sections Grid */}
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{/* Holidays Section */}
@@ -89,6 +81,14 @@ export function HomePage() {
 					textColor={SLIDES_CONFIG[2].textColor}
 				/>
 			</div>
+
+			{/* Hero Slider Section */}
+			<HeroSlider
+				eventsCount={events.length}
+				holidaysCount={holidays.length}
+				activeTodosCount={activeTodosCount}
+				onSlideChange={() => {}}
+			/>
 		</div>
 	);
 }

@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header/Header";
 import { NotFound } from "@/components/NotFound";
+import { SeasonThemeHandler } from "@/components/season-theme-handler";
 import { ThemeProvider } from "@/components/theme-provider";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import "@/lib/i18n";
@@ -61,6 +62,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<ThemeProvider defaultTheme="system" storageKey="events-calendar-theme">
 					<div className="flex flex-col min-h-screen">
 						<Header />
+						<SeasonThemeHandler />
 						<main className="flex-1">{children}</main>
 						<Footer />
 					</div>

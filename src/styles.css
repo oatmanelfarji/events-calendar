@@ -72,6 +72,20 @@
   --sidebar-accent-foreground: oklch(0.10 0.015 260);
   --sidebar-border: oklch(0.90 0.01 270);
   --sidebar-ring: oklch(0.58 0.26 270);
+
+  /* Seasonal Colors */
+  /* Spring: Green-600 approx */
+  --season-spring: oklch(0.58 0.20 145);
+  --season-spring-foreground: oklch(0.99 0 0);
+  /* Summer: Yellow-400 approx */
+  --season-summer: oklch(0.86 0.18 89);
+  --season-summer-foreground: oklch(0.10 0.02 260);
+  /* Autumn: Orange-600 approx */
+  --season-autumn: oklch(0.68 0.22 40);
+  --season-autumn-foreground: oklch(0.99 0 0);
+  /* Winter: Blue-600 approx */
+  --season-winter: oklch(0.58 0.22 260);
+  --season-winter-foreground: oklch(0.99 0 0);
 }
 
 /* Dark Mode - Enhanced Contrast & Vividness */
@@ -137,6 +151,54 @@
   --sidebar-accent-foreground: oklch(0.98 0.005 270);
   --sidebar-border: oklch(0.26 0.045 260);
   --sidebar-ring: oklch(0.68 0.28 270);
+
+
+}
+
+.dark {
+  /* Seasonal Colors Dark Mode Overrides */
+  /* Spring: Green-500 approx */
+  --season-spring: oklch(0.65 0.20 145);
+  /* Summer: Yellow-400 (Same) */
+  --season-summer: oklch(0.86 0.18 89);
+  /* Autumn: Orange-700 approx */
+  --season-autumn: oklch(0.60 0.20 40);
+  /* Winter: Blue-500 approx */
+  --season-winter: oklch(0.65 0.22 260);
+}
+
+/* Seasonal Theme Maps */
+/* These classes will be applied to the root element by the handler */
+.theme-spring {
+  --primary: var(--season-spring);
+  --primary-foreground: var(--season-spring-foreground);
+  --ring: var(--season-spring);
+  --accent: var(--season-spring);
+  --accent-foreground: var(--season-spring-foreground);
+}
+
+.theme-summer {
+  --primary: var(--season-summer);
+  --primary-foreground: var(--season-summer-foreground);
+  --ring: var(--season-summer);
+  --accent: var(--season-summer);
+  --accent-foreground: var(--season-summer-foreground);
+}
+
+.theme-autumn {
+  --primary: var(--season-autumn);
+  --primary-foreground: var(--season-autumn-foreground);
+  --ring: var(--season-autumn);
+  --accent: var(--season-autumn);
+  --accent-foreground: var(--season-autumn-foreground);
+}
+
+.theme-winter {
+  --primary: var(--season-winter);
+  --primary-foreground: var(--season-winter-foreground);
+  --ring: var(--season-winter);
+  --accent: var(--season-winter);
+  --accent-foreground: var(--season-winter-foreground);
 }
 
 /* Tailwind v4 Theme Configuration */
@@ -259,7 +321,15 @@
   
   @keyframes shine {
     to {
-      transform: translateX(-100%);
+      transform: translateX(100%);
     }
+  }
+
+  .animate-shine {
+    animation: shine 3s infinite linear;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }

@@ -13,6 +13,7 @@ interface DayHoverTooltipProps {
 	holidays?: Holiday[];
 	todos?: Todo[];
 	onEventClick: (event: Event) => void;
+	position: { x: number; y: number };
 }
 
 const categoryColors: Record<EventCategory, string> = {
@@ -32,33 +33,67 @@ export function DayHoverTooltip({
 	holidays,
 	todos,
 	onEventClick,
+	position,
 }: DayHoverTooltipProps) {
+	// Calculate position to keep tooltip on screen
+	// Offset by 20px from cursor
+	let left = position.x + 20;
+	let top = position.y + 20;
+
+	// Simple boundary detection (assuming 1920x1080 approx, could be robustified with window dimensions)
+	if (typeof window !== "undefined") {
+		if (left + 384 > window.innerWidth) {
+			// 384 is w-96
+			left = position.x - 404; // width + offset
+		}
+		if (top + 500 > window.innerHeight) {
+			top = window.innerHeight - 520;
+		}
+	}
+
 	return (
-		<div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center p-4">
-			<div className="pointer-events-auto glass-strong p-5 rounded-2xl shadow-2xl border border-border/50 w-96 max-h-[600px] overflow-y-auto">
-				<div className="space-y-4">
-					<div className="font-bold text-lg border-b border-border/50 pb-3">
-						{moment(day).format("dddd, MMMM D, YYYY")}
-					</div>
+		<div
+			className="fixed z-50 pointer-events-none transition-all duration-75 ease-out"
+			style={{
+				left: `${left}px`,
+				top: `${top}px`,
+			}}
+		>
+			<div className="glass-strong p-4 rounded-xl shadow-xl border border-border/50 w-80 max-h-[500px] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+				<div className="font-bold text-base border-b border-border/50 pb-2 mb-2 bg-muted/20 -mx-4 -mt-4 px-4 py-3 flex items-center justify-between">
+					<span>{moment(day).format("dddd, MMM D")}</span>
+					{moment(day).isSame(new Date(), "day") && (
+						<span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/20 text-primary uppercase tracking-wider">
+							Today
+						</span>
+					)}
+				</div>
+
+				<div className="space-y-3 overflow-y-auto pr-1 custom-scrollbar">
+					{!events?.length && !holidays?.length && !todos?.length && (
+						<div className="text-center text-muted-foreground py-8 text-sm italic opacity-70">
+							No activities regarding this day
+						</div>
+					)}
 
 					{/* Holidays */}
 					{holidays?.map((holiday) => (
-						<div key={holiday.id} className="space-y-2">
-							<div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-								<PartyPopper className="h-4 w-4" />
+						<div key={holiday.id} className="space-y-1">
+							<div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+								<PartyPopper className="h-3 w-3" />
 								Holidays
 							</div>
 							<div
 								className={cn(
-									"p-3 rounded-xl border-2",
+									"p-2.5 rounded-lg border text-sm shadow-sm",
 									holiday.type === "religious"
-										? "bg-purple-50 dark:bg-purple-950/50 border-purple-300 dark:border-purple-700"
-										: "bg-green-50 dark:bg-green-950/50 border-green-300 dark:border-green-700",
+										? "bg-purple-50/50 dark:bg-purple-900/10 border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300"
+										: "bg-green-50/50 dark:bg-green-900/10 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300",
 								)}
 							>
-								<div className="font-semibold text-sm">{holiday.name}</div>
+								<div className="font-semibold">{holiday.name}</div>
 								{holiday.description && (
-									<div className="text-xs text-muted-foreground mt-1">
+									<div className="text-xs opacity-80 mt-0.5 show-on-hover">
 										{holiday.description}
 									</div>
 								)}
@@ -68,71 +103,78 @@ export function DayHoverTooltip({
 
 					{/* Events */}
 					{events?.map((event) => (
-						<div key={event.id} className="space-y-2">
-							<div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-								<CalendarIcon className="h-4 w-4" />
+						<div key={event.id} className="space-y-1">
+							<div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+								<CalendarIcon className="h-3 w-3" />
 								Events
 							</div>
-							<button
-								type="button"
+							<div
+								onClick={() => onEventClick(event)}
 								className={cn(
-									"p-3 rounded-xl border-2 cursor-pointer hover:opacity-80 transition-opacity w-full text-left",
+									"p-2.5 rounded-lg border text-sm shadow-sm transition-all hover:shadow-md cursor-pointer hover:scale-[1.02]",
 									event.category && categoryColors[event.category]
 										? categoryColors[event.category]
 										: categoryColors.personal,
 								)}
-								onClick={() => onEventClick(event)}
+								role="button"
+								tabIndex={0}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") {
+										onEventClick(event);
+									}
+								}}
 							>
-								<div className="font-semibold text-sm">{event.title}</div>
-								<div className="text-xs mt-1 opacity-80">
-									{moment(event.startTime).format("HH:mm")}
-									{event.location && ` • ${event.location}`}
+								<div className="font-semibold flex justify-between gap-2">
+									<span className="truncate">{event.title}</span>
+									<span className="text-xs font-mono opacity-80 whitespace-nowrap">
+										{moment(event.startTime).format("HH:mm")}
+									</span>
 								</div>
-							</button>
+								{event.location && (
+									<div className="text-xs opacity-80 mt-0.5 truncate flex items-center gap-1">
+										<span>📍</span> {event.location}
+									</div>
+								)}
+							</div>
 						</div>
 					))}
 
 					{/* Todos */}
 					{todos?.map((todo) => (
-						<div key={todo.id} className="space-y-2">
-							<div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-								<CheckCircle2 className="h-4 w-4" />
+						<div key={todo.id} className="space-y-1">
+							<div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+								<CheckCircle2 className="h-3 w-3" />
 								Todos
 							</div>
 							<div
 								className={cn(
-									"p-3 rounded-xl border-2 flex items-start gap-3",
+									"p-2.5 rounded-lg border flex items-start gap-3 shadow-sm",
 									todo.isDone
-										? "bg-muted/50 border-muted-foreground/30 opacity-60"
-										: "bg-blue-50 dark:bg-blue-950/50 border-blue-300 dark:border-blue-700",
+										? "bg-muted/50 border-border opacity-60"
+										: "bg-background border-border",
 								)}
 							>
 								<div
 									className={cn(
-										"w-5 h-5 rounded border-2 mt-0.5 flex items-center justify-center shrink-0",
+										"w-4 h-4 rounded border mt-0.5 flex items-center justify-center shrink-0",
 										todo.isDone
-											? "border-muted-foreground bg-muted-foreground/20"
-											: "border-blue-500",
+											? "border-primary bg-primary text-primary-foreground"
+											: "border-muted-foreground",
 									)}
 								>
 									{todo.isDone && (
-										<div className="w-3 h-3 bg-current rounded-sm" />
+										<div className="w-2 h-2 bg-current rounded-full" />
 									)}
 								</div>
-								<div className="flex-1">
+								<div className="flex-1 min-w-0">
 									<div
 										className={cn(
-											"font-semibold text-sm",
-											todo.isDone && "line-through",
+											"font-medium text-sm truncate",
+											todo.isDone && "line-through text-muted-foreground",
 										)}
 									>
 										{todo.title}
 									</div>
-									{todo.description && (
-										<div className="text-xs text-muted-foreground mt-1">
-											{todo.description}
-										</div>
-									)}
 								</div>
 							</div>
 						</div>

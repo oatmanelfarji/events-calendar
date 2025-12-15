@@ -46,110 +46,75 @@ export function CalendarDayCell({
 			onMouseEnter={() => onHover(day)}
 			onMouseLeave={onLeave}
 			className={cn(
-				"bg-card p-2 transition-colors hover:bg-accent/50 cursor-pointer flex flex-col gap-1 text-left items-stretch outline-none focus-visible:ring-2 focus-visible:ring-ring overflow-hidden",
+				"bg-card p-2 rounded-xl border border-transparent hover:border-border/50 transition-all duration-200 hover:scale-[1.05] hover:shadow-xl hover:z-10 cursor-pointer flex flex-col gap-1 text-left items-stretch outline-none focus-visible:ring-2 focus-visible:ring-ring overflow-hidden relative group",
 				!moment(day).isSame(currentDate, "month") &&
-					"bg-muted/30 text-muted-foreground",
-				moment(day).isSame(moment(), "day") && "bg-accent/80",
+					"bg-muted/10 text-muted-foreground/50 opacity-60 hover:opacity-100",
+				moment(day).isSame(moment(), "day") && "bg-primary/5 border-primary/20",
 			)}
 		>
 			<div className="flex justify-between items-start">
 				<span
 					className={cn(
-						"text-sm font-medium w-7 h-7 flex items-center justify-center rounded-full",
+						"text-sm font-bold w-8 h-8 flex items-center justify-center rounded-xl transition-all duration-300",
 						moment(day).isSame(moment(), "day")
-							? "bg-primary text-primary-foreground shadow-lg"
-							: "text-muted-foreground",
+							? "bg-primary text-primary-foreground shadow-md scale-110"
+							: "text-muted-foreground group-hover:bg-muted/50 group-hover:text-foreground",
 					)}
 				>
 					{moment(day).format("D")}
 				</span>
 			</div>
 
-			{/* Holidays */}
-			{holidays?.map((holiday) => {
-				const isReligious = holiday.type === "religious";
-				return (
-					<div
-						key={holiday.id}
-						className={cn(
-							"text-[10px] font-medium px-1.5 py-0.5 rounded truncate border",
-							isReligious
-								? "text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-400/10 border-purple-200 dark:border-purple-400/20"
-								: "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 border-green-200 dark:border-green-400/20",
-						)}
-						title={`${holiday.name}${holiday.description ? ` - ${holiday.description}` : ""}`}
-					>
-						<CalendarIcon className="w-2.5 h-2.5 inline mr-0.5" />
-						{holiday.name}
-					</div>
-				);
-			})}
+			<div className="flex-1 flex flex-col gap-1 min-h-0">
+				{/* Holidays */}
+				{holidays?.slice(0, 2).map((holiday) => {
+					const isReligious = holiday.type === "religious";
+					return (
+						<div
+							key={holiday.id}
+							className={cn(
+								"text-[9px] font-bold px-1.5 py-0.5 rounded-md truncate border shadow-sm transition-transform hover:scale-105",
+								isReligious
+									? "text-purple-600 dark:text-purple-300 bg-purple-50 dark:bg-purple-500/10 border-purple-100 dark:border-purple-500/20"
+									: "text-green-600 dark:text-green-300 bg-green-50 dark:bg-green-500/10 border-green-100 dark:border-green-500/20",
+							)}
+						>
+							<CalendarIcon className="w-2 h-2 inline mr-1 opacity-70" />
+							{holiday.name}
+						</div>
+					);
+				})}
 
-			{/* Todos */}
-			{todos?.map((todo) => (
-				<div
-					key={todo.id}
-					onClick={(e) => {
-						e.stopPropagation();
-						onTodoToggle(todo);
-					}}
-					onKeyDown={(e) => {
-						if (e.key === "Enter" || e.key === " ") {
-							e.stopPropagation();
-							onTodoToggle(todo);
-						}
-					}}
-					role="button"
-					tabIndex={0}
-					className={cn(
-						"text-[10px] px-1.5 py-0.5 rounded border truncate flex items-center gap-1 cursor-pointer transition-all hover:opacity-80 w-full text-left",
-						todo.isDone
-							? "bg-muted text-muted-foreground border-muted-foreground/20 line-through"
-							: "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800",
-					)}
-				>
+				{/* Events */}
+				{events?.slice(0, 3).map((event) => (
 					<div
-						className={cn(
-							"w-2 h-2 rounded-[2px] border flex items-center justify-center shrink-0",
-							todo.isDone
-								? "border-muted-foreground bg-muted-foreground/20"
-								: "border-blue-500",
-						)}
-					>
-						{todo.isDone && (
-							<div className="w-1.5 h-1.5 bg-current rounded-[1px]" />
-						)}
-					</div>
-					<span className="truncate">{todo.title}</span>
-				</div>
-			))}
-
-			{/* Events */}
-			{events?.map((event) => (
-				<div
-					key={event.id}
-					onClick={(e) => {
-						e.stopPropagation();
-						onEventClick(event);
-					}}
-					onKeyDown={(e) => {
-						if (e.key === "Enter" || e.key === " ") {
+						key={event.id}
+						onClick={(e) => {
 							e.stopPropagation();
 							onEventClick(event);
-						}
-					}}
-					role="button"
-					tabIndex={0}
-					className={cn(
-						"text-xs px-2 py-1 rounded border truncate shadow-sm transition-all hover:scale-[1.02] outline-none focus-visible:ring-2 focus-visible:ring-ring w-full text-left",
-						event.category && categoryColors[event.category]
-							? categoryColors[event.category]
-							: categoryColors.personal,
-					)}
-				>
-					{moment(event.startTime).format("HH:mm")} {event.title}
-				</div>
-			))}
+						}}
+						className={cn(
+							"text-[10px] font-medium px-1.5 py-0.5 rounded-md truncate shadow-sm transition-all hover:scale-105 cursor-pointer w-full text-left border",
+							event.category && categoryColors[event.category]
+								? categoryColors[event.category]
+								: categoryColors.personal,
+						)}
+					>
+						<span className="opacity-70 text-[9px] mr-1 font-mono">
+							{moment(event.startTime).format("HH:mm")}
+						</span>
+						{event.title}
+					</div>
+				))}
+
+				{/* Todos Bubble */}
+				{todos && todos.length > 0 && (
+					<div className="mt-auto flex items-center gap-1 text-[9px] font-medium text-muted-foreground bg-muted/30 px-1.5 py-0.5 rounded-md w-fit">
+						<div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+						{todos?.length} {todos?.length === 1 ? "Todo" : "Todos"}
+					</div>
+				)}
+			</div>
 		</button>
 	);
 }

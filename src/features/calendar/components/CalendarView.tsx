@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import moment from "moment";
 import { useState } from "react";
 import { CalendarDayCell } from "@/features/calendar/components/CalendarDayCell";
@@ -6,6 +7,7 @@ import { CalendarHeader } from "@/features/calendar/components/CalendarHeader";
 import { DayHoverTooltip } from "@/features/calendar/components/DayHoverTooltip";
 import { EventFormDialog } from "@/features/events/components/EventFormDialog";
 import type { EventFormValues } from "@/features/events/schemas";
+import { authClient } from "@/lib/auth-client";
 import { setupMomentLocale } from "@/lib/date-locale";
 import { createEvent, getEvents, updateEvent } from "@/server/events";
 import { getHolidays } from "@/server/holidays";
@@ -26,6 +28,8 @@ export function CalendarView() {
 	const [isEventModalOpen, setIsEventModalOpen] = useState(false);
 	const [editingEvent, setEditingEvent] = useState<Event | null>(null);
 	const queryClient = useQueryClient();
+	const navigate = useNavigate();
+	const { data: session } = authClient.useSession();
 
 	const monthStart = moment(currentDate).startOf("month").toDate();
 	const monthEnd = moment(monthStart).endOf("month").toDate();
@@ -112,6 +116,10 @@ export function CalendarView() {
 	const handleToday = () => setCurrentDate(new Date());
 
 	const handleDayClick = (day: Date) => {
+		if (!session) {
+			navigate({ to: "/login" });
+			return;
+		}
 		setSelectedDate(day);
 		setEditingEvent(null);
 		setIsEventModalOpen(true);
@@ -151,27 +159,37 @@ export function CalendarView() {
 		weekDays.push(moment(startOfWeekDate).add(i, "days").format("ddd"));
 	}
 
+	// Mouse tracking for floating tooltip
+	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+	const handleMouseMove = (e: React.MouseEvent) => {
+		setMousePos({ x: e.clientX, y: e.clientY });
+	};
+
 	return (
-		<div className="h-full flex flex-col bg-background/50 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl overflow-hidden">
+		<div className="flex flex-col border border-border rounded-3xl h-full">
 			<CalendarHeader
 				currentDate={currentDate}
 				onPrevMonth={handlePrevMonth}
 				onNextMonth={handleNextMonth}
 				onToday={handleToday}
 				onNewEvent={() => {
+					if (!session) {
+						navigate({ to: "/login" });
+						return;
+					}
 					setSelectedDate(new Date());
 					setEditingEvent(null);
 					setIsEventModalOpen(true);
 				}}
 			/>
 
-			<div className="flex-1 flex flex-col min-h-0">
+			<div className="flex flex-col p-4 gap-4">
 				{/* Weekday Headers */}
-				<div className="grid grid-cols-7 border-b border-border/50 bg-muted/30">
+				<div className="grid grid-cols-7 gap-2">
 					{weekDays.map((day) => (
 						<div
 							key={day}
-							className="p-3 text-center text-sm font-semibold text-muted-foreground uppercase tracking-wider"
+							className="text-sm font-bold text-muted-foreground uppercase tracking-widest py-2"
 						>
 							{day}
 						</div>
@@ -179,7 +197,11 @@ export function CalendarView() {
 				</div>
 
 				{/* Calendar Grid */}
-				<div className="flex-1 grid grid-cols-7 grid-rows-6 auto-rows-fr">
+				<div
+					className="grid grid-cols-7 grid-rows-6 gap-2 h-full"
+					onMouseMove={handleMouseMove}
+					onMouseLeave={() => setHoveredDay(null)}
+				>
 					{calendarDays.map((day) => {
 						const dayEvents = events?.filter((e) =>
 							moment(e.startTime).isSame(day, "day"),
@@ -201,7 +223,7 @@ export function CalendarView() {
 								todos={dayTodos}
 								onDayClick={handleDayClick}
 								onHover={setHoveredDay}
-								onLeave={() => setHoveredDay(null)}
+								onLeave={() => {}} // Handle leave on container
 								onEventClick={openEventEditor}
 								onTodoToggle={handleTodoToggle}
 							/>
@@ -223,6 +245,7 @@ export function CalendarView() {
 									todo.date && moment(todo.date).isSame(hoveredDay, "day"),
 							)}
 							onEventClick={openEventEditor}
+							position={mousePos}
 						/>
 					)}
 				</div>

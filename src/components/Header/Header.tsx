@@ -1,7 +1,8 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import {
 	Home,
 	ListTodo,
+	LogOut,
 	Menu,
 	Settings,
 	Table,
@@ -10,6 +11,15 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { authClient } from "@/lib/auth-client";
 import { ModeToggle } from "../mode-toggle";
 import { CountrySelector } from "./country-selector";
 import { CurrentSeason } from "./current-season";
@@ -20,6 +30,18 @@ import { LanguageSwitcher } from "./language-switcher";
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const { t } = useTranslation();
+	const { data: session } = authClient.useSession();
+	const navigate = useNavigate();
+
+	const handleSignOut = async () => {
+		await authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					navigate({ to: "/" });
+				},
+			},
+		});
+	};
 
 	return (
 		<>
@@ -50,6 +72,49 @@ export default function Header() {
 					<LanguageSwitcher />
 					<ModeToggle />
 					<CountrySelector />
+					{session ? (
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button
+									variant="ghost"
+									className="relative h-10 w-10 rounded-full"
+								>
+									<Avatar className="h-10 w-10">
+										<AvatarImage
+											src={session.user.image || undefined}
+											alt={session.user.name}
+										/>
+										<AvatarFallback>
+											{session.user.name.charAt(0)}
+										</AvatarFallback>
+									</Avatar>
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent className="w-56" align="end" forceMount>
+								<DropdownMenuItem className="flex flex-col items-start gap-1">
+									<p className="text-sm font-medium leading-none">
+										{session.user.name}
+									</p>
+									<p className="text-xs leading-none text-muted-foreground">
+										{session.user.email}
+									</p>
+								</DropdownMenuItem>
+								<DropdownMenuItem
+									onClick={handleSignOut}
+									className="text-red-600"
+								>
+									<LogOut className="mr-2 h-4 w-4" />
+									<span>Log out</span>
+								</DropdownMenuItem>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					) : (
+						<Link to="/login">
+							<Button variant="default" size="sm">
+								Sign In
+							</Button>
+						</Link>
+					)}
 				</div>
 			</header>
 
