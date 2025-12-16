@@ -6,6 +6,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 // Common countries with their codes and names
 const COUNTRIES = [
@@ -38,18 +39,23 @@ export function CountrySelector() {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Button
-					variant="ghost"
-					size="icon"
-					className="relative shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
-				>
-					<span className="text-xl">{selectedCountry.flag}</span>
-					<span className="sr-only">
-						Select country: {selectedCountry.name}
-					</span>
-				</Button>
-			</DropdownMenuTrigger>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<DropdownMenuTrigger asChild>
+						<Button
+							variant="ghost"
+							size="icon"
+							className="relative shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
+						>
+							<span className="text-xl">{selectedCountry.flag}</span>
+							<span className="sr-only">
+								Select country: {selectedCountry.name}
+							</span>
+						</Button>
+					</DropdownMenuTrigger>
+				</TooltipTrigger>
+				<TooltipContent>Select Country</TooltipContent>
+			</Tooltip>
 			<DropdownMenuContent
 				align="end"
 				className="w-56 max-h-[400px] overflow-y-auto"

@@ -11,6 +11,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { TodoFormDialog } from "@/features/todos/components/TodoFormDialog";
 import type { TodoFormValues } from "@/features/todos/schemas";
 import { cn } from "@/lib/utils";
@@ -108,23 +113,37 @@ export function TodosSection({
 							))}
 						</div>
 						<div className="grid grid-cols-2 gap-3 mt-auto pt-2">
-							<Button
-								variant="default"
-								className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
-								onClick={() => setIsTodoDialogOpen(true)}
-							>
-								<Plus className="w-4 h-4 mr-2" />
-								{t("common.add_new", "Add New")}
-							</Button>
-							<Link to="/todos" className="w-full">
-								<Button
-									variant="secondary"
-									className="w-full hover:bg-accent hover:text-accent-foreground transition-colors border border-border/50"
-								>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="default"
+										className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
+										onClick={() => setIsTodoDialogOpen(true)}
+									>
+										<Plus className="w-4 h-4 mr-2" />
+										{t("common.add_new", "Add New")}
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>
+									{t("common.add_new", "Add New")}
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link to="/todos" className="w-full">
+										<Button
+											variant="secondary"
+											className="w-full hover:bg-accent hover:text-accent-foreground transition-colors border border-border/50"
+										>
+											{t("common.view_all", "View All")}
+											<ArrowRight className="w-4 h-4 ml-2 opacity-60" />
+										</Button>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
 									{t("common.view_all", "View All")}
-									<ArrowRight className="w-4 h-4 ml-2 opacity-60" />
-								</Button>
-							</Link>
+								</TooltipContent>
+							</Tooltip>
 						</div>
 					</>
 				) : (
@@ -143,23 +162,37 @@ export function TodosSection({
 							</div>
 						</div>
 						<div className="grid grid-cols-1 gap-3 pt-4">
-							<Button
-								variant="default"
-								className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
-								onClick={() => setIsTodoDialogOpen(true)}
-							>
-								<Plus className="w-4 h-4 mr-2" />
-								{t("common.create_task", "Create Task")}
-							</Button>
-							<Link to="/todos" className="w-full">
-								<Button
-									variant="ghost"
-									className="w-full group/btn hover:bg-accent/50"
-								>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="default"
+										className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
+										onClick={() => setIsTodoDialogOpen(true)}
+									>
+										<Plus className="w-4 h-4 mr-2" />
+										{t("common.create_task", "Create Task")}
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>
+									{t("common.create_task", "Create Task")}
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link to="/todos" className="w-full">
+										<Button
+											variant="ghost"
+											className="w-full group/btn hover:bg-accent/50"
+										>
+											{t("common.go_to_todos", "Go to Todos")}
+											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+										</Button>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
 									{t("common.go_to_todos", "Go to Todos")}
-									<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-								</Button>
-							</Link>
+								</TooltipContent>
+							</Tooltip>
 						</div>
 					</div>
 				)}

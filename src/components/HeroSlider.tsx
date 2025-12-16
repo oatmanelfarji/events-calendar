@@ -1,6 +1,11 @@
 import { Calendar, CheckCircle2, PartyPopper } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 interface HeroSliderProps {
@@ -175,18 +180,22 @@ export function HeroSlider({
 			{/* Enhanced Slide Indicators */}
 			<div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
 				{slides.map((slide, index) => (
-					<button
-						key={slide.id}
-						type="button"
-						onClick={() => setCurrentSlide(index)}
-						className={cn(
-							"h-2.5 rounded-full transition-all duration-300 shadow-lg backdrop-blur-md",
-							currentSlide === index
-								? "bg-white w-16 opacity-100 shadow-white/50"
-								: "bg-white/50 w-2.5 hover:bg-white/80 opacity-70 hover:w-8",
-						)}
-						aria-label={`Go to slide ${index + 1}`}
-					/>
+					<Tooltip key={slide.id}>
+						<TooltipTrigger asChild>
+							<button
+								type="button"
+								onClick={() => setCurrentSlide(index)}
+								className={cn(
+									"h-2.5 rounded-full transition-all duration-300 shadow-lg backdrop-blur-md",
+									currentSlide === index
+										? "bg-white w-16 opacity-100 shadow-white/50"
+										: "bg-white/50 w-2.5 hover:bg-white/80 opacity-70 hover:w-8",
+								)}
+								aria-label={`Go to slide ${index + 1}`}
+							/>
+						</TooltipTrigger>
+						<TooltipContent>Go to slide {index + 1}</TooltipContent>
+					</Tooltip>
 				))}
 			</div>
 		</div>

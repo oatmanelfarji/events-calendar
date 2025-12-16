@@ -2,6 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function NotFound() {
 	const { t } = useTranslation();
@@ -18,9 +23,14 @@ export function NotFound() {
 					"The page you are looking for does not exist or has been moved.",
 				)}
 			</p>
-			<Link to="/">
-				<Button variant="default">{t("common.go_home", "Go Home")}</Button>
-			</Link>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Link to="/">
+						<Button variant="default">{t("common.go_home", "Go Home")}</Button>
+					</Link>
+				</TooltipTrigger>
+				<TooltipContent>{t("common.go_home", "Go Home")}</TooltipContent>
+			</Tooltip>
 		</div>
 	);
 }

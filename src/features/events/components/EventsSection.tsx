@@ -11,6 +11,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { EventFormDialog } from "@/features/events/components/EventFormDialog";
 import type { EventFormValues } from "@/features/events/schemas";
 import { cn } from "@/lib/utils";
@@ -139,23 +144,37 @@ export function EventsSection({
 							))}
 						</div>
 						<div className="grid grid-cols-2 gap-3 mt-auto pt-2">
-							<Button
-								variant="default"
-								className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
-								onClick={() => setIsEventDialogOpen(true)}
-							>
-								<Plus className="w-4 h-4 mr-2" />
-								{t("common.add_new", "Add New")}
-							</Button>
-							<Link to="/events" className="w-full">
-								<Button
-									variant="secondary"
-									className="w-full hover:bg-accent hover:text-accent-foreground transition-colors border border-border/50"
-								>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="default"
+										className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
+										onClick={() => setIsEventDialogOpen(true)}
+									>
+										<Plus className="w-4 h-4 mr-2" />
+										{t("common.add_new", "Add New")}
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>
+									{t("common.add_new", "Add New")}
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link to="/events" className="w-full">
+										<Button
+											variant="secondary"
+											className="w-full hover:bg-accent hover:text-accent-foreground transition-colors border border-border/50"
+										>
+											{t("common.view_all", "View All")}
+											<ArrowRight className="w-4 h-4 ml-2 opacity-60" />
+										</Button>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
 									{t("common.view_all", "View All")}
-									<ArrowRight className="w-4 h-4 ml-2 opacity-60" />
-								</Button>
-							</Link>
+								</TooltipContent>
+							</Tooltip>
 						</div>
 					</>
 				) : (
@@ -177,23 +196,37 @@ export function EventsSection({
 							</div>
 						</div>
 						<div className="grid grid-cols-1 gap-3 pt-4">
-							<Button
-								variant="default"
-								className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
-								onClick={() => setIsEventDialogOpen(true)}
-							>
-								<Plus className="w-4 h-4 mr-2" />
-								{t("common.create_event", "Create Event")}
-							</Button>
-							<Link to="/events" className="w-full">
-								<Button
-									variant="ghost"
-									className="w-full group/btn hover:bg-accent/50"
-								>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="default"
+										className="w-full gradient-primary hover:opacity-90 shadow-lg shadow-primary/20 transition-all duration-300"
+										onClick={() => setIsEventDialogOpen(true)}
+									>
+										<Plus className="w-4 h-4 mr-2" />
+										{t("common.create_event", "Create Event")}
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>
+									{t("common.create_event", "Create Event")}
+								</TooltipContent>
+							</Tooltip>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link to="/events" className="w-full">
+										<Button
+											variant="ghost"
+											className="w-full group/btn hover:bg-accent/50"
+										>
+											{t("common.view_calendar", "View Calendar")}
+											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+										</Button>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
 									{t("common.view_calendar", "View Calendar")}
-									<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-								</Button>
-							</Link>
+								</TooltipContent>
+							</Tooltip>
 						</div>
 					</div>
 				)}

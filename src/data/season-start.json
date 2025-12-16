@@ -1,0 +1,398 @@
+[
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2025-03-20T00:00:00.000Z",
+    "endTime": "2025-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2025-06-21T00:00:00.000Z",
+    "endTime": "2025-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2025-09-23T00:00:00.000Z",
+    "endTime": "2025-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2025-12-21T00:00:00.000Z",
+    "endTime": "2025-12-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2026-03-20T00:00:00.000Z",
+    "endTime": "2026-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2026-06-21T00:00:00.000Z",
+    "endTime": "2026-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2026-09-23T00:00:00.000Z",
+    "endTime": "2026-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2026-12-21T00:00:00.000Z",
+    "endTime": "2026-12-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2027-03-20T00:00:00.000Z",
+    "endTime": "2027-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2027-06-21T00:00:00.000Z",
+    "endTime": "2027-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2027-09-23T00:00:00.000Z",
+    "endTime": "2027-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2027-12-22T00:00:00.000Z",
+    "endTime": "2027-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2028-03-20T00:00:00.000Z",
+    "endTime": "2028-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2028-06-21T00:00:00.000Z",
+    "endTime": "2028-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2028-09-23T00:00:00.000Z",
+    "endTime": "2028-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2028-12-21T00:00:00.000Z",
+    "endTime": "2028-12-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2029-03-20T00:00:00.000Z",
+    "endTime": "2029-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2029-06-21T00:00:00.000Z",
+    "endTime": "2029-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2029-09-23T00:00:00.000Z",
+    "endTime": "2029-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2029-12-22T00:00:00.000Z",
+    "endTime": "2029-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2030-03-20T00:00:00.000Z",
+    "endTime": "2030-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2030-06-21T00:00:00.000Z",
+    "endTime": "2030-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2030-09-23T00:00:00.000Z",
+    "endTime": "2030-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2030-12-22T00:00:00.000Z",
+    "endTime": "2030-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2031-03-20T00:00:00.000Z",
+    "endTime": "2031-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2031-06-21T00:00:00.000Z",
+    "endTime": "2031-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2031-09-23T00:00:00.000Z",
+    "endTime": "2031-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2031-12-22T00:00:00.000Z",
+    "endTime": "2031-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2032-03-20T00:00:00.000Z",
+    "endTime": "2032-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2032-06-21T00:00:00.000Z",
+    "endTime": "2032-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2032-09-23T00:00:00.000Z",
+    "endTime": "2032-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2032-12-21T00:00:00.000Z",
+    "endTime": "2032-12-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2033-03-20T00:00:00.000Z",
+    "endTime": "2033-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2033-06-21T00:00:00.000Z",
+    "endTime": "2033-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2033-09-23T00:00:00.000Z",
+    "endTime": "2033-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2033-12-22T00:00:00.000Z",
+    "endTime": "2033-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2034-03-20T00:00:00.000Z",
+    "endTime": "2034-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2034-06-21T00:00:00.000Z",
+    "endTime": "2034-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2034-09-23T00:00:00.000Z",
+    "endTime": "2034-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2034-12-22T00:00:00.000Z",
+    "endTime": "2034-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Spring Starts",
+    "description": "First day of spring",
+    "startTime": "2035-03-20T00:00:00.000Z",
+    "endTime": "2035-03-20T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Summer Starts",
+    "description": "First day of summer",
+    "startTime": "2035-06-21T00:00:00.000Z",
+    "endTime": "2035-06-21T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Autumn Starts",
+    "description": "First day of autumn",
+    "startTime": "2035-09-23T00:00:00.000Z",
+    "endTime": "2035-09-23T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  },
+  {
+    "title": "Winter Starts",
+    "description": "First day of winter",
+    "startTime": "2035-12-22T00:00:00.000Z",
+    "endTime": "2035-12-22T23:59:59.999Z",
+    "isAllDay": true,
+    "category": "other",
+    "source": "local"
+  }
+]

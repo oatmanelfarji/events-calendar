@@ -7,9 +7,14 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function LanguageSwitcher() {
-	const { i18n } = useTranslation();
+	const { i18n, t } = useTranslation();
 
 	const changeLanguage = (lng: string) => {
 		i18n.changeLanguage(lng);
@@ -17,16 +22,23 @@ export function LanguageSwitcher() {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Button
-					variant="ghost"
-					size="icon"
-					className="shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
-				>
-					<Globe className="h-[1.2rem] w-[1.2rem]" />
-					<span className="sr-only">Toggle language</span>
-				</Button>
-			</DropdownMenuTrigger>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<DropdownMenuTrigger asChild>
+						<Button
+							variant="ghost"
+							size="icon"
+							className="shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
+						>
+							<Globe className="h-[1.2rem] w-[1.2rem]" />
+							<span className="sr-only">Toggle language</span>
+						</Button>
+					</DropdownMenuTrigger>
+				</TooltipTrigger>
+				<TooltipContent>
+					{t("common.change_language", "Change Language")}
+				</TooltipContent>
+			</Tooltip>
 			<DropdownMenuContent align="end">
 				<DropdownMenuItem onClick={() => changeLanguage("en")}>
 					English

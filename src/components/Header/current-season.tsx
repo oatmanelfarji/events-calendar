@@ -45,23 +45,27 @@ export function CurrentSeason() {
 				progressColor={config.progressColor}
 				bgColor={config.bgColor}
 			>
-				<div className="flex items-center justify-center gap-2 min-w-48">
+				<div className="flex items-center justify-between gap-2 min-w-48">
 					{/* current Season start Date */}
 					{/* <span className="text-xs font-semibold text-foreground min-w-12 text-right">
 						{currentSeason.startDate}
 					</span>
 
 					<span className="text-xs font-bold text-foreground px-1"> | </span> */}
+					<div className="flex items-center gap-2">
+						{/* current Season icon */}
+						<Icon className={`h-5 w-5 ${config.iconColor} drop-shadow-md`} />
 
-					{/* current Season icon */}
-					<Icon className={`h-5 w-5 ${config.iconColor} drop-shadow-md`} />
-
-					{/* current Season name */}
+						{/* current Season name */}
+						<span
+							className={`text-xs font-bold ${config.iconColor} drop-shadow-md`}
+						>
+							{t(`seasons.${currentSeason.name}`)}
+						</span>
+					</div>
 					<span
 						className={`text-xs font-bold ${config.iconColor} drop-shadow-md`}
 					>
-						{t(`seasons.${currentSeason.name}`)}
-						{" -> "}
 						{Math.round(progress)}%
 					</span>
 

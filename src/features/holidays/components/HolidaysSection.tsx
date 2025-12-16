@@ -10,6 +10,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 interface HolidaysSectionProps {
@@ -87,15 +92,22 @@ export function HolidaysSection({
 							))}
 						</div>
 						<div className="grid grid-cols-1 gap-3 mt-auto pt-2">
-							<Link to="/holidays" className="w-full">
-								<Button
-									variant="secondary"
-									className="w-full hover:bg-accent hover:text-accent-foreground transition-colors border border-border/50"
-								>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link to="/holidays" className="w-full">
+										<Button
+											variant="secondary"
+											className="w-full hover:bg-accent hover:text-accent-foreground transition-colors border border-border/50"
+										>
+											{t("common.view_all", "View All")}
+											<ArrowRight className="w-4 h-4 ml-2 opacity-60" />
+										</Button>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
 									{t("common.view_all", "View All")}
-									<ArrowRight className="w-4 h-4 ml-2 opacity-60" />
-								</Button>
-							</Link>
+								</TooltipContent>
+							</Tooltip>
 						</div>
 					</>
 				) : (
@@ -117,15 +129,22 @@ export function HolidaysSection({
 							</div>
 						</div>
 						<div className="grid grid-cols-1 gap-3 pt-4">
-							<Link to="/holidays" className="w-full">
-								<Button
-									variant="ghost"
-									className="w-full group/btn hover:bg-accent/50"
-								>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link to="/holidays" className="w-full">
+										<Button
+											variant="ghost"
+											className="w-full group/btn hover:bg-accent/50"
+										>
+											{t("common.view_calendar", "View Calendar")}
+											<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+										</Button>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
 									{t("common.view_calendar", "View Calendar")}
-									<ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-								</Button>
-							</Link>
+								</TooltipContent>
+							</Tooltip>
 						</div>
 					</div>
 				)}

@@ -37,12 +37,15 @@ export function CurrentYear() {
 				progressColor={config.progressColor}
 				bgColor={config.bgColor}
 			>
-				<div className="flex items-center justify-center gap-2 min-w-48">
+				<div className="flex items-center justify-between gap-2 min-w-48">
 					<span
 						className={`text-xs font-bold ${config.iconColor} drop-shadow-md`}
 					>
 						{now.getFullYear()}
-						{" -> "}
+					</span>
+					<span
+						className={`text-xs font-bold ${config.iconColor} drop-shadow-md`}
+					>
 						{Math.round(progress)}%
 					</span>
 				</div>

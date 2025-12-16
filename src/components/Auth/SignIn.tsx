@@ -3,6 +3,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { authClient } from "@/lib/auth-client";
 
 export function SignIn() {
@@ -99,20 +104,32 @@ export function SignIn() {
 						required
 					/>
 				</div>
-				<Button type="submit" className="w-full" disabled={isLoading}>
-					{isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
-				</Button>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<Button type="submit" className="w-full" disabled={isLoading}>
+							{isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
+						</Button>
+					</TooltipTrigger>
+					<TooltipContent>{isSignUp ? "Sign Up" : "Sign In"}</TooltipContent>
+				</Tooltip>
 			</form>
 			<div className="mt-4 text-center">
-				<button
-					type="button"
-					onClick={() => setIsSignUp(!isSignUp)}
-					className="text-sm text-primary hover:underline"
-				>
-					{isSignUp
-						? "Already have an account? Sign In"
-						: "Don't have an account? Sign Up"}
-				</button>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<button
+							type="button"
+							onClick={() => setIsSignUp(!isSignUp)}
+							className="text-sm text-primary hover:underline"
+						>
+							{isSignUp
+								? "Already have an account? Sign In"
+								: "Don't have an account? Sign Up"}
+						</button>
+					</TooltipTrigger>
+					<TooltipContent>
+						{isSignUp ? "Switch to Sign In" : "Switch to Sign Up"}
+					</TooltipContent>
+				</Tooltip>
 			</div>
 		</div>
 	);
