@@ -50,23 +50,30 @@ export default function Header() {
 					<button
 						type="button"
 						onClick={() => setIsOpen(true)}
-						className="p-2.5 hover:bg-accent/10 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md"
+						className="p-2.5 hover:bg-accent/10 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-md"
 						aria-label="Open menu"
 					>
 						<Menu size={24} />
 					</button>
+					{/*<Link to="/">
+						<img
+							src="/logo.png"
+							alt="Events Calendar Logo"
+							className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
+						/>
+					</Link>*/}
+				</div>
+				<div className="hidden md:flex items-center gap-3">
+					<CurrentYear />
 					<Link to="/">
 						<img
 							src="/logo.png"
 							alt="Events Calendar Logo"
-							className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+							className="h-14 rounded-xl shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
 						/>
 					</Link>
-				</div>
-				<div className="hidden md:flex items-center gap-3">
-					<CurrentYear />
 					<CurrentSeason />
-					<HolidayCountdown />
+					{/*<HolidayCountdown />*/}
 				</div>
 				<div className="flex items-center gap-2">
 					<LanguageSwitcher />
@@ -77,7 +84,8 @@ export default function Header() {
 							<DropdownMenuTrigger asChild>
 								<Button
 									variant="ghost"
-									className="relative h-10 w-10 rounded-full"
+									size="icon"
+									className="relative rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
 								>
 									<Avatar className="h-10 w-10">
 										<AvatarImage

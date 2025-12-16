@@ -3,19 +3,21 @@ import { cn } from "@/lib/utils";
 interface SeasonProgressProps {
 	value: number;
 	progressColor: string;
+	bgColor: string;
 	children: React.ReactNode;
 }
 
 export function SeasonProgress({
 	value,
 	progressColor,
+	bgColor,
 	children,
 }: SeasonProgressProps) {
 	const clampedValue = Math.min(Math.max(value, 0), 100);
 
 	return (
 		<div
-			className={`relative w-full h-8 rounded-full overflow-hidden bg-foreground/50 border border-blue-950 dark:border-white`}
+			className={`relative w-full h-8 rounded-full overflow-hidden bg-foreground/50 border border-orange-600 dark:border-orange-600`}
 		>
 			{/* Progress indicator */}
 			<div

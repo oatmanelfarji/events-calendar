@@ -25,13 +25,18 @@ export function CurrentYear() {
 		? seasonConfig[currentSeason.name]
 		: {
 				icon: CalendarClock,
+				bgColor: "bg-orange-100 dark:bg-orange-900/30",
 				iconColor: "text-foreground dark:text-foreground",
 				progressColor: "bg-orange-600 dark:bg-orange-400",
 			};
 
 	return (
-		<div className="flex items-center gap-2">
-			<SeasonProgress value={progress} progressColor={config.progressColor}>
+		<div className="flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300">
+			<SeasonProgress
+				value={progress}
+				progressColor={config.progressColor}
+				bgColor={config.bgColor}
+			>
 				<div className="flex items-center justify-center gap-2 min-w-48">
 					<span
 						className={`text-xs font-bold ${config.iconColor} drop-shadow-md`}

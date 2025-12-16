@@ -27,7 +27,7 @@ export const seasonConfig = {
 	autumn: {
 		icon: Leaf,
 		bgColor: "bg-orange-100 dark:bg-orange-900/30",
-		iconColor: "text-orange-950 dark:text-orange-900",
+		iconColor: "text-white dark:text-white",
 		progressColor: "bg-[var(--season-autumn)]",
 	},
 	winter: {

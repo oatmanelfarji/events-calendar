@@ -39,7 +39,11 @@ export function CountrySelector() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline" size="icon" className="relative">
+				<Button
+					variant="ghost"
+					size="icon"
+					className="relative shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
+				>
 					<span className="text-xl">{selectedCountry.flag}</span>
 					<span className="sr-only">
 						Select country: {selectedCountry.name}

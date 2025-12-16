@@ -38,9 +38,13 @@ export function CurrentSeason() {
 	const progress = calculateSeasonProgress(currentSeason);
 
 	return (
-		<div className="flex items-center gap-2">
+		<div className="flex items-center gap-2 shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300">
 			{/* Season Progress Bar with Badge Inside */}
-			<SeasonProgress value={progress} progressColor={config.progressColor}>
+			<SeasonProgress
+				value={progress}
+				progressColor={config.progressColor}
+				bgColor={config.bgColor}
+			>
 				<div className="flex items-center justify-center gap-2 min-w-48">
 					{/* current Season start Date */}
 					{/* <span className="text-xs font-semibold text-foreground min-w-12 text-right">
