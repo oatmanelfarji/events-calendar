@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Mohammedia",
+			"country": {
+				"code": "MA",
+				"name": "Morocco"
+			},
+			"subdivision": {
+				"code": "06",
+				"name": "Casablanca-Settat"
+			},
+			"timezone": "Africa/Casablanca",
+			"latitude": 33.6861,
+			"longitude": -7.383
+		},
+		"timestamp": 1766090795702
+	}
+}

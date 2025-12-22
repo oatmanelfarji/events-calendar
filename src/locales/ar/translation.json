@@ -83,5 +83,15 @@
 		"minutes": "د",
 		"seconds": "ث",
 		"noUpcomingHolidays": "لا توجد عطلات قادمة"
+	},
+	"header": {
+		"yearProgress": "تقدم السنة",
+		"seasonProgress": "التقدم",
+		"daysPassed": "{{count}} يوم مضى",
+		"daysPassed_other": "{{count}} أيام مضت",
+		"daysRemaining": "{{count}} يوم متبقي",
+		"daysRemaining_other": "{{count}} أيام متبقية",
+		"startDate": "البداية",
+		"endDate": "النهاية"
 	}
 }

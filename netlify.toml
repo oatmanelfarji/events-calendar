@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm build"
+  publish = ".netlify/output/static"
+
+[build.environment]
+  NODE_VERSION = "20"

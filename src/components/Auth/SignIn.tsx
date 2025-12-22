@@ -66,7 +66,7 @@ export function SignIn() {
 	return (
 		<div className="w-full max-w-md p-6 bg-card rounded-lg shadow-lg border border-border">
 			<h2 className="text-2xl font-bold mb-6 text-center text-foreground">
-				{isSignUp ? "Create Account" : "Welcome Back"}
+				{isSignUp ? "Create Account" : "Login"}
 			</h2>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				{isSignUp && (
@@ -107,10 +107,10 @@ export function SignIn() {
 				<Tooltip>
 					<TooltipTrigger asChild>
 						<Button type="submit" className="w-full" disabled={isLoading}>
-							{isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
+							{isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Login"}
 						</Button>
 					</TooltipTrigger>
-					<TooltipContent>{isSignUp ? "Sign Up" : "Sign In"}</TooltipContent>
+					<TooltipContent>{isSignUp ? "Sign Up" : "Login"}</TooltipContent>
 				</Tooltip>
 			</form>
 			<div className="mt-4 text-center">
@@ -122,12 +122,12 @@ export function SignIn() {
 							className="text-sm text-primary hover:underline"
 						>
 							{isSignUp
-								? "Already have an account? Sign In"
+								? "Already have an account? Login"
 								: "Don't have an account? Sign Up"}
 						</button>
 					</TooltipTrigger>
 					<TooltipContent>
-						{isSignUp ? "Switch to Sign In" : "Switch to Sign Up"}
+						{isSignUp ? "Switch to Login" : "Switch to Sign Up"}
 					</TooltipContent>
 				</Tooltip>
 			</div>

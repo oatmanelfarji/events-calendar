@@ -1,8 +1,7 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import {
 	Home,
 	ListTodo,
-	LogOut,
 	Menu,
 	Settings,
 	Table,
@@ -11,42 +10,20 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { authClient } from "@/lib/auth-client";
 import { ModeToggle } from "../mode-toggle";
-import { CountrySelector } from "./country-selector";
 import { CurrentSeason } from "./current-season";
 import { CurrentYear } from "./current-year";
-import { HolidayCountdown } from "./holiday-countdown";
-import { LanguageSwitcher } from "./language-switcher";
+import { LocaleSelector } from "./locale-selector";
+import { UserMenu } from "./user-menu";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const { t } = useTranslation();
-	const { data: session } = authClient.useSession();
-	const navigate = useNavigate();
-
-	const handleSignOut = async () => {
-		await authClient.signOut({
-			fetchOptions: {
-				onSuccess: () => {
-					navigate({ to: "/" });
-				},
-			},
-		});
-	};
 
 	return (
 		<>
@@ -91,63 +68,9 @@ export default function Header() {
 					{/*<HolidayCountdown />*/}
 				</div>
 				<div className="flex items-center gap-2">
-					<LanguageSwitcher />
 					<ModeToggle />
-					<CountrySelector />
-					{session ? (
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<Tooltip>
-									<TooltipTrigger asChild>
-										<Button
-											variant="ghost"
-											size="icon"
-											className="relative rounded-full shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
-										>
-											<Avatar className="h-10 w-10">
-												<AvatarImage
-													src={session.user.image || undefined}
-													alt={session.user.name}
-												/>
-												<AvatarFallback>
-													{session.user.name.charAt(0)}
-												</AvatarFallback>
-											</Avatar>
-										</Button>
-									</TooltipTrigger>
-									<TooltipContent>User menu</TooltipContent>
-								</Tooltip>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent className="w-56" align="end" forceMount>
-								<DropdownMenuItem className="flex flex-col items-start gap-1">
-									<p className="text-sm font-medium leading-none">
-										{session.user.name}
-									</p>
-									<p className="text-xs leading-none text-muted-foreground">
-										{session.user.email}
-									</p>
-								</DropdownMenuItem>
-								<DropdownMenuItem
-									onClick={handleSignOut}
-									className="text-red-600"
-								>
-									<LogOut className="mr-2 h-4 w-4" />
-									<span>Log out</span>
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
-					) : (
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<Link to="/login">
-									<Button variant="default" size="sm">
-										Sign In
-									</Button>
-								</Link>
-							</TooltipTrigger>
-							<TooltipContent>Sign In</TooltipContent>
-						</Tooltip>
-					)}
+					<LocaleSelector />
+					<UserMenu />
 				</div>
 			</header>
 
@@ -163,7 +86,7 @@ export default function Header() {
 								<img
 									src="/logo.png"
 									alt="Events Calendar Logo"
-									className="h-11 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+									className="h-14 rounded-xl shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
 								/>
 							</Link>
 						</TooltipTrigger>
