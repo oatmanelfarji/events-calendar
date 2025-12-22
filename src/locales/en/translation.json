@@ -83,5 +83,15 @@
 		"minutes": "m",
 		"seconds": "s",
 		"noUpcomingHolidays": "No upcoming holidays"
+	},
+	"header": {
+		"yearProgress": "Year Progress",
+		"seasonProgress": "Progress",
+		"daysPassed": "{{count}} day passed",
+		"daysPassed_other": "{{count}} days passed",
+		"daysRemaining": "{{count}} day remaining",
+		"daysRemaining_other": "{{count}} days remaining",
+		"startDate": "Start",
+		"endDate": "End"
 	}
 }

@@ -4,12 +4,15 @@ import { HeroSlider, SLIDES_CONFIG } from "@/components/HeroSlider";
 import { EventsSection } from "@/features/events/components/EventsSection";
 import { HolidaysSection } from "@/features/holidays/components/HolidaysSection";
 import { TodosSection } from "@/features/todos/components/TodosSection";
+import { authClient } from "@/lib/auth-client";
 import { getEvents, getUpcomingEvents } from "@/server/events";
 import { getHolidays } from "@/server/holidays";
 import { getTodos } from "@/server/todos";
+import { SignIn } from "./Auth/SignIn";
 
 export function HomePage() {
 	// const [currentSlide, setCurrentSlide] = useState(0);
+	const { data: session } = authClient.useSession();
 
 	// Get current month range for events
 	const now = new Date();
@@ -74,15 +77,19 @@ export function HomePage() {
 				/>
 
 				{/* Todos Section */}
-				<TodosSection
-					todos={todos}
-					icon={SLIDES_CONFIG[2].icon}
-					bgColor={SLIDES_CONFIG[2].bgColor}
-					textColor={SLIDES_CONFIG[2].textColor}
-				/>
+				{session ? (
+					<TodosSection
+						todos={todos}
+						icon={SLIDES_CONFIG[2].icon}
+						bgColor={SLIDES_CONFIG[2].bgColor}
+						textColor={SLIDES_CONFIG[2].textColor}
+					/>
+				) : (
+					<SignIn />
+				)}
 			</div>
 
-			{/* Hero Slider Section */}
+			{/* Hero Slider */}
 			<HeroSlider
 				eventsCount={events.length}
 				holidaysCount={holidays.length}

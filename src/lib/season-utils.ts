@@ -15,25 +15,25 @@ export const seasonConfig = {
 	spring: {
 		icon: Flower2,
 		bgColor: "bg-green-100 dark:bg-green-900/30",
-		iconColor: "text-green-900 dark:text-green-900",
+		iconColor: "text-stone-950 dark:text-white",
 		progressColor: "bg-[var(--season-spring)]",
 	},
 	summer: {
 		icon: Sun,
 		bgColor: "bg-yellow-100 dark:bg-yellow-900/30",
-		iconColor: "text-yellow-900 dark:text-yellow-900",
+		iconColor: "text-stone-950 dark:text-white",
 		progressColor: "bg-[var(--season-summer)]",
 	},
 	autumn: {
 		icon: Leaf,
 		bgColor: "bg-orange-100 dark:bg-orange-900/30",
-		iconColor: "text-white dark:text-white",
+		iconColor: "text-stone-950 dark:text-white",
 		progressColor: "bg-[var(--season-autumn)]",
 	},
 	winter: {
 		icon: Snowflake,
 		bgColor: "bg-blue-100 dark:bg-blue-900/30",
-		iconColor: "text-blue-900 dark:text-blue-900",
+		iconColor: "text-stone-950 dark:text-white",
 		progressColor: "bg-[var(--season-winter)]",
 	},
 } as const;

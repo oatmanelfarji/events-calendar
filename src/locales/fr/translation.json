@@ -83,5 +83,15 @@
 		"minutes": "m",
 		"seconds": "s",
 		"noUpcomingHolidays": "Aucun jour férié à venir"
+	},
+	"header": {
+		"yearProgress": "Progression de l'année",
+		"seasonProgress": "Progression",
+		"daysPassed": "{{count}} jour écoulé",
+		"daysPassed_other": "{{count}} jours écoulés",
+		"daysRemaining": "{{count}} jour restant",
+		"daysRemaining_other": "{{count}} jours restants",
+		"startDate": "Début",
+		"endDate": "Fin"
 	}
 }

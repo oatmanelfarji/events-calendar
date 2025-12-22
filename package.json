@@ -17,9 +17,10 @@
     "db:push": "drizzle-kit push",
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "pnpm db:seed:moroccan && pnpm db:seed:islamic",
+    "db:seed": "pnpm db:seed:moroccan && pnpm db:seed:islamic && pnpm db:seed:season-start",
     "db:seed:moroccan": "pnpm exec tsx src/db/moroccan-holidays-seed.ts",
-    "db:seed:islamic": "pnpm exec tsx src/db/islamic-holidays-seed.ts"
+    "db:seed:islamic": "pnpm exec tsx src/db/islamic-holidays-seed.ts",
+    "db:seed:season-start": "pnpm exec tsx src/db/season-start-seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
