@@ -14,4 +14,8 @@ count.txt
 todos.json
 
 # Local Netlify folder
-.netlify
+.netlify/*
+.netlify/state.json
+
+# Storybook
+.storybook

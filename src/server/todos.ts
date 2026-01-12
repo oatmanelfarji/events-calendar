@@ -1,3 +1,5 @@
+"use server";
+
 import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";

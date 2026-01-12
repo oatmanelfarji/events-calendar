@@ -1,3 +1,5 @@
+"use server";
+
 import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
@@ -24,7 +26,12 @@ const EventSchema = z.object({
 });
 
 export const getEvents = createServerFn({ method: "GET" })
-	.inputValidator((data: { start: string; end: string }) => data)
+	.inputValidator(
+		z.object({
+			start: z.string(),
+			end: z.string(),
+		}),
+	)
 	.handler(async ({ data }) => {
 		const { start, end } = data;
 
@@ -82,16 +89,16 @@ export const updateEvent = createServerFn({ method: "POST" })
 	});
 
 export const deleteEvent = createServerFn({ method: "POST" })
-	.inputValidator((data: { id: number }) => data)
+	.inputValidator(z.object({ id: z.number() }))
 	.handler(async ({ data }) => {
 		await db.delete(events).where(eq(events.id, data.id));
 		return { success: true };
 	});
 
 export const getUpcomingEvents = createServerFn({ method: "GET" })
-	.inputValidator((data: { limit?: number } = {}) => data)
+	.inputValidator(z.object({ limit: z.number().optional() }).optional())
 	.handler(async ({ data }) => {
-		const limit = data.limit ?? 3;
+		const limit = data?.limit ?? 3;
 		const now = new Date();
 
 		const results = await db

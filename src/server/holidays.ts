@@ -1,3 +1,5 @@
+"use server";
+
 import { createServerFn } from "@tanstack/react-start";
 import { and, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
@@ -18,7 +20,12 @@ const PublicHolidaySchema = z.object({
 });
 
 export const fetchAndSeedHolidays = createServerFn({ method: "POST" })
-	.inputValidator((data: { year: number; countryCode: string }) => data)
+	.inputValidator(
+		z.object({
+			year: z.number(),
+			countryCode: z.string(),
+		}),
+	)
 	.handler(async ({ data }) => {
 		const { year, countryCode } = data;
 		console.log(`Fetching holidays for ${countryCode} in ${year}...`);
@@ -59,7 +66,12 @@ export const fetchAndSeedHolidays = createServerFn({ method: "POST" })
 	});
 
 export const getHolidays = createServerFn({ method: "GET" })
-	.inputValidator((data: { year?: number; countryCode: string }) => data)
+	.inputValidator(
+		z.object({
+			year: z.number().optional(),
+			countryCode: z.string(),
+		}),
+	)
 	.handler(async ({ data }) => {
 		const { year, countryCode } = data;
 
@@ -89,7 +101,7 @@ export const getHolidays = createServerFn({ method: "GET" })
 	});
 
 export const getNextHoliday = createServerFn({ method: "GET" })
-	.inputValidator((data: { countryCode: string }) => data)
+	.inputValidator(z.object({ countryCode: z.string() }))
 	.handler(async ({ data }) => {
 		const { countryCode } = data;
 		const now = new Date();
