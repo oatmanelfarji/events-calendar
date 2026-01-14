@@ -7,7 +7,7 @@ import * as schema from "./schema.ts";
 
 config();
 
-const pool = new Pool({
+export const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 });
 export const db = drizzle(pool, { schema });

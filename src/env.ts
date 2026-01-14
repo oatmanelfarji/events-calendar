@@ -19,6 +19,7 @@ export const env = createEnv({
 
 	client: {
 		VITE_APP_TITLE: z.string().min(1).optional(),
+		VITE_APP_URL: z.string().url().optional(),
 	},
 
 	/**
@@ -30,6 +31,7 @@ export const env = createEnv({
 		DATABASE_URL: process.env.DATABASE_URL,
 		BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
 		VITE_APP_TITLE: import.meta.env.VITE_APP_TITLE,
+		VITE_APP_URL: import.meta.env.VITE_APP_URL,
 	},
 
 	/**

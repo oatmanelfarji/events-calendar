@@ -2,13 +2,10 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { drizzle } from "drizzle-orm/node-postgres";
-import pg from "pg";
+import { pool } from "@/db";
 import { account, session, user, verification } from "@/db/schema";
-import { env } from "@/env";
 
-const pool = new pg.Pool({
-	connectionString: env.DATABASE_URL,
-});
+// Reuse the pool from @/db instead of creating a duplicate
 const db = drizzle(pool);
 
 export const auth = betterAuth({

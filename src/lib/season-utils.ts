@@ -40,15 +40,14 @@ export const seasonConfig = {
 
 export function getCurrentSeason(): Season | null {
 	const now = new Date();
-	const year = now.getFullYear();
 	const currentDate = now.toISOString().split("T")[0];
 
-	const seasons = (seasonsData as SeasonsData)[year.toString()];
-	if (!seasons) return null;
-
-	for (const season of seasons) {
-		if (currentDate >= season.startDate && currentDate <= season.endDate) {
-			return season;
+	for (const year of Object.keys(seasonsData)) {
+		const seasons = (seasonsData as SeasonsData)[year];
+		for (const season of seasons) {
+			if (currentDate >= season.startDate && currentDate <= season.endDate) {
+				return season;
+			}
 		}
 	}
 

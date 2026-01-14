@@ -1,6 +1,7 @@
 import {
 	boolean,
 	date,
+	index,
 	jsonb,
 	pgEnum,
 	pgTable,
@@ -9,22 +10,22 @@ import {
 	timestamp,
 } from "drizzle-orm/pg-core";
 
-export const holidays = pgTable("holidays", {
-	id: serial("id").primaryKey(),
-	name: text("name").notNull(),
-	localName: text("local_name").$default(() => ""),
-	date: date("date").notNull(),
-	countryCode: text("country_code").notNull(),
-	type: text("type"), // e.g., 'public', 'religious'
-	description: text("description"),
-	createdAt: timestamp("created_at").defaultNow(),
-	// updatedAt: timestamp("updated_at").defaultNow(),
-
-	// Sync fields
-	// syncId: text("sync_id"), // ID from external provider
-	// source: text("source").default("local"), // 'local', 'google', 'nextcloud'
-	// etag: text("etag"),
-});
+export const holidays = pgTable(
+	"holidays",
+	{
+		id: serial("id").primaryKey(),
+		name: text("name").notNull(),
+		localName: text("local_name").$default(() => ""),
+		date: date("date").notNull(),
+		countryCode: text("country_code").notNull(),
+		type: text("type"), // e.g., 'public', 'religious'
+		description: text("description"),
+		createdAt: timestamp("created_at").defaultNow(),
+	},
+	(table) => [
+		index("holidays_country_date_idx").on(table.countryCode, table.date),
+	],
+);
 
 export const categoryEnum = pgEnum("category", [
 	"national",
@@ -34,35 +35,56 @@ export const categoryEnum = pgEnum("category", [
 	"other",
 ]);
 
-export const events = pgTable("events", {
-	id: serial("id").primaryKey(),
-	title: text("title").notNull(),
-	description: text("description"),
-	startTime: timestamp("start_time").notNull(),
-	endTime: timestamp("end_time").notNull(),
-	isAllDay: boolean("is_all_day").default(false),
-	location: text("location"),
-	category: categoryEnum("category").default("personal"),
-	reminders: jsonb("reminders"), // Array of reminder configurations
+export const events = pgTable(
+	"events",
+	{
+		id: serial("id").primaryKey(),
+		title: text("title").notNull(),
+		description: text("description"),
+		startTime: timestamp("start_time").notNull(),
+		endTime: timestamp("end_time").notNull(),
+		isAllDay: boolean("is_all_day").default(false),
+		location: text("location"),
+		category: categoryEnum("category").default("personal"),
+		reminders: jsonb("reminders"), // Array of reminder configurations
 
-	// Sync fields
-	syncId: text("sync_id"), // ID from external provider
-	source: text("source").default("local"), // 'local', 'google', 'nextcloud'
-	etag: text("etag"),
+		// User association
+		userId: text("user_id").references(() => user.id),
 
-	createdAt: timestamp("created_at").defaultNow(),
-	updatedAt: timestamp("updated_at").defaultNow(),
-});
+		// Sync fields
+		syncId: text("sync_id"), // ID from external provider
+		source: text("source").default("local"), // 'local', 'google', 'nextcloud'
+		etag: text("etag"),
 
-export const todos = pgTable("todos", {
-	id: serial("id").primaryKey(),
-	title: text("title").notNull(),
-	description: text("description"),
-	isDone: boolean("is_done").default(false),
-	date: timestamp("date"), // Optional date for calendar
-	createdAt: timestamp("created_at").defaultNow(),
-	updatedAt: timestamp("updated_at").defaultNow(),
-});
+		createdAt: timestamp("created_at").defaultNow(),
+		updatedAt: timestamp("updated_at").defaultNow(),
+	},
+	(table) => [
+		index("events_start_time_idx").on(table.startTime),
+		index("events_user_id_idx").on(table.userId),
+	],
+);
+
+export const todos = pgTable(
+	"todos",
+	{
+		id: serial("id").primaryKey(),
+		title: text("title").notNull(),
+		description: text("description"),
+		isDone: boolean("is_done").default(false),
+		date: timestamp("date"), // Optional date for calendar
+
+		// User association
+		userId: text("user_id").references(() => user.id),
+
+		createdAt: timestamp("created_at").defaultNow(),
+		updatedAt: timestamp("updated_at").defaultNow(),
+	},
+	(table) => [
+		index("todos_date_idx").on(table.date),
+		index("todos_user_id_idx").on(table.userId),
+	],
+);
 
 export const seasons = pgTable("seasons", {
 	id: serial("id").primaryKey(),

@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { useTranslation } from "react-i18next";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header/Header";
 import { NotFound } from "@/components/NotFound";
@@ -63,7 +64,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					<div className="flex flex-col min-h-screen">
 						<Header />
 						<SeasonThemeHandler />
-						<main className="flex-1">{children}</main>
+						<ErrorBoundary>
+							<main className="flex-1">{children}</main>
+						</ErrorBoundary>
 						<Footer />
 					</div>
 					<TanStackDevtools

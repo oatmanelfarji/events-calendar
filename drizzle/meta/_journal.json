@@ -43,6 +43,13 @@
       "when": 1765713146796,
       "tag": "0005_worthless_meggan",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1768308464994,
+      "tag": "0006_curvy_jackpot",
+      "breakpoints": true
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { LogOut } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,9 +16,27 @@ import {
 } from "@/components/ui/tooltip";
 import { authClient } from "@/lib/auth-client";
 
+/**
+ * Get initials for avatar fallback.
+ * Falls back to email initial or "?" if name is empty.
+ */
+function getAvatarFallback(
+	name?: string | null,
+	email?: string | null,
+): string {
+	if (name && name.length > 0) {
+		return name.charAt(0).toUpperCase();
+	}
+	if (email && email.length > 0) {
+		return email.charAt(0).toUpperCase();
+	}
+	return "?";
+}
+
 export function UserMenu() {
 	const { data: session } = authClient.useSession();
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const handleSignOut = async () => {
 		await authClient.signOut({
@@ -35,11 +54,11 @@ export function UserMenu() {
 				<TooltipTrigger asChild>
 					<Link to="/login">
 						<Button variant="default" size="sm">
-							Sign In
+							{t("auth.signIn")}
 						</Button>
 					</Link>
 				</TooltipTrigger>
-				<TooltipContent>Sign In</TooltipContent>
+				<TooltipContent>{t("auth.signIn")}</TooltipContent>
 			</Tooltip>
 		);
 	}
@@ -57,14 +76,16 @@ export function UserMenu() {
 							<Avatar className="h-10 w-10">
 								<AvatarImage
 									src={session.user.image || undefined}
-									alt={session.user.name}
+									alt={session.user.name || "User avatar"}
 								/>
-								<AvatarFallback>{session.user.name.charAt(0)}</AvatarFallback>
+								<AvatarFallback>
+									{getAvatarFallback(session.user.name, session.user.email)}
+								</AvatarFallback>
 							</Avatar>
 						</Button>
 					</DropdownMenuTrigger>
 				</TooltipTrigger>
-				<TooltipContent>User menu</TooltipContent>
+				<TooltipContent>{t("header.userMenu")}</TooltipContent>
 			</Tooltip>
 			<DropdownMenuContent className="w-56" align="end" forceMount>
 				<DropdownMenuItem className="flex flex-col items-start gap-1">
@@ -77,7 +98,7 @@ export function UserMenu() {
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={handleSignOut} className="text-red-600">
 					<LogOut className="mr-2 h-4 w-4" />
-					<span>Log out</span>
+					<span>{t("auth.signOut")}</span>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

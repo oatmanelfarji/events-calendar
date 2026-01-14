@@ -26,16 +26,24 @@ export function ThemeProvider({
 	storageKey = "events-calendar-theme",
 	...props
 }: ThemeProviderProps) {
-	const [theme, setTheme] = useState<Theme>(
-		() =>
-			(typeof window !== "undefined"
-				? (localStorage.getItem(storageKey) as Theme)
-				: null) || defaultTheme,
-	);
+	// Start with defaultTheme to match server render
+	const [theme, setThemeState] = useState<Theme>(defaultTheme);
+	const [mounted, setMounted] = useState(false);
 
+	// After hydration, sync with localStorage
 	useEffect(() => {
-		const root = window.document.documentElement;
+		const stored = localStorage.getItem(storageKey) as Theme | null;
+		if (stored) {
+			setThemeState(stored);
+		}
+		setMounted(true);
+	}, [storageKey]);
 
+	// Apply theme class to document
+	useEffect(() => {
+		if (!mounted) return;
+
+		const root = window.document.documentElement;
 		root.classList.remove("light", "dark");
 
 		if (theme === "system") {
@@ -49,16 +57,16 @@ export function ThemeProvider({
 		}
 
 		root.classList.add(theme);
-	}, [theme]);
+	}, [theme, mounted]);
+
+	const setTheme = (newTheme: Theme) => {
+		localStorage.setItem(storageKey, newTheme);
+		setThemeState(newTheme);
+	};
 
 	const value = {
 		theme,
-		setTheme: (theme: Theme) => {
-			if (typeof window !== "undefined") {
-				localStorage.setItem(storageKey, theme);
-			}
-			setTheme(theme);
-		},
+		setTheme,
 	};
 
 	return (

@@ -1,7 +1,7 @@
 "use server";
 
 import { createServerFn } from "@tanstack/react-start";
-import { and, eq, gte, lte } from "drizzle-orm";
+import { and, asc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { holidays } from "@/db/schema";
@@ -28,7 +28,11 @@ export const fetchAndSeedHolidays = createServerFn({ method: "POST" })
 	)
 	.handler(async ({ data }) => {
 		const { year, countryCode } = data;
-		console.log(`Fetching holidays for ${countryCode} in ${year}...`);
+
+		// Only log in development
+		if (process.env.NODE_ENV === "development") {
+			console.log(`Fetching holidays for ${countryCode} in ${year}...`);
+		}
 
 		try {
 			const response = await fetch(
@@ -42,13 +46,9 @@ export const fetchAndSeedHolidays = createServerFn({ method: "POST" })
 			const rawData = await response.json();
 			const publicHolidays = z.array(PublicHolidaySchema).parse(rawData);
 
-			// Insert into DB
-			// We'll use a transaction or just simple inserts for now.
-			// Ideally we should check for duplicates or use ON CONFLICT DO NOTHING
-
 			const values = publicHolidays.map((h) => ({
 				name: h.name,
-				date: h.date, // String 'YYYY-MM-DD' works for Drizzle date type
+				date: h.date,
 				countryCode: h.countryCode,
 				type: h.types[0] || "public",
 				description: h.localName,
@@ -60,7 +60,9 @@ export const fetchAndSeedHolidays = createServerFn({ method: "POST" })
 
 			return { success: true, count: values.length };
 		} catch (error) {
-			console.error("Error seeding holidays:", error);
+			if (process.env.NODE_ENV === "development") {
+				console.error("Error seeding holidays:", error);
+			}
 			throw error;
 		}
 	});
@@ -75,29 +77,23 @@ export const getHolidays = createServerFn({ method: "GET" })
 	.handler(async ({ data }) => {
 		const { year, countryCode } = data;
 
-		let query = db
-			.select()
-			.from(holidays)
-			.where(eq(holidays.countryCode, countryCode))
-			.$dynamic();
+		const conditions = [eq(holidays.countryCode, countryCode)];
 
 		if (year) {
 			const startOfYear = `${year}-01-01`;
 			const endOfYear = `${year}-12-31`;
-			query = query.where(
-				and(gte(holidays.date, startOfYear), lte(holidays.date, endOfYear)),
+			conditions.push(
+				gte(holidays.date, startOfYear),
+				lte(holidays.date, endOfYear),
 			);
 		}
 
-		// Sort by date ascending
-		// Note: Drizzle's orderBy needs to be chained
-		// Since we are using dynamic query building, we might need to adjust how we apply orderBy
-		// But for simplicity with the current setup:
-
-		const results = await query;
-		return results.sort(
-			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-		);
+		// Use SQL ordering instead of JavaScript sort
+		return await db
+			.select()
+			.from(holidays)
+			.where(and(...conditions))
+			.orderBy(asc(holidays.date));
 	});
 
 export const getNextHoliday = createServerFn({ method: "GET" })
@@ -107,7 +103,7 @@ export const getNextHoliday = createServerFn({ method: "GET" })
 		const now = new Date();
 		const currentDate = now.toISOString().split("T")[0];
 
-		// Get all holidays for the country that are on or after today
+		// Use SQL ordering and LIMIT instead of fetching all and sorting in JS
 		const results = await db
 			.select()
 			.from(holidays)
@@ -116,12 +112,9 @@ export const getNextHoliday = createServerFn({ method: "GET" })
 					eq(holidays.countryCode, countryCode),
 					gte(holidays.date, currentDate),
 				),
-			);
+			)
+			.orderBy(asc(holidays.date))
+			.limit(1);
 
-		// Sort by date ascending and return the first one (next holiday)
-		const sortedResults = results.sort(
-			(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-		);
-
-		return sortedResults[0] || null;
+		return results[0] || null;
 	});

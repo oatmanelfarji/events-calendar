@@ -17,7 +17,10 @@ export function SeasonProgress({
 
 	return (
 		<div
-			className={`relative w-full h-8 rounded-full overflow-hidden border border-${bgColor} dark:border-${bgColor}`}
+			className={cn(
+				"relative w-full h-8 rounded-full overflow-hidden border border-border/20",
+				bgColor,
+			)}
 		>
 			{/* Progress indicator */}
 			<div
