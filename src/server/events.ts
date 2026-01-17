@@ -1,7 +1,7 @@
 "use server";
 
 import { createServerFn } from "@tanstack/react-start";
-import { and, desc, eq, gte, lte } from "drizzle-orm";
+import { and, desc, eq, gte, isNull, lte, or } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { events } from "@/db/schema";
@@ -17,8 +17,8 @@ const EventSchema = z
 	.object({
 		title: z.string().min(1, "Title is required"),
 		description: z.string().optional(),
-		startTime: z.string().datetime({ message: "Invalid start time format" }),
-		endTime: z.string().datetime({ message: "Invalid end time format" }),
+		startTime: z.iso.datetime({ message: "Invalid start time format" }),
+		endTime: z.iso.datetime({ message: "Invalid end time format" }),
 		isAllDay: z.boolean().default(false),
 		location: z.string().optional(),
 		category: z
@@ -34,8 +34,8 @@ const EventSchema = z
 export const getEvents = createServerFn({ method: "GET" })
 	.inputValidator(
 		z.object({
-			start: z.string().datetime(),
-			end: z.string().datetime(),
+			start: z.iso.datetime(),
+			end: z.iso.datetime(),
 		}),
 	)
 	.handler(async ({ data }) => {
@@ -45,21 +45,26 @@ export const getEvents = createServerFn({ method: "GET" })
 		const session = await getServerSession();
 		const userId = session?.user?.id;
 
-		const conditions = [
-			gte(events.startTime, new Date(start)),
-			lte(events.startTime, new Date(end)),
-		];
-
-		// Filter by userId if authenticated
-		if (userId) {
-			conditions.push(eq(events.userId, userId));
-		}
+		// Get public events (userId = null) and user's own events if authenticated
+		const userCondition = userId
+			? or(isNull(events.userId), eq(events.userId, userId))
+			: isNull(events.userId);
 
 		const results = await db
 			.select()
 			.from(events)
-			.where(and(...conditions))
+			.where(
+				and(
+					gte(events.startTime, new Date(start)),
+					lte(events.startTime, new Date(end)),
+					userCondition,
+				),
+			)
 			.orderBy(desc(events.startTime));
+
+		if (process.env.NODE_ENV === "development") {
+			console.log("[getEvents] results:", results);
+		}
 
 		return results.map((event) => ({
 			...event,
@@ -144,16 +149,14 @@ export const getUpcomingEvents = createServerFn({ method: "GET" })
 		const limit = data?.limit ?? 3;
 		const now = new Date();
 
-		const conditions = [gte(events.startTime, now)];
-
-		if (userId) {
-			conditions.push(eq(events.userId, userId));
-		}
+		const userCondition = userId
+			? or(isNull(events.userId), eq(events.userId, userId))
+			: isNull(events.userId);
 
 		const results = await db
 			.select()
 			.from(events)
-			.where(and(...conditions))
+			.where(and(gte(events.startTime, now), userCondition))
 			.orderBy(events.startTime)
 			.limit(limit);
 

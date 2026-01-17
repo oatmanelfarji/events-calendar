@@ -1,4 +1,5 @@
 import { config } from "dotenv";
+import { and, eq, ilike, or } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
 import * as fs from "fs";
 import * as path from "path";
@@ -38,18 +39,30 @@ async function seed() {
 			...event,
 			startTime: new Date(event.startTime),
 			endTime: new Date(event.endTime),
+			userId: null, // Mark as global event
 		}));
 
-		// Optional: Clear existing season start events?
-		// For now, we will simply insert them.
-		// If you want to avoid duplicates, you might want to delete based on criteria.
-		// await db.delete(schema.events).where(...)
+		// Clear existing season start events from local source to avoid duplicates
+		console.log("🗑️ Clearing existing season start events...");
+		await db
+			.delete(schema.events)
+			.where(
+				and(
+					eq(schema.events.source, "local"),
+					or(
+						ilike(schema.events.title, "%Spring Starts%"),
+						ilike(schema.events.title, "%Summer Starts%"),
+						ilike(schema.events.title, "%Autumn Starts%"),
+						ilike(schema.events.title, "%Winter Starts%"),
+					),
+				),
+			);
 
 		// Insert events
 		await db.insert(schema.events).values(formattedEvents);
 
 		console.log(
-			`✅ Successfully seeded ${formattedEvents.length} season start events!`,
+			`✅ Successfully seeded ${formattedEvents.length} season start events as global!`,
 		);
 	} catch (error) {
 		console.error("❌ Error seeding database:", error);

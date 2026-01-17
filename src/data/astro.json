@@ -1,0 +1,296 @@
+[
+	{
+		"season": "Winter",
+		"common_name": "المربعانية",
+		"english_name": "The First Winter Quadrant",
+		"start_date": "7 December",
+		"star_name": "الإكليل",
+		"star_days": 13,
+		"zodiac_sign": ["القوس"],
+		"zodiac_days": [14],
+		"notes": "أول مربعانية الشتاء قارس البرودة وتكثر فيه الأمطار بإذن الله"
+	},
+	{
+		"season": "Winter",
+		"common_name": "المربعانية",
+		"english_name": "The Second Winter Quadrant",
+		"start_date": "20 December",
+		"star_name": "القلب",
+		"star_days": 13,
+		"zodiac_sign": ["القوس", "الجدي"],
+		"zodiac_days": [2, 11],
+		"notes": "يشتد البرد والرياح ويظهر الضباب وتكثر الغيوم"
+	},
+	{
+		"season": "Winter",
+		"common_name": "المربعانية",
+		"english_name": "The Third Winter Quadrant",
+		"start_date": "2 January",
+		"star_name": "الشولة",
+		"star_days": 13,
+		"zodiac_sign": ["الجدي"],
+		"zodiac_days": [13],
+		"notes": "استمرار شدة البرد والصقيع والضباب"
+	},
+	{
+		"season": "Winter",
+		"common_name": "الشبط",
+		"english_name": "The First Spring Quadrant",
+		"start_date": "15 January",
+		"star_name": "النعائم",
+		"star_days": 13,
+		"zodiac_sign": ["الجدي", "الدلو"],
+		"zodiac_days": [6, 7],
+		"notes": "بردها قارس وشديد ، وفيه هجرة طيور القطا"
+	},
+	{
+		"season": "Winter",
+		"common_name": "الشبط",
+		"start_date": "28 January",
+		"star_name": "البلدة",
+		"star_days": 13,
+		"zodiac_sign": ["الدلو"],
+		"zodiac_days": [13],
+		"notes": "فيها يشتد البرد ويجمد الماء"
+	},
+	{
+		"season": "Winter",
+		"common_name": "العقارب",
+		"start_date": "10 February",
+		"star_name": "سعد الذابح",
+		"star_days": 13,
+		"zodiac_sign": ["الدلو", "الحوت"],
+		"zodiac_days": [10, 3],
+		"notes": "يبدأ فيه جريان الماء في فروع الشجر ويكثر العشب"
+	},
+	{
+		"season": "Winter/Spring",
+		"common_name": "العقارب",
+		"start_date": "23 February",
+		"star_name": "سعد بلع",
+		"star_days": 13,
+		"zodiac_sign": ["الحوت"],
+		"zodiac_days": [13],
+		"notes": "يكثر فيه المطر بإذن الله وفي آخره ربما يكون البرد قارساً"
+	},
+	{
+		"season": "Spring",
+		"common_name": "العقارب",
+		"start_date": "8 March",
+		"star_name": "سعد السعود",
+		"star_days": 13,
+		"zodiac_sign": ["الحوت"],
+		"zodiac_days": [13],
+		"notes": "فيه يعتدل الطقس وتخضر الأرض ويكثر العشب"
+	},
+	{
+		"season": "Spring",
+		"common_name": "الحميمين",
+		"start_date": "21 March",
+		"star_name": "سعد الأخبية",
+		"star_days": 13,
+		"zodiac_sign": ["الحمل"],
+		"zodiac_days": [13],
+		"notes": "يزداد فيه الدفء واخضرار الأشجار وتخرج الهوام والحشرات من مخابئها"
+	},
+	{
+		"season": "Spring",
+		"common_name": "الحميمين",
+		"start_date": "3 April",
+		"star_name": "المقدم",
+		"star_days": 13,
+		"zodiac_sign": ["الحمل"],
+		"zodiac_days": [13],
+		"notes": "برده يهلك الثمار ، وفيه هجرة طيور الوز الربيعي"
+	},
+	{
+		"season": "Spring",
+		"common_name": "الأذرعة",
+		"start_date": "16 April",
+		"star_name": "المؤخر",
+		"star_days": 13,
+		"zodiac_sign": ["الحمل", "الثور"],
+		"zodiac_days": [5, 7],
+		"notes": "إذا حدث فيه مطر فيكون بإذن الله غزيراً ويخضر به العشب"
+	},
+	{
+		"season": "Spring",
+		"common_name": "الأذرعة",
+		"start_date": "29 April",
+		"star_name": "الرشاء",
+		"star_days": 13,
+		"zodiac_sign": ["الثور"],
+		"zodiac_days": [14],
+		"notes": "مطره غزير بإذن الله وتهب فيه الرياح وتكثر فيه طيور القمري والصفارى"
+	},
+	{
+		"season": "Spring",
+		"common_name": "الثريا",
+		"start_date": "12 May",
+		"star_name": "الشرطين",
+		"star_days": 13,
+		"zodiac_sign": ["الثور", "الجوزاء"],
+		"zodiac_days": [10, 3],
+		"notes": "يميل الطقس فيه إلى الدفء وتكثر فيه العواصف وبه أمطار خفيفة"
+	},
+	{
+		"season": "Spring",
+		"common_name": "الثريا ",
+		"start_date": "25 May",
+		"star_name": "البطين",
+		"star_days": 13,
+		"zodiac_sign": ["الجوزاء"],
+		"zodiac_days": [13],
+		"notes": "بدء مربعانية القيظ وزيادة الحرارة ويبدأ جفاف العشب"
+	},
+	{
+		"season": "Summer",
+		"common_name": "الثريا",
+		"start_date": "7 June",
+		"star_name": "الثريا",
+		"star_days": 13,
+		"zodiac_sign": ["الجوزاء"],
+		"zodiac_days": [13],
+		"notes": "يشتد الحر وتكثر العواصف ويجف العشب"
+	},
+	{
+		"season": "Summer",
+		"common_name": "التوبيع",
+		"start_date": "20 June",
+		"star_name": "الديران",
+		"star_days": 13,
+		"zodiac_sign": ["الجوزاء", "السرطان"],
+		"zodiac_days": [2, 11],
+		"notes": "في الخامس منه ينعدم ظل الزوال لتعامد الشمس مع مدار السرطان ."
+	},
+	{
+		"season": "Summer",
+		"common_name": "الجوزاء",
+		"start_date": "3 July",
+		"star_name": "الهقعة",
+		"star_days": 13,
+		"zodiac_sign": ["السرطان"],
+		"zodiac_days": [13],
+		"notes": "يشتد الحر وتكثر السموم والعواصف وتبدأ زيادة الليل "
+	},
+	{
+		"season": "Summer",
+		"common_name": "الجوزاء",
+		"start_date": "16 July",
+		"star_name": "الهنعة",
+		"star_days": 13,
+		"zodiac_sign": ["السرطان", "الأسد"],
+		"zodiac_days": [7, 6],
+		"notes": "يبلغ الحر أشده وجمرة القيظ واشتداد السموم حتى منتصف الليل"
+	},
+	{
+		"season": "Summer",
+		"common_name": "المرزم",
+		"english_name": "",
+		"start_date": "29 July",
+		"star_name": "الذراع",
+		"star_days": 13,
+		"zodiac_sign": ["الأسد"],
+		"zodiac_days": [13],
+		"notes": "يشتد فيه الحر والسموم مع حدوث عواصف ترابية وغيوم مع مطر خفيف."
+	},
+	{
+		"season": "Summer",
+		"common_name": "الكليبين",
+		"english_name": "",
+		"start_date": "11 August",
+		"star_name": "النثرة",
+		"star_days": 13,
+		"zodiac_sign": ["الأسد", "السنبلة"],
+		"zodiac_days": [12, 1],
+		"notes": "يلطف الجو قليلاً وبالأخص في ساعات المساء ."
+	},
+	{
+		"season": "Summer",
+		"common_name": "سهيل",
+		"english_name": "",
+		"start_date": "24 August",
+		"star_name": "الطرفة",
+		"star_days": 13,
+		"zodiac_sign": ["السنبلة"],
+		"zodiac_days": [13],
+		"notes": "يلطف الجو ليلاً مع بقاء الحر في ساعات النهار ."
+	},
+	{
+		"season": "Autumn",
+		"common_name": "سهيل",
+		"english_name": "",
+		"start_date": "6 September",
+		"star_name": "الجبهة",
+		"star_days": 14,
+		"zodiac_sign": ["السنبلة"],
+		"zodiac_days": [16],
+		"notes": "أول نجوم الخريف يبرد الليل ويتحسن الطقس نهاراً ."
+	},
+	{
+		"season": "Autumn",
+		"common_name": "سهيل",
+		"english_name": "",
+		"start_date": "20 September",
+		"star_name": "الزبرة",
+		"star_days": 14,
+		"zodiac_sign": ["السنبلة", "الميزان"],
+		"zodiac_days": [3, 10],
+		"notes": "تزداد برودة الليل وينصح بعدم النوم تحت أديم السماء ."
+	},
+	{
+		"season": "Autumn",
+		"common_name": "سهيل",
+		"english_name": "",
+		"start_date": "13 October",
+		"star_name": "الصرفة",
+		"star_days": 13,
+		"zodiac_sign": ["الميزان"],
+		"zodiac_days": [13],
+		"notes": "سميت بذلك لانصراف الحر عند طلوعها ."
+	},
+	{
+		"season": "Autumn",
+		"common_name": "الوسم",
+		"english_name": "",
+		"start_date": "16 October",
+		"star_name": "العواء",
+		"star_days": 13,
+		"zodiac_sign": ["الميزان", "العقرب"],
+		"zodiac_days": [10, 6],
+		"notes": "أول نجوم الوسم وأمطاره تنبت الفقع وجميع الأعشاب البرية ."
+	},
+	{
+		"season": "Autumn",
+		"common_name": "الوسم",
+		"english_name": "",
+		"start_date": "29 October",
+		"star_name": "السماك",
+		"star_days": 13,
+		"zodiac_sign": ["العقرب"],
+		"zodiac_days": [13],
+		"notes": "تزداد البرودة وتكثر فيه الأمطار بإذن الله ، وهو بداية هجرة الحبارى"
+	},
+	{
+		"season": "Autumn",
+		"common_name": "الوسم",
+		"english_name": "",
+		"start_date": "11 November",
+		"star_name": "الغفر",
+		"star_days": 13,
+		"zodiac_sign": ["العقرب", "القوس"],
+		"zodiac_days": [11, 2],
+		"notes": "تزداد البرودة عما قبله"
+	},
+	{
+		"season": "Autumn",
+		"common_name": "الوسم",
+		"english_name": "",
+		"start_date": "24 November",
+		"star_name": "الزبانا",
+		"star_days": 13,
+		"zodiac_sign": ["القوس"],
+		"zodiac_days": [12],
+		"notes": "نهاية فصل الخريف وبداية فصل الشتاء وتشتد فيه البرودة ."
+	}
+]

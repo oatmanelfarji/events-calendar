@@ -27,12 +27,16 @@ interface EventsSectionProps {
 	icon: React.ElementType;
 	bgColor: string;
 	textColor: string;
+	categories?: string[];
+	startOfMonth?: Date;
+	endOfMonth?: Date;
 }
 
 export function EventsSection({
 	events,
 	icon: Icon,
 	textColor,
+	bgColor,
 }: EventsSectionProps) {
 	const { t } = useTranslation();
 	const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
@@ -76,7 +80,8 @@ export function EventsSection({
 						<div
 							className={cn(
 								"p-3 rounded-xl transition-transform duration-300 group-hover:scale-110",
-								"bg-linear-to-br from-background to-muted ring-1 ring-inset ring-foreground/5 shadow-sm",
+								bgColor,
+								"ring-1 ring-inset ring-foreground/5 shadow-sm",
 							)}
 						>
 							<Icon className={cn("w-6 h-6", textColor)} />

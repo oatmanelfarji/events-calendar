@@ -35,7 +35,8 @@ export function SignIn() {
 							navigate({ to: "/" });
 						},
 						onError: (ctx) => {
-							alert(ctx.error.message);
+							console.error("Sign up error context:", ctx);
+							alert(ctx.error.message ?? "Failed to sign up");
 							setIsLoading(false);
 						},
 					},
@@ -51,7 +52,8 @@ export function SignIn() {
 							navigate({ to: "/" });
 						},
 						onError: (ctx) => {
-							alert(ctx.error.message);
+							console.error("Sign in error context:", ctx);
+							alert(ctx.error.message ?? "Failed to sign in");
 							setIsLoading(false);
 						},
 					},

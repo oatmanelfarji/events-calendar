@@ -1,0 +1,259 @@
+[
+	{
+		"section": "Winter",
+		"name": "أول مربعانية الشتاء",
+		"duration_days": 13,
+		"start_date": "7 December",
+		"star_periods": [
+			{ "name": "الإكليل", "days": 13 },
+			{ "name": "القوس", "days": 14 }
+		],
+		"description": "قارس البرودة وتكثر فيه الأمطار بإذن الله"
+	},
+	{
+		"section": "Winter",
+		"name": "المربعانية القلب",
+		"duration_days": 13,
+		"start_date": "20 December",
+		"star_periods": [
+			{ "name": "القوس", "days": 2 },
+			{ "name": "الجدي", "days": 11 }
+		],
+		"description": "يشتد البرد والرياح ويظهر الضباب وتكثر الغيوم"
+	},
+	{
+		"section": "Winter",
+		"name": "المربعانية الشولة",
+		"duration_days": 13,
+		"start_date": "2 January",
+		"star_periods": [{ "name": "الجدي", "days": 13 }],
+		"description": "استمرار شدة البرد والصقيع والضباب"
+	},
+	{
+		"section": "Winter",
+		"name": "الشبط النعائم",
+		"duration_days": 13,
+		"start_date": "15 January",
+		"star_periods": [
+			{ "name": "الجدي", "days": 6 },
+			{ "name": "الدلو", "days": 7 }
+		],
+		"description": "بردها قارس وشديد ، وفيه هجرة طيور القطا"
+	},
+	{
+		"section": "Winter",
+		"name": "الشبط البلدة",
+		"duration_days": 13,
+		"start_date": "28 January",
+		"star_periods": [{ "name": "الدلو", "days": 13 }],
+		"description": "فيها يشتد البرد ويجمد الماء"
+	},
+	{
+		"section": "Winter",
+		"name": "العقارب سعد الذابح",
+		"duration_days": 13,
+		"start_date": "10 February",
+		"star_periods": [
+			{ "name": "الدلو", "days": 10 },
+			{ "name": "الحوت", "days": 3 }
+		],
+		"description": "يبدأ فيه جريان الماء في فروع الشجر ويكثر العشب والفقع"
+	},
+	{
+		"section": "Winter",
+		"name": "العقارب سعد بلع",
+		"duration_days": 13,
+		"start_date": "23 February",
+		"star_periods": [{ "name": "الحوت", "days": 13 }],
+		"description": "يكثر فيه المطر بإذن الله وفي آخره ربما يكون البرد قارساً"
+	},
+	{
+		"section": "Spring",
+		"name": "العقارب سعد السعود",
+		"duration_days": 13,
+		"start_date": "8 March",
+		"star_periods": [{ "name": "الحوت", "days": 13 }],
+		"description": "يعتدل الطقس وتخضر الأرض ويكثر العشب ويزداد الفقع"
+	},
+	{
+		"section": "Spring",
+		"name": "الحميمين سعد الأخبية",
+		"duration_days": 13,
+		"start_date": "21 March",
+		"star_periods": [{ "name": "الحمل", "days": 13 }],
+		"description": "يزداد الدفء واخضرار الأشجار وتخرج الهوام والحشرات من مخابئها"
+	},
+	{
+		"section": "Spring",
+		"name": "الحميمين المقدم",
+		"duration_days": 13,
+		"start_date": "3 April",
+		"star_periods": [{ "name": "الحمل", "days": 13 }],
+		"description": "برده يهلك الثمار ، وفيه هجرة طيور الوز الربيعي"
+	},
+	{
+		"section": "Spring",
+		"name": "الأذرعة المؤخر",
+		"duration_days": 13,
+		"start_date": "16 April",
+		"star_periods": [
+			{ "name": "الحمل", "days": 5 },
+			{ "name": "الثور", "days": 7 }
+		],
+		"description": "إذا حدث فيه مطر فيكون بإذن الله غزيراً ويخضر به العشب"
+	},
+	{
+		"section": "Spring",
+		"name": "الأذرعة الرشاء",
+		"duration_days": 13,
+		"start_date": "29 April",
+		"star_periods": [{ "name": "الثور", "days": 14 }],
+		"description": "مطره غزير بإذن الله وتكثر فيه الرياح وطيور القمري والصفارى"
+	},
+	{
+		"section": "Spring",
+		"name": "الثريا الشرطين",
+		"duration_days": 13,
+		"start_date": "12 May",
+		"star_periods": [
+			{ "name": "الثور", "days": 10 },
+			{ "name": "الجوزاء", "days": 3 }
+		],
+		"description": "يميل الطقس إلى الدفء وتكثر العواصف وبه أمطار خفيفة"
+	},
+	{
+		"section": "Spring",
+		"name": "الثريا البطين",
+		"duration_days": 13,
+		"start_date": "25 May",
+		"star_periods": [{ "name": "الجوزاء", "days": 13 }],
+		"description": "بدء مربعانية القيظ وزيادة الحرارة ويبدأ جفاف العشب"
+	},
+	{
+		"section": "Summer",
+		"name": "الثريا",
+		"duration_days": 13,
+		"start_date": "7 June",
+		"star_periods": [{ "name": "الجوزاء", "days": 13 }],
+		"description": "يشتد الحر وتكثر العواصف ويجف العشب"
+	},
+	{
+		"section": "Summer",
+		"name": "التوبيع الديران",
+		"duration_days": 13,
+		"start_date": "20 June",
+		"star_periods": [
+			{ "name": "الجوزاء", "days": 2 },
+			{ "name": "السرطان", "days": 11 }
+		],
+		"description": "في الخامس منه ينعدم ظل الزوال لتعامد الشمس مع مدار السرطان"
+	},
+	{
+		"section": "Summer",
+		"name": "الهقعة",
+		"duration_days": 13,
+		"start_date": "3 July",
+		"star_periods": [{ "name": "السرطان", "days": 13 }],
+		"description": "يشتد الحر وتكثر السموم والعواصف وتبدأ زيادة الليل"
+	},
+	{
+		"section": "Summer",
+		"name": "الجوزاء الهنعة",
+		"duration_days": 13,
+		"start_date": "16 July",
+		"star_periods": [
+			{ "name": "السرطان", "days": 7 },
+			{ "name": "الأسد", "days": 6 }
+		],
+		"description": "يبلغ الحر أشده واشتداد السموم حتى منتصف الليل"
+	},
+	{
+		"section": "Summer",
+		"name": "المرزم الذراع",
+		"duration_days": 13,
+		"start_date": "29 July",
+		"star_periods": [{ "name": "الأسد", "days": 13 }],
+		"description": "يشتد فيه الحر والسموم مع حدوث عواصف ترابية وغيوم مع مطر خفيف"
+	},
+	{
+		"section": "Summer",
+		"name": "الكليبين النثرة",
+		"duration_days": 13,
+		"start_date": "11 August",
+		"star_periods": [
+			{ "name": "الأسد", "days": 12 },
+			{ "name": "السنبلة", "days": 1 }
+		],
+		"description": "يلطف الجو قليلاً وبالأخص في ساعات المساء"
+	},
+	{
+		"section": "Summer",
+		"name": "سهيل الطرفة",
+		"duration_days": 13,
+		"start_date": "24 August",
+		"star_periods": [{ "name": "السنبلة", "days": 13 }],
+		"description": "يلطف الجو ليلاً مع بقاء الحر في النهار"
+	},
+	{
+		"section": "Autumn",
+		"name": "سهيل الجبهة",
+		"duration_days": 14,
+		"start_date": "6 September",
+		"star_periods": [{ "name": "السنبلة", "days": 16 }],
+		"description": "أول نجوم الخريف يبرد الليل ويتحسن الطقس نهاراً"
+	},
+	{
+		"section": "Autumn",
+		"name": "سهيل الزبرة",
+		"duration_days": 13,
+		"start_date": "20 September",
+		"star_periods": [
+			{ "name": "السنبلة", "days": 3 },
+			{ "name": "الميزان", "days": 10 }
+		],
+		"description": "تزداد برودة الليل وينصح بعدم النوم تحت أديم السماء"
+	},
+	{
+		"section": "Autumn",
+		"name": "سهيل الصرفة",
+		"duration_days": 13,
+		"start_date": "13 October",
+		"star_periods": [{ "name": "الميزان", "days": 13 }],
+		"description": "سميت بذلك لانصراف الحر عند طلوعها"
+	},
+	{
+		"section": "Autumn",
+		"name": "الوسم العواء",
+		"duration_days": 13,
+		"start_date": "16 October",
+		"star_periods": [{ "name": "العقرب", "days": 6 }],
+		"description": "أول نجوم الوسم وأمطاره تنبت الفقع وجميع الأعشاب البرية"
+	},
+	{
+		"section": "Autumn",
+		"name": "الوسم السماك",
+		"duration_days": 13,
+		"start_date": "29 October",
+		"star_periods": [{ "name": "العقرب", "days": 13 }],
+		"description": "تزداد البرودة وتكثر الأمطار وهو بداية هجرة الحبارى"
+	},
+	{
+		"section": "Autumn",
+		"name": "الوسم الغفر",
+		"duration_days": 13,
+		"start_date": "11 November",
+		"star_periods": [
+			{ "name": "العقرب", "days": 11 },
+			{ "name": "القوس", "days": 2 }
+		],
+		"description": "تزداد البرودة عما قبله"
+	},
+	{
+		"section": "Autumn",
+		"name": "الوسم الزبانا",
+		"duration_days": 13,
+		"start_date": "24 November",
+		"star_periods": [{ "name": "القوس", "days": 12 }],
+		"description": "نهاية فصل الخريف وبداية الشتاء وتشتد البرودة"
+	}
+]

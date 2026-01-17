@@ -28,7 +28,12 @@ export const getTodos = createServerFn({ method: "GET" })
 		const session = await getServerSession();
 		const userId = session?.user?.id;
 
-		const conditions = [];
+		// If no user is authenticated, return an empty array to prevent data leak
+		if (!userId) {
+			return [];
+		}
+
+		const conditions = [eq(todos.userId, userId)];
 
 		// Filter by date range if provided
 		if (data?.start && data?.end) {
@@ -38,21 +43,11 @@ export const getTodos = createServerFn({ method: "GET" })
 			);
 		}
 
-		// Filter by userId if authenticated
-		if (userId) {
-			conditions.push(eq(todos.userId, userId));
-		}
-
-		if (conditions.length > 0) {
-			return await db
-				.select()
-				.from(todos)
-				.where(and(...conditions))
-				.orderBy(desc(todos.createdAt));
-		}
-
-		// If no conditions, return all todos (for unauthenticated or no date range)
-		return await db.select().from(todos).orderBy(desc(todos.createdAt));
+		return await db
+			.select()
+			.from(todos)
+			.where(and(...conditions))
+			.orderBy(desc(todos.createdAt));
 	});
 
 export const createTodo = createServerFn({ method: "POST" })
