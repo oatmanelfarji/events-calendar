@@ -148,6 +148,12 @@ export default function Header() {
 						onClick={closeSidebar}
 					/>
 					<NavLink
+						to="/astro"
+						icon={Table}
+						labelKey="common.astro"
+						onClick={closeSidebar}
+					/>
+					<NavLink
 						to="/todos"
 						icon={ListTodo}
 						labelKey="common.todos"

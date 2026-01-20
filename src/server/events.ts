@@ -1,11 +1,10 @@
 "use server";
 
 import { createServerFn } from "@tanstack/react-start";
-import { and, desc, eq, gte, isNull, lte, or } from "drizzle-orm";
+import { and, desc, eq, gte, lte } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { events } from "@/db/schema";
-import { getServerSession, requireAuth } from "@/lib/auth-server";
 import type { ReminderConfig } from "@/types";
 
 const ReminderSchema = z.object({
@@ -41,15 +40,6 @@ export const getEvents = createServerFn({ method: "GET" })
 	.handler(async ({ data }) => {
 		const { start, end } = data;
 
-		// Get session to filter by user if logged in
-		const session = await getServerSession();
-		const userId = session?.user?.id;
-
-		// Get public events (userId = null) and user's own events if authenticated
-		const userCondition = userId
-			? or(isNull(events.userId), eq(events.userId, userId))
-			: isNull(events.userId);
-
 		const results = await db
 			.select()
 			.from(events)
@@ -57,7 +47,6 @@ export const getEvents = createServerFn({ method: "GET" })
 				and(
 					gte(events.startTime, new Date(start)),
 					lte(events.startTime, new Date(end)),
-					userCondition,
 				),
 			)
 			.orderBy(desc(events.startTime));
@@ -75,15 +64,12 @@ export const getEvents = createServerFn({ method: "GET" })
 export const createEvent = createServerFn({ method: "POST" })
 	.inputValidator(EventSchema)
 	.handler(async ({ data }) => {
-		const session = await requireAuth();
-
 		const [newEvent] = await db
 			.insert(events)
 			.values({
 				...data,
 				startTime: new Date(data.startTime),
 				endTime: new Date(data.endTime),
-				userId: session.user.id,
 			})
 			.returning();
 
@@ -97,7 +83,6 @@ export const createEvent = createServerFn({ method: "POST" })
 export const updateEvent = createServerFn({ method: "POST" })
 	.inputValidator(EventSchema.and(z.object({ id: z.number() })))
 	.handler(async ({ data }) => {
-		const session = await requireAuth();
 		const { id, ...values } = data;
 
 		const [updatedEvent] = await db
@@ -108,7 +93,7 @@ export const updateEvent = createServerFn({ method: "POST" })
 				endTime: new Date(values.endTime),
 				updatedAt: new Date(),
 			})
-			.where(and(eq(events.id, id), eq(events.userId, session.user.id)))
+			.where(eq(events.id, id))
 			.returning();
 
 		if (!updatedEvent) {
@@ -125,11 +110,9 @@ export const updateEvent = createServerFn({ method: "POST" })
 export const deleteEvent = createServerFn({ method: "POST" })
 	.inputValidator(z.object({ id: z.number() }))
 	.handler(async ({ data }) => {
-		const session = await requireAuth();
-
 		const result = await db
 			.delete(events)
-			.where(and(eq(events.id, data.id), eq(events.userId, session.user.id)))
+			.where(eq(events.id, data.id))
 			.returning({ id: events.id });
 
 		if (result.length === 0) {
@@ -144,19 +127,13 @@ export const deleteEvent = createServerFn({ method: "POST" })
 export const getUpcomingEvents = createServerFn({ method: "GET" })
 	.inputValidator(z.object({ limit: z.number().optional() }).optional())
 	.handler(async ({ data }) => {
-		const session = await getServerSession();
-		const userId = session?.user?.id;
 		const limit = data?.limit ?? 3;
 		const now = new Date();
-
-		const userCondition = userId
-			? or(isNull(events.userId), eq(events.userId, userId))
-			: isNull(events.userId);
 
 		const results = await db
 			.select()
 			.from(events)
-			.where(and(gte(events.startTime, now), userCondition))
+			.where(gte(events.startTime, now))
 			.orderBy(events.startTime)
 			.limit(limit);
 

@@ -2,6 +2,7 @@ import {
 	boolean,
 	date,
 	index,
+	integer,
 	jsonb,
 	pgEnum,
 	pgTable,
@@ -34,6 +35,20 @@ export const categoryEnum = pgEnum("category", [
 	"personal",
 	"other",
 ]);
+
+export const astronomicalHouses = pgTable("astronomical_houses", {
+	id: serial("id").primaryKey(),
+	season: text("season").notNull(),
+	commonName: text("common_name").notNull(),
+	englishName: text("english_name"),
+	startDate: text("start_date").notNull(),
+	starName: text("star_name").notNull(),
+	starDays: integer("star_days").notNull(),
+	zodiacSign: text("zodiac_sign").array(),
+	zodiacDays: integer("zodiac_days").array(),
+	notes: text("notes"),
+	createdAt: timestamp("created_at").defaultNow(),
+});
 
 export const events = pgTable(
 	"events",

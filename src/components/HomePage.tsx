@@ -5,7 +5,7 @@ import { EventsSection } from "@/features/events/components/EventsSection";
 import { HolidaysSection } from "@/features/holidays/components/HolidaysSection";
 import { TodosSection } from "@/features/todos/components/TodosSection";
 import { authClient } from "@/lib/auth-client";
-import { getEvents, getUpcomingEvents } from "@/server/events";
+import { getEvents } from "@/server/events";
 import { getHolidays } from "@/server/holidays";
 import { getTodos } from "@/server/todos";
 import { SignIn } from "./Auth/SignIn";
@@ -46,11 +46,6 @@ export function HomePage() {
 		queryFn: () => getTodos(),
 	});
 
-	const { data: upcomingEvents = [] } = useQuery({
-		queryKey: ["upcomingEvents"],
-		queryFn: () => getUpcomingEvents({ data: { limit: 3 } }),
-	});
-
 	const activeTodosCount = todos.filter((t) => !t.isDone).length;
 
 	return (
@@ -67,7 +62,7 @@ export function HomePage() {
 
 				{/* Events Section */}
 				<EventsSection
-					events={upcomingEvents}
+					events={events}
 					categories={[]}
 					icon={SLIDES_CONFIG[0].icon}
 					bgColor={SLIDES_CONFIG[0].bgColor}

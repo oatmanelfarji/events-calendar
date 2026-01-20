@@ -50,6 +50,13 @@
       "when": 1768308464994,
       "tag": "0006_curvy_jackpot",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1768736028123,
+      "tag": "0007_dark_master_chief",
+      "breakpoints": true
     }
   ]
 }
